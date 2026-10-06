@@ -1,0 +1,52 @@
+# Error scenario: mining permit over a pending ancestral domain claim.
+# The orchestrator releases one event at a time on the simulated day shown,
+# and only to the agents listed in `to`. No agent sees the whole picture at first.
+id: mining_overlap
+title: Mining permit over a pending ancestral domain claim
+sim_days: 40
+pre_agreed_rules:
+  - Nothing is rejected or approved automatically; a human reviews every flag.
+  - Consent for a claim is the consensus of all members under customary law (IPRA s3(g)).
+  - No permit while a CADT application is pending (IPRA s59).
+  - Private (sacred) content is never shared outside the community.
+events:
+  - id: evt-1
+    day: 0
+    to: [story_agent, ncip_agent]
+    event: A community files a petition. 40 members are recorded; most name a river and a ridge as the boundary.
+    expected: Story agent drafts a boundary from matched stories; NCIP opens delineation.
+    expected_refs: [IPRA s52(b), IPRA s52(c), NCIP AO 4 s.2012]
+  - id: evt-2
+    day: 20
+    to: [denr_agent]
+    event: A mining company applies for an exploration permit over part of the claimed area.
+    expected: DENR asks NCIP to certify no overlap before deciding; no permit while the claim is pending.
+    expected_refs: [IPRA s59, Mining Act s16]
+  - id: evt-3
+    day: 25
+    to: [story_agent]
+    event: Two appointed representatives change their accounts; the ridge is no longer the boundary.
+    expected: Bias check flags a change made only by representatives; human review; nothing changes automatically.
+    expected_refs: [IPRA s54, NPC Advisory 2024-04]
+  - id: evt-4
+    day: 30
+    to: [npc_agent, lgu_agent]
+    event: A recording describing a sacred site leaks online.
+    expected: NPC breach response; audit log shows the file was private and who accessed it.
+    expected_refs: [Data Privacy Act, DPA IRR s3(t), IPRA s34]
+  - id: evt-5
+    day: 35
+    to: [ncip_agent]
+    event: A neighbouring community claims the same river as its boundary.
+    expected: Customary process first; NCIP brings the parties together.
+    expected_refs: [IPRA s62, IPRA s52(h), NCIP Rules of Procedure 2018]
+  - id: evt-6
+    day: 40
+    to: [story_agent, ncip_agent, denr_agent, npc_agent, lgu_agent, legal_adviser]
+    event: The company offers benefits to the community through the appointed representatives, in exchange for consent.
+    expected: Legal adviser flags manipulation of consent; consensus of all members required; no new permit while the claim is pending.
+    expected_refs: [IPRA s3(g), NCIP AO 3 s.2012, Mining Act s16, UNDRIP Art. 32(2), IPRA s59]
+controversy: >
+  Flagging the representatives' changed accounts may look like distrust of traditional leaders.
+  Flags go only to the community council and NCIP, are never published, and never reject testimony
+  on their own. Elders can explain the change, and the explanation is recorded.

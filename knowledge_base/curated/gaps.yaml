@@ -1,0 +1,126 @@
+# Domain policy gaps, typed by the evaluation categories, each linked to Philippine
+# references and global examples by source id. Used by the legal-adviser agent.
+# reading: "ours" = our interpretation of the law, not a finding of a court or agency.
+gaps:
+  - id: GAP-01
+    title: No minimum number or mix of tellers for testimony
+    type: legislative
+    ph_refs: [IPRA-52d, IPRA-51, IPRA-52b]
+    detail: IPRA requires sworn testimony of elders or community plus one authentic document, and a petition by a majority of members, but sets no minimum number or mix of people whose testimony is taken.
+    reading: ours
+    global_examples:
+      - source_id: G-13
+        example: Kenya's Community Land Act gives decisions to an assembly of all adult members, with a two-thirds quorum, and an elected 7-15 member committee for day-to-day management.
+      - source_id: G-05
+        example: Canada's Delgamuukw ruling treats oral history as equal to other evidence.
+  - id: GAP-02
+    title: No rules for AI-processed evidence
+    type: standards
+    ph_refs: [NPC-ADV-2024-04]
+    detail: The NPC advisory covers personal data in AI systems but not the evidentiary use of AI-processed testimony.
+    reading: ours
+    global_examples:
+      - source_id: G-07
+        example: EU AI Act Article 14 requires that people can monitor, interpret and override high-risk AI and guard against automation bias.
+      - source_id: G-08
+        example: The Digital Omnibus applies this to Annex III systems from 2 December 2027.
+  - id: GAP-03
+    title: No shared, live register of pending claims
+    type: unclear_responsibility
+    ph_refs: [IPRA-59]
+    detail: DENR may not grant a permit without NCIP certifying no overlap, and none while a CADT application is pending, but no shared register of pending claims is named in the law.
+    reading: ours
+    global_examples:
+      - source_id: G-09
+        example: Australia's Native Title Registrar keeps a public, mapped Register of Native Title Claims.
+  - id: GAP-04
+    title: Approved titles not registered
+    type: coordination
+    ph_refs: [IPRA-52k, JAO-2012]
+    detail: Only 55 of 257 approved CADTs (22%) were fully registered by early 2023 (World Bank). A 2017 review (PAFID, for ANGOC) found the 2012 joint order on overlapping claims frustrates title registration rather than facilitating it.
+    facts: [F-cadt, F-jao-review]
+    global_examples:
+      - source_id: G-09
+        example: One public register shared across agencies.
+  - id: GAP-05
+    title: Indigenous people invisible in national surveys
+    type: data
+    ph_refs: []
+    detail: The main income, labour, poverty and health surveys have no ethnicity variables.
+    facts: [F-surveys, F-psa-plans]
+    global_examples:
+      - source_id: G-14
+        example: "Mexico's INEGI asks self-identification alongside language: 7.4 million aged 3+ speak an indigenous language, 23.2 million self-identify (2020)."
+      - source_id: G-15
+        example: Australia's Indigenous Status Standard asks one standard self-identification question of every respondent.
+  - id: GAP-06
+    title: Single, under-resourced mandate for indigenous data
+    type: unclear_responsibility
+    ph_refs: []
+    detail: Only NCIP has a mandate to lead and harmonize IP data; efforts are uncoordinated. An interagency task force was agreed in January 2025.
+    facts: [F-ncip-mandate, F-workshop-steps]
+    global_examples:
+      - source_id: G-02
+        example: CARE Principles give indigenous peoples authority to control their data.
+      - source_id: G-16
+        example: UNESCO's AI ethics recommendation calls for respecting indigenous self-governance of data.
+  - id: GAP-07
+    title: Public NCIP research data versus community control of knowledge
+    type: conflict_between_objectives
+    ph_refs: [IPRA-45, IPRA-34]
+    detail: IPRA makes NCIP research data public, subject to limits set by law, while giving communities control of their knowledge.
+    global_examples:
+      - source_id: G-02
+        example: CARE Principles, to be applied alongside open-data (FAIR) rules.
+      - source_id: G-03
+        example: Canada's OCAP principles set similar rules specifically for First Nations data.
+  - id: GAP-08
+    title: Recording sacred knowledge
+    type: standards
+    ph_refs: [IPRA-34, IPRA-32]
+    detail: NCIP's 2012 research and documentation guidelines govern documenting indigenous knowledge, but there is no standard for AI processing of sacred content.
+    reading: ours
+    global_examples:
+      - source_id: G-04
+        example: "Te Mana Raraunga: Maori decide which data stay private and which can be shared."
+  - id: GAP-09
+    title: Mining Act prior consent versus IPRA consensus of all members
+    type: conflict_between_objectives
+    ph_refs: [MINING-16, IPRA-3g]
+    detail: The Mining Act asks for the community's prior consent; IPRA defines consent as the consensus of all members under customary law.
+    global_examples:
+      - source_id: G-01
+        example: UNDRIP Art. 32(2) requires states to consult and cooperate in good faith to obtain free and informed consent before approving projects affecting indigenous lands, especially mineral development.
+  - id: GAP-10
+    title: Traditional knowledge in stories could be patented by others
+    type: legislative
+    ph_refs: [IPRA-32, IPRA-34]
+    detail: Recorded stories may hold traditional knowledge (for example, medicinal plants).
+    global_examples:
+      - source_id: G-12
+        example: Once in force (15 ratifications needed; not in force as of July 2026), the 2024 WIPO treaty requires patent applicants to disclose the indigenous peoples who provided associated traditional knowledge.
+  - id: GAP-11
+    title: No structured way to compare evidence in boundary disputes
+    type: coordination
+    ph_refs: [IPRA-62, IPRA-52h, IPRA-66]
+    detail: Disputes between communities go to customary process first; NCIP has jurisdiction only when both parties are indigenous; otherwise regular courts decide (Lim v. Gamosa, 2015).
+    reading: ours
+    global_examples:
+      - source_id: G-10
+        example: Australia's Federal Court manages claims and refers each to mediation; overlapping claims can be heard together.
+  - id: GAP-12
+    title: Indigenous representation in local councils not guaranteed
+    type: conflict_between_objectives
+    ph_refs: [IPRA-16, LGC-41c]
+    detail: IPRA requires mandatory representation in local legislative councils, while the Local Government Code lists indigenous communities as only one option for a sectoral seat.
+    reading: ours
+    global_examples:
+      - source_id: G-13
+        example: Kenya's Community Land Act puts land decisions in an assembly of all adult members.
+  - id: GAP-13
+    title: Isolated communities with weak or no signal
+    type: technology
+    ph_refs: []
+    detail: About 37% of indigenous people live in geographically isolated areas.
+    facts: [F-gida]
+    global_examples: []

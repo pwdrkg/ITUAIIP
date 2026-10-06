@@ -1,0 +1,19 @@
+# Community data: never commit
+knowledge_base/private_store/*
+!knowledge_base/private_store/README.md
+
+# Downloaded sources are re-fetched by scripts/fetch_sources.py.
+# Remove these two lines if you decide to commit the files themselves.
+knowledge_base/InputDocs/**/*
+!knowledge_base/InputDocs/**/.gitkeep
+
+# Local databases and caches
+data/
+*.sqlite
+*.db
+chromadb/
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store

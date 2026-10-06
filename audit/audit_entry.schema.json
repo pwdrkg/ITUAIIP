@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Audit log entry",
+  "description": "One entry per agent step. Entries are hash-chained so later tampering shows.",
+  "type": "object",
+  "required": ["entry_id", "timestamp", "sim_day", "scenario_step", "agent", "mandate", "information_seen", "retrieved_sources", "reasoning_steps", "policy_references", "recommendation", "confidence", "human_review", "previous_entry_hash", "entry_hash"],
+  "properties": {
+    "entry_id": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "sim_day": {"type": "integer", "minimum": 0},
+    "scenario_step": {"type": "integer", "minimum": 1},
+    "agent": {"type": "string"},
+    "mandate": {"type": "string"},
+    "information_seen": {"type": "array", "items": {"type": "string"}, "description": "Event IDs this agent had received"},
+    "retrieved_sources": {
+      "type": "array",
+      "items": {"type": "object", "required": ["source_id"], "properties": {"source_id": {"type": "string"}, "section": {"type": "string"}, "chunk_id": {"type": "string"}}}
+    },
+    "reasoning_steps": {"type": "array", "items": {"type": "string"}},
+    "policy_references": {"type": "array", "items": {"type": "string"}},
+    "recommendation": {"type": "string"},
+    "confidence": {"enum": ["low", "medium", "high"]},
+    "human_review": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {"status": {"enum": ["pending", "approved", "overridden"]}, "by": {"type": "string"}, "note": {"type": "string"}}
+    },
+    "previous_entry_hash": {"type": "string"},
+    "entry_hash": {"type": "string", "description": "SHA-256 of this entry (without entry_hash) plus previous_entry_hash"}
+  }
+}
