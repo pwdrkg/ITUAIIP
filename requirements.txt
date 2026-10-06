@@ -1,0 +1,4 @@
+# This repo's scripts. The ITU reference code's own requirements are installed separately
+# (see scripts/setup_kb.sh).
+pyyaml>=6.0
+jsonschema>=4.0

@@ -1,0 +1,63 @@
+# Retrieval test: each question must return a chunk from one of the
+# expected sources in the top_k results. If a section is given, at least one
+# of those chunks must also mention it. Run: python scripts/run_retrieval_tests.py
+top_k: 5
+tests:
+  - q: What proof does an ancestral domain claim need?
+    expect: [PH-L01, PH-N03]
+    section: 52
+  - q: Can a mining permit be granted inside a claimed ancestral domain?
+    expect: [PH-L01, PH-L02]
+    section: 59
+  - q: Who decides a boundary dispute between two indigenous communities?
+    expect: [PH-L01, PH-N05]
+    section: 62
+  - q: How can a fraudulently acquired ancestral domain claim be cancelled?
+    expect: [PH-L01]
+    section: 54
+  - q: What does free and prior informed consent mean under Philippine law?
+    expect: [PH-L01, PH-N02]
+  - q: What rules apply when researching and documenting indigenous knowledge and customary law?
+    expect: [PH-N04]
+  - q: Is ethnic origin sensitive personal information?
+    expect: [PH-D02]
+  - q: What must an AI system do about bias when processing personal data?
+    expect: [PH-D03]
+  - q: How many approved CADTs are fully registered?
+    expect: [PH-C01, PH-C02]
+  - q: Do national surveys collect ethnicity data on indigenous peoples?
+    expect: [PH-C01, PH-C03]
+  - q: Does NCIP have jurisdiction over a dispute with a non-indigenous company?
+    expect: [PH-J02]
+  - q: Can mining proceed on ancestral land without the community's consent?
+    expect: [PH-L02, G-01]
+  - q: How can courts treat oral history as evidence of land occupation?
+    expect: [G-05, G-06]
+  - q: Who owns recorded traditional knowledge?
+    expect: [PH-L01, G-02, G-03]
+  - q: Must humans be able to override a high-risk AI system?
+    expect: [G-07]
+  - q: How do indigenous communities decide which data stays private?
+    expect: [G-04]
+  - q: How are overlapping native title claims handled in Australia?
+    expect: [G-10, G-11]
+  - q: Do protected area boards include indigenous representatives?
+    expect: [PH-L03]
+  - q: How are overlapping claims between agrarian reform, environment, land registration and NCIP resolved?
+    expect: [PH-N07, PH-C07]
+  - q: Are indigenous peoples guaranteed a seat in local councils?
+    expect: [PH-L07, PH-L01]
+  - q: Which law requires an assembly of all adult members for community land decisions?
+    expect: [G-13]
+  - q: What is a good standard question for indigenous self-identification in official statistics?
+    expect: [G-15, G-14]
+  - q: How easy must it be to withdraw consent to data processing?
+    expect: [PH-D04]
+  - q: What does UNESCO say about indigenous data in AI ethics?
+    expect: [G-16]
+  - q: Does the CBMS law require data by ethnicity?
+    expect: [PH-L09]
+  - q: What did government agencies agree in 2025 about indigenous data standards?
+    expect: [PH-C06]
+  - q: Is hacking into a database of community recordings a crime?
+    expect: [PH-L08]

@@ -1,0 +1,51 @@
+# Key figures with their source. When sources disagree, both are kept with their definitions.
+facts:
+  - id: F-pop-wb
+    fact: The 2020 census counted 9.46 million indigenous people, about 8.7% of the population (8.21 million IPs plus 1.25 million IP and Muslim ethnic groups).
+    source_id: PH-C01
+  - id: F-pop-psa
+    fact: PSA's January 2025 presentation reports 9.8 million indigenous people, up 1.7 million from 2010, with the Subanen/Subanon the largest group.
+    source_id: PH-C03
+    note: Differs from the World Bank's 9.46 million, though both cite the 2020 census; the reason is not stated. Cite each with its source.
+  - id: F-pop-ncip
+    fact: NCIP estimates the indigenous population may be more than 15 million, around 16% of the population.
+    source_id: PH-C01
+  - id: F-groups
+    fact: The 2020 census identified 268 ethnic groups, of which 228 were classified as indigenous groups.
+    source_id: PH-C01
+  - id: F-groups-langs
+    fact: The 2025 IP data workshop report states that, according to the NCIP database, there are 222 IP groups and 110 languages.
+    source_id: PH-C06
+  - id: F-cadt
+    fact: 257 ancestral domains had approved CADTs by early 2023, but only 55 (22%) were fully registered and 202 (78%) were pending registration.
+    source_id: PH-C01
+  - id: F-cadt-area
+    fact: Land under CADTs, registered or not, covers about 20.5% of the country's land area.
+    source_id: PH-C01
+  - id: F-overlap
+    fact: CADTs overlap 1.44 million hectares of protected areas and 1.35 million hectares of key biodiversity areas, and intersect 75% of remaining forest cover.
+    source_id: PH-C01
+  - id: F-conflict
+    fact: Conflicts can increase when land titling is delayed by administrative processes, including cumbersome procedures, insufficient resources and weak institutional capacity.
+    source_id: PH-C01
+  - id: F-gida
+    fact: About 37% of indigenous people, around 2.9 million, live in geographically isolated and disadvantaged areas (GIDAs).
+    source_id: PH-C01
+  - id: F-surveys
+    fact: The Family Income and Expenditure Survey, Labor Force Survey, Annual Poverty Indicators Survey and Family Health Survey include no ethnicity variables.
+    source_id: PH-C01
+  - id: F-ncip-mandate
+    fact: Only NCIP has a mandate to lead, monitor and harmonize IP data; existing efforts are uncoordinated and rely on volatile funding.
+    source_id: PH-C01
+  - id: F-psa-plans
+    fact: PSA plans to add ethnicity data to succeeding censuses, the Labor Force Survey and vital-registration forms; the CBMS covers 635 cities and municipalities with ethnicity-disaggregated data.
+    source_id: PH-C03
+  - id: F-workshop-steps
+    fact: The January 2025 workshop agreed an interagency task force (PSA, NCIP, DSWD, KWF, NCMF, DepEd, DOH), quick wins by February 2025 (a master IP list; an ethnicity variable in the Labour Force Survey), and a World Bank first draft of national IP data standards planned for June 2025.
+    source_id: PH-C06
+  - id: F-jao-review
+    fact: A 2017 policy review (Dave de Vera of PAFID, for ANGOC) found the 2012 joint administrative order on overlapping land claims "has created a regime, which frustrates the registration of CADT/CALTs" rather than facilitating it, and that almost none had been registered under it.
+    source_id: PH-C07
+  - id: F-mexico
+    fact: Mexico's 2020 census counted 7.4 million indigenous-language speakers (6.1%) but 23.2 million people who self-identify as indigenous (19.4%), showing how much the definition changes the count.
+    source_id: G-14

@@ -1,0 +1,31 @@
+# Institutional agents. Each agent sees only the events routed to it
+# (see scenarios/*.yaml) and retrieves only from the knowledge-base folders listed.
+# All agents may also use Curated provisions and facts; the legal adviser also uses curated gaps.
+agents:
+  story_agent:
+    role: Application
+    mandate: Match stories and documents, run the bias check, read back the consensus story, assemble the sample dossier.
+    kb_folders: [PH_Laws, PH_NCIP_Rules, PH_Data_Privacy]
+  ncip_agent:
+    role: Lead regulator (National Commission on Indigenous Peoples)
+    mandate: Delineation and CADT process, FPIC, certification of no overlap, indigenous data.
+    kb_folders: [PH_Laws, PH_NCIP_Rules, PH_Jurisprudence, PH_Context_Data]
+  denr_agent:
+    role: Land and mining agency (DENR, with LMB and MGB)
+    mandate: Surveys, land records, mining permits, protected areas.
+    kb_folders: [PH_Laws, PH_NCIP_Rules]
+  npc_agent:
+    role: Data protection (National Privacy Commission)
+    mandate: Consent, sensitive personal information, AI systems processing personal data, breach response.
+    kb_folders: [PH_Data_Privacy, PH_Laws]
+  lgu_agent:
+    role: Local government unit
+    mandate: Local records, zoning, local cybersecurity plan.
+    kb_folders: [PH_Laws, PH_Strategies]
+  legal_adviser:
+    role: Policy and legal adviser
+    mandate: Applicable law, gaps, and global policy examples.
+    kb_folders: [PH_Laws, PH_NCIP_Rules, PH_Data_Privacy, PH_Strategies, PH_Jurisprudence, PH_Context_Data, Global_Practice, Curated]
+coordination:
+  protocol: Orchestrator routes events; agents post assessments to a shared board; conflicts escalate to human review.
+  every_step_logged: true   # see audit/audit_entry.schema.json

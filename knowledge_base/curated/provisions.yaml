@@ -1,0 +1,275 @@
+# Key provisions, one per entry, so agents can retrieve and quote the exact clause.
+# kind: verbatim = copied from the official text as published (original spelling kept);
+#       summary  = our paraphrase of a non-Philippine or long source.
+# Philippine government works carry no copyright (IP Code s176).
+provisions:
+  - id: IPRA-3g
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s3(g)
+    topic: [consent, FPIC, policy_gate]
+    kind: verbatim
+    text: >-
+      Free and Prior Informed Consent - as used in this Act shall mean the consensus of all members of the
+      ICCs/IPs to; be determined in accordance with their respective customary laws and practices, free from
+      any external manipulation, interference and coercion, and obtained after fully disclosing the intent and
+      scope of the activity, in a language an process understandable to the community;
+  - id: IPRA-16
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s16
+    topic: [participation, representation, LGU]
+    kind: verbatim
+    text: >-
+      Right to Participate in Decision -Making. - ICCs/IPs have the right to participate fully, if they so
+      choose, at all levels of decision-making in matters which may affect their rights, lives and destinies
+      through procedures determined by them as well as to maintain and develop their own indigenous political
+      structures. Consequently, the State shall ensure that the ICCs/IPs shall be given mandatory representation
+      in policy-making bodies and other local legislative councils.
+  - id: IPRA-32
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s32
+    topic: [traditional_knowledge, intellectual_property]
+    kind: verbatim
+    text: >-
+      Community Intellectual Rights. - ICCs/IPs have the right to practice and revitalize their own cultural
+      traditions and customs. The State shall preserve, protect and develop the past, present and future
+      manifestations of their cultures as well as the right to the restitution of cultural, intellectual,
+      religious, and spiritual property taken without their free and prior informed consent or in violation of
+      their laws, traditions and customs.
+  - id: IPRA-34
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s34
+    topic: [traditional_knowledge, data_control, oral_traditions]
+    kind: verbatim
+    text: >-
+      Right to Indigenous Knowledge Systems and Practices and to Develop own Sciences and Technologies. -
+      ICCs/IPs are entitled to the recognition of the full ownership and control and protection of their
+      cultural and intellectual rights. They shall have the right to special measures to control, develop and
+      protect their sciences, technologies and cultural manifestations, including human and other genetic
+      resources, seeds, including derivatives of these resources, traditional medicines and health practices,
+      vital medicinal plants, animals and minerals, indigenous knowledge systems and practices, knowledge of the
+      properties of fauna and flora, oral traditions, literature, designs, and visual and performing arts.
+  - id: IPRA-45
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s45
+    topic: [open_data, NCIP_records]
+    kind: verbatim
+    text: >-
+      Accessibility and Transparency. - Subject to such limitations as may be provided by law or by rules and
+      regulations promulgated pursuant thereto, all official records, documents and papers pertaining to
+      official acts, transactions or decisions, as well as research data used as basis for policy development
+      of the Commission shall be made accessible to the public.
+  - id: IPRA-51
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s51
+    topic: [delineation, testimony, elders]
+    kind: verbatim
+    text: >-
+      Delineation and Recognition of Ancestral Domains. - Self-delineation shall be guiding principle in the
+      identification and delineation of ancestral domains. As such, the ICCs/IPs concerned shall have a decisive
+      role in all the activities pertinent thereto. The Sworn Statement of the Elders as to the Scope of the
+      territories and agreements/pacts made with neighboring ICCs/IPs, if any, will be essential to the
+      determination of these traditional territories.
+  - id: IPRA-52b
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s52(b)
+    topic: [delineation, petition, majority]
+    kind: verbatim
+    text: >-
+      Petition for Delineation - The process of delineating a specific perimeter may be initiated by the NCIP
+      with the consent of the ICC/IP concerned, or through a Petition for Delineation filed with the NCIP, by a
+      majority of the members of the ICCs/IPs;
+  - id: IPRA-52c
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s52(c)
+    topic: [delineation, census, participation]
+    kind: verbatim
+    text: >-
+      Delineation Paper - The official delineation of ancestral domain boundaries including census of all
+      community members therein, shall be immediately undertaken by the Ancestral Domains Office upon filing of
+      the application by the ICCs/IPs concerned. Delineation will be done in coordination with the community
+      concerned and shall at all times include genuine involvement and participation by the members of the
+      communities concerned;
+  - id: IPRA-52d
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s52(d)
+    topic: [proof, testimony, documents, dossier]
+    kind: verbatim
+    text: >-
+      Proof required - Proof of Ancestral Domain Claims shall include the testimony of elders or community under
+      oath, and other documents directly or indirectly attesting to the possession or occupation of the area
+      since time immemorial by such ICCs/IPs in the concept of owners which shall be any one (1) of the following
+      authentic documents: 1. Written accounts of the ICCs/IPs customs and traditions; 2. Written accounts of the
+      ICCs/IPs political structure and institution; 3. Pictures showing long term occupation such as those of
+      old improvements, burial grounds, sacred places and old villages; 4. Historical accounts, including pacts
+      and agreements concerning boundaries entered into by the ICCs/IPs concerned with other ICCs/IPs; 5. Survey
+      plans and sketch maps; 6. Anthropological data; 7. Genealogical surveys; 8. Pictures and descriptive
+      histories of traditional communal forests and hunting grounds; 9. Pictures and descriptive histories of
+      traditional landmarks such as mountains, rivers, creeks, ridges, hills, terraces and the like; and 10.
+      Write-ups of names and places derived from the native dialect of the community.
+  - id: IPRA-52g
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s52(g)
+    topic: [notice, translation, native_language]
+    kind: verbatim
+    text: >-
+      Notice and Publication - A copy of each document, including a translation in the native language of the
+      ICCs/IPs concerned shall be posted in a prominent place therein for at least fifteen (15) days. A copy of
+      the document shall also be posted at the local, provincial and regional offices of the NCIP, and shall be
+      published in a newspaper of general circulation once a week for two (2) consecutive weeks to allow other
+      claimants to file opposition thereto within fifteen (15) days from the date of such publication
+  - id: IPRA-52h
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s52(h)
+    topic: [endorsement, fraud, conflicting_claims]
+    kind: verbatim
+    text: >-
+      Endorsement to NCIP - Within fifteen (15) days from publication, and of the inspection process, the
+      Ancestral Domains Office shall prepare a report to the NCIP endorsing a favorable action upon a claim that
+      is deemed to have sufficient proof. However, if the proof is deemed insufficient, the Ancestral Domains
+      Office shall require the submission of additional evidence: Provided, That the Ancestral Domains Office
+      shall reject any claim that is deemed patently false or fraudulent after inspection and verification:
+      Provided, further, That in case of rejection, the Ancestral Domains Office shall give the applicant due
+      notice, copy furnished all concerned, containing the grounds for denial. The denial shall be appealable to
+      the NCIP: Provided, furthermore, That in cases where there are conflicting claims, the Ancestral Domains
+      Office shall cause the contending parties to meet and assist them in coming up with a preliminary
+      resolution of the conflict, without prejudice to its full adjudication according to the selection below.
+  - id: IPRA-52k
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s52(k)
+    topic: [registration, CADT, coordination]
+    kind: verbatim
+    text: >-
+      Registration of CADTs - The NCIP shall register issued certificates of ancestral domain titles and
+      certificates of ancestral lands titles before the Register of Deeds in the place where the property is
+      situated.
+  - id: IPRA-54
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s54
+    topic: [fraud, bias_check]
+    kind: verbatim
+    text: >-
+      Fraudulent Claims. - The Ancestral Domains Office may, upon written request from the ICCs/IPs, review
+      existing claims which have been fraudulently acquired by any person or community. Any claim found to be
+      fraudulently acquired by, and issued to, any person or community may be cancelled by the NCIP after due
+      notice and hearing of all parties concerned.
+  - id: IPRA-59
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s59
+    topic: [mining, permits, certification, pending_CADT]
+    kind: verbatim
+    text: >-
+      Certification Precondition. - all department and other governmental agencies shall henceforth be strictly
+      enjoined from issuing, renewing, or granting any concession, license or lease, or entering into any
+      production-sharing agreement, without prior certification from the NCIP that the area affected does not
+      overlap with any ancestral domain. Such certificate shall only be issued after a field-based investigation
+      is conducted by the Ancestral Domain Office of the area concerned: Provided, That no certificate shall be
+      issued by the NCIP without the free and prior informed and written consent of the ICCs/IPs concerned:
+      Provided, further, That no department, government agency or government-owned or -controlled corporation
+      may issue new concession, license, lease, or production sharing agreement while there is pending
+      application CADT: Provided, finally, That the ICCs/IPs shall have the right to stop or suspend, in
+      accordance with this Act, any project that has not satisfied the requirement of this consultation process.
+  - id: IPRA-62
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s62
+    topic: [disputes, boundaries, customary_law]
+    kind: verbatim
+    text: >-
+      Resolution of Conflicts. - In cases of conflicting interest, where there are adverse claims within the
+      ancestral domains as delineated in the survey plan, and which cannot be resolved, the NCIP shall hear and
+      decide, after notice to the proper parties, the disputes arising from the delineation of such ancestral
+      domains: Provided, That if the dispute is between and/or among ICCs/IPs regarding the traditional
+      boundaries of their respective ancestral domains, customary process shall be followed.
+  - id: IPRA-66
+    source_id: PH-L01
+    cite: IPRA (RA 8371) s66
+    topic: [jurisdiction, customary_law, NCIP]
+    kind: verbatim
+    text: >-
+      Jurisdiction of the NCIP. - The NCIP, through its regional offices, shall have jurisdiction over all claims
+      and disputes involving rights of ICCs/IPs; Provided, however, That no such dispute shall be brought to the
+      NCIP unless the parties have exhausted all remedies provided under their customary laws. For this purpose,
+      a certification shall be issued by the Council of Elders/Leaders who participated in the attempt to settle
+      the dispute that the same has not been resolved, which certification shall be a condition precedent to the
+      filing of a petition with the NCIP.
+  - id: MINING-16
+    source_id: PH-L02
+    cite: Mining Act (RA 7942) s16
+    topic: [mining, consent]
+    kind: verbatim
+    text: >-
+      Opening of Ancestral Lands for Mining Operations. - No ancestral land shall be opened for mining operations
+      without the prior consent of the indigenous cultural community concerned.
+  - id: LGC-41c
+    source_id: PH-L07
+    cite: Local Government Code (RA 7160) s41(c)
+    topic: [representation, LGU, local_councils]
+    kind: summary
+    text: >-
+      Each local council (sanggunian) has three sectoral representatives: one from women, one from workers, and
+      one from any of several sectors including the urban poor, indigenous cultural communities and disabled
+      persons. Indigenous representation is one option among several, not guaranteed.
+  - id: DPA-IRR-3t
+    source_id: PH-D02
+    cite: Data Privacy Act IRR s3(t)
+    topic: [sensitive_data, ethnicity, privacy]
+    kind: summary
+    text: >-
+      Sensitive personal information includes information about an individual's race, ethnic origin, marital
+      status, age, color, and religious, philosophical or political affiliations, among others. A teller's
+      self-identified group is therefore sensitive personal information.
+  - id: NPC-2023-04
+    source_id: PH-D04
+    cite: NPC Circular No. 2023-04 (Guidelines on Consent, 7 November 2023)
+    topic: [consent, withdrawal, language]
+    kind: summary
+    text: >-
+      Consent is not freely given where there is pressure, intimidation or possible adverse consequences for
+      refusal. Consent must be specific and granular for each declared purpose, informed in language the data
+      subject easily understands, and not bundled with unrelated purposes. Withdrawal must be free and as easy
+      as giving consent.
+  - id: NPC-ADV-2024-04
+    source_id: PH-D03
+    cite: NPC Advisory No. 2024-04 (19 December 2024)
+    topic: [AI, bias, transparency]
+    kind: summary
+    text: >-
+      The Data Privacy Act applies to AI systems that process personal data during training, testing and
+      deployment. Controllers must tell data subjects the nature, purpose and extent of AI processing, determine
+      a lawful basis, monitor and mitigate systemic, human and statistical bias, and uphold data subject rights.
+  - id: JAO-2012
+    source_id: PH-N07
+    cite: Joint DAR-DENR-LRA-NCIP Administrative Order No. 1, s. 2012, and its implementing memorandum circular
+    topic: [overlapping_claims, registration, coordination]
+    kind: summary
+    text: >-
+      Sets a procedure for areas where agrarian reform, environment, land registration and NCIP claims overlap:
+      contentious areas are identified, survey plans are projected to find overlaps, titled property is
+      segregated, processing is suspended in contested areas, and unresolved issues escalate from provincial to
+      regional to national joint committees.
+  - id: KENYA-CLA-15
+    source_id: G-13
+    cite: Kenya Community Land Act 2016, s15
+    topic: [many_voices, assembly, consent, global_example]
+    kind: summary
+    text: >-
+      A registered community has a community assembly of all adult members. The quorum for decisions is at least
+      two thirds of the assembly. A decision to dispose of community land binds only if supported by at least two
+      thirds of registered adult members; other decisions are by simple majority of those present.
+  - id: UNESCO-AI-47
+    source_id: G-16
+    cite: UNESCO Recommendation on the Ethics of AI (2021), para. 47
+    topic: [data_governance, indigenous_data, global_example]
+    kind: verbatim
+    text: >-
+      Measures should be adopted ... to allow for meaningful participation by marginalized groups, communities and
+      individuals and, where relevant, in the case of Indigenous Peoples, respect for the self-governance of their data.
+  - id: UNDRIP-32-2
+    source_id: G-01
+    cite: UNDRIP Art. 32(2)
+    topic: [consent, mining, global_example]
+    kind: verbatim
+    text: >-
+      States shall consult and cooperate in good faith with the indigenous peoples concerned through their own
+      representative institutions in order to obtain their free and informed consent prior to the approval of
+      any project affecting their lands or territories and other resources, particularly in connection with the
+      development, utilization or exploitation of mineral, water or other resources.
