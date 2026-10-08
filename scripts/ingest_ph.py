@@ -41,6 +41,7 @@ def main() -> int:
     ap.add_argument("--reset", action="store_true", help="delete existing chunks from these sources first")
     ap.add_argument("--only", default="", help="comma-separated source ids")
     ap.add_argument("--no-curated", action="store_true", help="skip knowledge_base/curated/*.yaml")
+    ap.add_argument("--curated-only", action="store_true", help="only (re)load knowledge_base/curated/*.yaml")
     args = ap.parse_args()
 
     sim = Path(args.itu_dir).resolve() / "simulation"
@@ -56,6 +57,8 @@ def main() -> int:
     only = {s.strip() for s in args.only.split(",") if s.strip()}
     total = 0
     for r in rows:
+        if args.curated_only:
+            break
         if only and r["id"] not in only:
             continue
         files = sorted((KB / "InputDocs" / r["folder"]).glob(f"{r['id']}_*"))
@@ -85,7 +88,7 @@ def main() -> int:
         kb.add_documents(texts=chunks, embeddings=embeddings, metadatas=metas, ids=ids)
         total += len(chunks)
         print(f"ok      {r['id']:8} {len(chunks):>4} chunks  {path.name}")
-    if not args.no_curated and not only:
+    if args.curated_only or (not args.no_curated and not only):
         total += ingest_curated(kb, embed_texts)
     print(f"\nStored {total} chunks.")
     return 0
@@ -101,7 +104,8 @@ def ingest_curated(kb, embed_texts) -> int:
     cur = KB / "curated"
     items: list[tuple[str, str, dict]] = []
     for p in yaml.safe_load((cur / "provisions.yaml").read_text(encoding="utf-8"))["provisions"]:
-        items.append((f"CUR::{p['id']}", f"{p['cite']}. {p['text']}",
+        topics = " ".join(t.replace("_", " ") for t in p.get("topic", []))
+        items.append((f"CUR::{p['id']}", f"{p['cite']}. Topics: {topics}. {p['text']}",
                       {"source_id": p["source_id"], "curated": "provision", "cite": p["cite"],
                        "kind": p["kind"], "topics": ",".join(p.get("topic", [])),
                        "sections": ",".join(sorted(set(re.findall(r"\bs(\d{1,3})", p["cite"]))

@@ -155,7 +155,7 @@ provisions:
   - id: IPRA-59
     source_id: PH-L01
     cite: IPRA (RA 8371) s59
-    topic: [mining, permits, certification, pending_CADT]
+    topic: [mining_permit, exploration_permit, ancestral_domain, certification, pending_CADT, DENR]
     kind: verbatim
     text: >-
       Certification Precondition. - all department and other governmental agencies shall henceforth be strictly
@@ -171,7 +171,7 @@ provisions:
   - id: IPRA-62
     source_id: PH-L01
     cite: IPRA (RA 8371) s62
-    topic: [disputes, boundaries, customary_law]
+    topic: [boundary_dispute, conflicting_claims_between_communities, who_decides, NCIP, customary_law]
     kind: verbatim
     text: >-
       Resolution of Conflicts. - In cases of conflicting interest, where there are adverse claims within the
@@ -182,7 +182,7 @@ provisions:
   - id: IPRA-66
     source_id: PH-L01
     cite: IPRA (RA 8371) s66
-    topic: [jurisdiction, customary_law, NCIP]
+    topic: [jurisdiction, dispute_resolution, customary_law, NCIP]
     kind: verbatim
     text: >-
       Jurisdiction of the NCIP. - The NCIP, through its regional offices, shall have jurisdiction over all claims
