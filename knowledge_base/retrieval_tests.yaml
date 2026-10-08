@@ -55,7 +55,7 @@ tests:
     expect: [PH-D04]
   - q: What does UNESCO say about indigenous data in AI ethics?
     expect: [G-16]
-  - q: Does the CBMS law require data by ethnicity?
+  - q: What household data must local governments collect under the Community-Based Monitoring System law?
     expect: [PH-L09]
   - q: What did government agencies agree in 2025 about indigenous data standards?
     expect: [PH-C06]

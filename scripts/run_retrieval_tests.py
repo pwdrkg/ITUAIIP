@@ -23,15 +23,16 @@ def main() -> int:
     sys.path.insert(0, str(Path(args.itu_dir).resolve() / "simulation"))
     from server.knowledge.ingest import embed_texts  # noqa: E402
     from server.knowledge.kb import KnowledgeBase  # noqa: E402
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import kb_search  # noqa: E402
 
-    spec = yaml.safe_load((ROOT / "knowledge_base" / "retrieval_tests.yaml").read_text())
+    spec = yaml.safe_load((ROOT / "knowledge_base" / "retrieval_tests.yaml").read_text(encoding="utf-8"))
     k = spec.get("top_k", 5)
     kb = KnowledgeBase()
     passed = 0
     for t in spec["tests"]:
         emb = embed_texts([t["q"]])[0]
-        res = kb.search(emb, n_results=k)
-        metas = res["metadatas"][0]
+        metas = [m for _, _, m, _ in kb_search.search(kb, emb, k=k, curated_k=spec.get("curated_k", 2))]
         hits = [m for m in metas if m.get("source_id") in t["expect"]]
         ok = bool(hits)
         if ok and t.get("section"):
