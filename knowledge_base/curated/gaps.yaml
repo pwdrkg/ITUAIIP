@@ -78,11 +78,11 @@ gaps:
     title: Recording sacred knowledge
     type: standards
     ph_refs: [IPRA-34, IPRA-32]
-    detail: NCIP's 2012 research and documentation guidelines govern documenting indigenous knowledge, but there is no standard for AI processing of sacred content.
+    detail: NCIP's 2012 IKSP and customary laws research and documentation guidelines (AO 1, s.2012) govern documenting indigenous knowledge systems and practices (IKSP), but there is no standard for AI processing of sacred content.
     reading: ours
     global_examples:
       - source_id: G-04
-        example: "Te Mana Raraunga: Maori decide which data stay private and which can be shared."
+        example: "Te Mana Raraunga (Kaitiakitanga principle): Maori decide which Maori data are controlled (tapu) or open (noa) access."
   - id: GAP-09
     title: Mining Act prior consent versus IPRA consensus of all members
     type: conflict_between_objectives
