@@ -17,7 +17,7 @@ An AI pipeline that helps indigenous communities prove ancestral land claims. It
 | `pipeline/collector/` | Web and phone recorder, document upload, consent | C |
 | `pipeline/preprocessor/` | Voice reader (speech-to-text), text reader (OCR), translation, entity extraction | PP |
 | `pipeline/models/` | Story matcher, bias check | M |
-| `pipeline/policy/` | Consent gate, private/shareable marks, human review | P |
+| `pipeline/policy/` | Consent gate, controlled (tapu) / open (noa) marks, human review | P |
 | `pipeline/distributor/` | Role- and consent-based routing | D |
 | `pipeline/sink/` | Read-back, sample dossier | SINK |
 | `agents/` | Institutional agents and their mandates | M (orchestrated) |
