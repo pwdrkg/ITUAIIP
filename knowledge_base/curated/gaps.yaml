@@ -143,3 +143,20 @@ gaps:
     global_examples:
       - source_id: G-20
         example: "UNESCO Decision 19.COM 6.A.4 (2024) on Buklog: concern over declining practice, reduced space and scarce materials."
+  - id: GAP-16
+    title: Individual data consent and collective authorisation do not connect
+    type: standards
+    ph_refs: [DPA-IRR-3t, IPRA-3g, IPRA-34]
+    detail: "Individual consent under the Data Privacy Act and collective community authorisation under IPRA and NCIP AO 1, s.2012 protect different rights; no rule says how they combine when knowledge is recorded digitally or processed by AI."
+    reading: ours
+    global_examples:
+      - source_id: K-IN17
+        example: "UN Expert Mechanism study on Indigenous Peoples' right to data (A/HRC/60/66, 2025)."
+      - source_id: G-02
+        example: "CARE Principles: collective benefit and authority to control."
+  - id: GAP-17
+    title: FPIC procedures in transition
+    type: unclear_responsibility
+    ph_refs: [IPRA-3g]
+    detail: "NCIP's index lists AO 3, s.2026 (2026 Guidelines on FPIC and Related Processes, 28 September 2026); its text and transition rules were not yet obtained, so the 2012 FPIC procedures cannot be assumed to still control."
+    global_examples: []
