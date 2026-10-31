@@ -1,4 +1,4 @@
-# Community IKSP Record Pipeline
+# IKSP Record Pipeline
 
 AI for Good Sandbox Hackathon (ITU AI for Good Lab, UAE) · Public services: indigenous knowledge, culture and public programmes · Philippines
 
