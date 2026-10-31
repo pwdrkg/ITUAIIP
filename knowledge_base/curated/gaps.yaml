@@ -124,3 +124,22 @@ gaps:
     detail: About 37% of indigenous people live in geographically isolated areas.
     facts: [F-gida]
     global_examples: []
+  - id: GAP-14
+    title: No process for using IKSP in disaster and climate planning
+    type: coordination
+    ph_refs: [RA10121-2j, IPRA-34]
+    detail: "RA 10121 s2(j) requires disaster risk reduction and climate measures to be sensitive to indigenous knowledge systems, but names no process for documenting, validating or authorising IKSP for use in local disaster plans."
+    reading: ours
+    global_examples:
+      - source_id: G-19
+        example: "IPCC AR6 WGII (2022): inclusive planning that integrates Indigenous knowledge and local knowledge helps avoid maladaptation."
+      - source_id: PH-C08
+        example: "SwedBio Multiple Evidence Base approach: knowledge systems are validated on their own terms before being combined."
+  - id: GAP-15
+    title: Documentation cannot replace transmission
+    type: conflict_between_objectives
+    ph_refs: [IPRA-34]
+    detail: "Documentation is promoted, but the places and materials that practices depend on keep shrinking; records cannot replace transmission."
+    global_examples:
+      - source_id: G-20
+        example: "UNESCO Decision 19.COM 6.A.4 (2024) on Buklog: concern over declining practice, reduced space and scarce materials."
