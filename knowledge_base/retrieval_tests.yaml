@@ -65,3 +65,9 @@ tests:
     expect: [PH-L10]
   - q: What concerns did UNESCO raise about the Subanen Buklog ritual?
     expect: [G-20]
+  - q: Can indigenous peoples living outside an ancestral domain document their culture through cultural mapping?
+    expect: [K-PH10, K-PH09]
+  - q: Who selects the informants when researching indigenous knowledge systems and practices?
+    expect: [PH-N04]
+  - q: Which international framework says traditional and indigenous knowledge should complement science in disaster risk reduction?
+    expect: [K-IN16]
