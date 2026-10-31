@@ -1,10 +1,12 @@
-# Ancestral Land Story Pipeline
+# Community IKSP Record Pipeline
 
-AI for Good Sandbox Hackathon (ITU AI for Good Lab, UAE) · Public services: ancestral land rights · Philippines
+AI for Good Sandbox Hackathon (ITU AI for Good Lab, UAE) · Public services: indigenous knowledge, culture and public programmes · Philippines
 
-Team: Paul Alvarez, Kahlil de Silva · Repository: https://github.com/pwdrkg/ITUAIIP
+Team: Paul Alvarez (lead), Kahlil de Silva · Repository: https://github.com/pwdrkg/ITUAIIP
 
-An AI pipeline that helps indigenous communities prove ancestral land claims. It records stories from many members, not only appointed representatives. It also reads their documents and matches the accounts, flags one-sided claims for human review, and reads the consensus story back to the community. Institutional AI agents (NCIP, DENR, NPC, LGU, legal adviser) test it against step-by-step error scenarios. Every decision is logged with its sources and reasoning.
+Indigenous knowledge systems and practices (IKSP) sustain how Philippine Indigenous communities farm, govern themselves and respond to hazards, and they can improve public programmes such as disaster and climate planning. This pipeline helps communities make AI-assisted IKSP records they judge accurate and appropriate: it records accounts from many knowledge holders in their own languages, reads documents, cross-checks accounts, flags one-sided ones for human review, and reads the result back so holders can correct it (every correction logged). Records are released only for uses the community permits: community archive, education, disaster and climate planning, ancestral domain recognition, or protection against appropriation. Institutional AI agents (NCIP, DENR, NPC, LGU, legal adviser) test it against step-by-step error scenarios, and every decision is logged with its sources and reasoning.
+
+**Research problem:** under what conditions can AI support community-directed documentation of IKSP that sustains knowledge transmission and gives a sound basis for authorised educational or policy use? (Problem statement by Kahlil de Silva; see `docs/full-report.docx`.)
 
 ![Architecture](docs/architecture.png)
 
