@@ -61,3 +61,7 @@ tests:
     expect: [PH-C06]
   - q: Is hacking into a database of community recordings a crime?
     expect: [PH-L08]
+  - q: Must disaster risk reduction measures respect indigenous knowledge systems?
+    expect: [PH-L10]
+  - q: What concerns did UNESCO raise about the Subanen Buklog ritual?
+    expect: [G-20]
