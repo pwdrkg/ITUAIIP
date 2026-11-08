@@ -44,3 +44,8 @@ events:
     expected: Share only an authorised extract for the requested purpose and area; no full archive without a new community decision; legal adviser maps the gap (no process under RA 10121 s2(j) to document, validate or authorise IKSP) to global examples; incorporation into the plan is recorded.
     expected_refs: [RA 10121 s2(j), IPRA s32, IPRA s34, NCIP AO 1 s.2012, IPCC AR6 WGII, Sendai Framework para. 24(i), K-CC07]
 gap_tested: GAP-14
+controversy: >
+  Community stories that contradict an official hazard map may look like a challenge to DENR-MGB's
+  technical authority, or the official map may be used to dismiss residents' experience. Neither source
+  overrides the other: discrepancies go to joint validation, DENR-MGB keeps authority over the technical
+  map, and knowledge holders decide how their accounts are used.

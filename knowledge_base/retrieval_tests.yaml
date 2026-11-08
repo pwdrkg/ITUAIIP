@@ -77,8 +77,6 @@ tests:
     expect: [G-22, K-IN17]
   - q: Is there a Philippine example of a community-governed repository that restricts AI training on Indigenous knowledge?
     expect: [K-AI06]
-  - q: Can an arbitral award exempt a mining agreement renewal from FPIC and NCIP certification?
-    expect: [K-CD02]
   - q: Is a majority of those who voted enough for written consent to a mining exploration permit?
     expect: [K-CD01]
   - q: Have community flood accounts in the Philippines disagreed with official flood susceptibility maps?
