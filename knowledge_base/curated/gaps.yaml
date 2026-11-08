@@ -83,6 +83,8 @@ gaps:
     global_examples:
       - source_id: G-04
         example: "Te Mana Raraunga (Kaitiakitanga principle): Maori decide which Maori data are controlled (tapu) or open (noa) access."
+      - source_id: K-AI06
+        example: "Philippines (local practice), Kalinga Digital Arang (2026): community-governed IKSP repository with four access levels, FPIC and limits on unauthorised AI training."
   - id: GAP-09
     title: Mining Act prior consent versus IPRA consensus of all members
     type: conflict_between_objectives
@@ -195,6 +197,8 @@ gaps:
         example: "CARE Principles for Indigenous Data Governance: collective benefit, authority to control, responsibility, ethics."
       - source_id: G-22
         example: "Ibrahim (2026): Indigenous data is often collective; consultation frameworks should reflect this."
+      - source_id: K-AI03
+        example: "Commission on Human Rights (2025): calls for community control over how Indigenous information is collected, stored, used and shared, including in AI."
   - id: GAP-21
     title: Structural discrimination and the digital divide restrict Indigenous participation
     type: technology

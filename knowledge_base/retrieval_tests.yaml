@@ -75,3 +75,5 @@ tests:
     expect: [G-21, G-20]
   - q: What risks does artificial intelligence pose to Indigenous Peoples' knowledge and data without free, prior and informed consent?
     expect: [G-22, K-IN17]
+  - q: Is there a Philippine example of a community-governed repository that restricts AI training on Indigenous knowledge?
+    expect: [K-AI06]

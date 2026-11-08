@@ -921,5 +921,75 @@
 "url": "https://swed.bio/reports/report/mobilizing-indigenous-knowledge-innovations-and-practices-of-the-kalanguyas-farming-systems-in-tinoc-ifuago-the-philippines/",
 "verif": "Full publication: https://swed.bio/wp-content/uploads/2017/03/MEB-Pilot-Report-Philippines_2016.pdf.pdf",
 "sheet": "Report Tracing"
+},
+{
+"id": "AI01",
+"title": "Indigenous Peoples’ Rights Act — Republic Act No. 8371",
+"date": "1997-10-29",
+"relevance": "Section 34 recognizes Indigenous Peoples’ ownership, control and protection of their cultural and intellectual rights, including IKSP. Provides a legal foundation for examining how Indigenous knowledge is collected and used in AI, although the law does not specifically address AI. (elibrary.judiciary.gov.ph)",
+"source": "Full law: Supreme Court E-Library",
+"url": "https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/2562",
+"kb_id": "PH-L01",
+"sheet": "IP & AI"
+},
+{
+"id": "AI02",
+"title": "NCIP Administrative Order No. 1, series of 2012 — IKSP and Customary Laws Research and Documentation Guidelines",
+"date": "2012-03-15",
+"relevance": "Addresses FPIC, collective ownership, community participation, validation, publication and benefit sharing in IKSP research and documentation. Relevant when assessing consent and safeguards for knowledge intended for digital repositories or AI applications. (wipo.int)",
+"source": "Full guidelines: NCIP PDF · WIPO text",
+"url": "https://ncip.gov.ph/wp-content/uploads/2020/09/ncip-ao-no-1-s-2012-iksp.pdf",
+"kb_id": "PH-N04",
+"sheet": "IP & AI"
+},
+{
+"id": "AI03",
+"title": "CHR statement on National Indigenous Peoples Day",
+"date": "2025-08-09",
+"relevance": "Explicitly discusses AI, Indigenous data sovereignty, cultural appropriation, digital exclusion, bias and surveillance. Calls for community control over how information is collected, stored, used and shared. (chr.gov.ph)",
+"source": "Full official statement: Commission on Human Rights",
+"url": "https://chr.gov.ph/statement-of-the-commission-on-human-rights-on-the-observance-of-national-indigenous-peoples-day/",
+"kb_id": "K-AI03",
+"sheet": "IP & AI"
+},
+{
+"id": "AI04",
+"title": "NCIP call for inclusive and culturally grounded AI development",
+"date": "Reported 11 August 2025",
+"relevance": "NCIP officials called for AI policies grounded in Indigenous values and emphasized equipping and protecting Indigenous youth participating in digital transformation. This records an institutional position rather than an adopted AI regulation. (pia.gov.ph)",
+"source": "Official government report: Philippine Information Agency",
+"url": "https://pia.gov.ph/news/ncip-nanawagan-ng-inclusivity-sa-bagong-panahon-ng-teknolohiya/",
+"kb_id": "K-AI04",
+"sheet": "IP & AI"
+},
+{
+"id": "AI05",
+"title": "Mindanao Natural Language Processing R&D Laboratory — DOST–UIC",
+"date": "Launched 17 February 2025",
+"relevance": "Develops AI-related language tools, including machine translation and conversational agents. The initiative works with NCIP XI on Manobo, Kagan and Mansaka language preservation. Documents a practical application; long-term revitalization outcomes are not established by the announcement. (pcieerd.dost.gov.ph)",
+"source": "Official project announcement: DOST-PCIEERD",
+"url": "https://pcieerd.dost.gov.ph/st-updates/dost-uic-davao-launch-rd-lab-to-preserve-mindanao-language-2/",
+"kb_id": "K-AI05",
+"sheet": "IP & AI"
+},
+{
+"id": "AI06",
+"title": "Digital Arang and the Kalinga Indigenous knowledge–AI governance initiative",
+"date": "Ordinance reportedly signed September 2026; repository launched 30 October 2026",
+"relevance": "KSU reports a community-governed IKSP repository with four access levels, FPIC, restrictions on unauthorized AI training and an oversight committee. Offers a local example of translating Indigenous data sovereignty into governance arrangements. (ksu.edu.ph)",
+"source": "Official institutional account: Kalinga State University. Full signed ordinance not located.",
+"url": "https://ksu.edu.ph/ksu-launches-digital-arang-to-protect-kalinga-indigenous-knowledge-in-ai-systems/",
+"kb_id": "K-AI06",
+"sheet": "IP & AI"
+},
+{
+"id": "AI07",
+"title": "UNPFII study: “Indigenous Peoples and artificial intelligence” — E/C.19/2026/4, prepared by Hindou Oumarou Ibrahim",
+"date": "Issued 5 February 2026; considered at the 25th session, 24 April 2026",
+"relevance": "Examines Indigenous data sovereignty, knowledge appropriation without consent, cultural protection, digital exclusion and AI’s environmental impacts, alongside opportunities for language revitalization and knowledge transmission. Provides an international analytical reference for examining Philippine IKSP safeguards. It is a study presented to the Forum; its findings should be distinguished from formally adopted recommendations.",
+"source": "Full UN document: E/C.19/2026/4 — language selection · English PDF",
+"url": "https://docs.un.org/E/C.19/2026/4",
+"kb_id": "G-22",
+"sheet": "IP & AI"
 }
 ]

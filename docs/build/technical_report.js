@@ -142,7 +142,7 @@ children.push(table([34, 66], ["Perspective", "How we address it"], [
   ["Digital infrastructure and energy", "Offline recording on mobile, sync later"],
 ]));
 
-children.push(p("**Knowledge base.** Built with the ITU reference code (docling parsing, 256-word chunks, nomic-embed-text, ChromaDB). It adds 108 sources in eight folders (Philippine laws, NCIP rules, data privacy, strategies, jurisprudence, context data, IKSP publications, global practice), 49 of them from the team's IKSP reference register; each chunk tagged with source, issuer, year and section numbers, plus 25 key clauses, 16 key figures, 17 policy gaps and 5 gaps in current practice stored one per chunk for exact citation. A 34-question retrieval test must return the expected source in the top five. Community stories stay in a separate private store and are never published."));
+children.push(p("**Knowledge base.** Built with the ITU reference code (docling parsing, 256-word chunks, nomic-embed-text, ChromaDB). It adds 112 sources in eight folders (Philippine laws, NCIP rules, data privacy, strategies, jurisprudence, context data, IKSP publications, global practice), 53 of them from the team's IKSP reference register; each chunk tagged with source, issuer, year and section numbers, plus 25 key clauses, 16 key figures, 17 policy gaps and 5 gaps in current practice stored one per chunk for exact citation. A 35-question retrieval test must return the expected source in the top five. Community stories stay in a separate private store and are never published."));
 
 // 5. Error scenarios
 children.push(h1("5. Error scenarios"));
@@ -179,7 +179,7 @@ children.push(table([42, 18, 40], ["Gap", "Type", "Global example"], [
   ["National income, labour, poverty and health surveys have no ethnicity questions (World Bank, 2024)", "Data", "World Bank (2024): standard ethnicity variables, self-identification, FPIC in local languages"],
   ["Only NCIP has a mandate for indigenous data; efforts are uncoordinated (World Bank, 2024)", "Unclear responsibility", "CARE Principles"],
   ["Public NCIP research data (s45) versus community control of knowledge (s34)", "Conflict between objectives", "CARE Principles; Canada's OCAP®"],
-  ["Recording sacred knowledge", "Standards", "New Zealand, Te Mana Raraunga: Māori decide which data are controlled (tapu) or open (noa)"],
+  ["Recording sacred knowledge", "Standards", "New Zealand, Te Mana Raraunga: Māori decide which data are controlled (tapu) or open (noa); Philippines (local practice): Kalinga Digital Arang (2026) limits unauthorised AI training"],
   ["Mining Act \"prior consent\" (s16) versus IPRA consensus of all members (s3(g))", "Conflict between objectives", "UNDRIP Art. 32(2)"],
   ["Traditional knowledge in stories could be patented by others", "Legislative", "WIPO Treaty on IP, Genetic Resources and Associated Traditional Knowledge (2024; not yet in force)"],
   ["No structured way to compare evidence in boundary disputes (s62)", "Coordination", "Australia, Native Title Act: court-managed mediation; overlapping claims heard together (s67)"],
@@ -194,7 +194,7 @@ children.push(h1("References"));
   "Daguitan, F., Batang-ay, M. J. C., Aquino, R. B., & Das-ilen, G. (2016). Mobilizing indigenous knowledge, innovations and practices of the Kalanguyas farming systems in Tinoc, Ifugao, the Philippines.",
   "EMRIP (2025). Indigenous Peoples' right to data (A/HRC/60/66). UN Expert Mechanism on the Rights of Indigenous Peoples.",
   "Göransson, M. B. (2022). Peace pacts and contentious politics: The Chico River Dam struggle in the Philippines, 1974–82. Journal of Southeast Asian Studies, 53(4).",
-  "Ibrahim, H. O. (2026). Study on artificial intelligence and Indigenous Peoples. UN Permanent Forum on Indigenous Issues, 25th session.",
+  "Ibrahim, H. O. (2026). Indigenous Peoples and artificial intelligence (E/C.19/2026/4). UN Permanent Forum on Indigenous Issues, 25th session.",
   "IPCC (2022). Climate Change 2022: Impacts, Adaptation and Vulnerability (AR6 WGII).",
   "ITU-T (2019). Recommendation Y.3172: Architectural framework for machine learning in future networks including IMT-2020. ITU AI Readiness Framework 2.0.",
   "Republic Act 8371 (1997), Indigenous Peoples' Rights Act; Republic Act 10121 (2010), Philippine Disaster Risk Reduction and Management Act, s2(j).",
