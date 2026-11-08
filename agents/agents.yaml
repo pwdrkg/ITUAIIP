@@ -4,16 +4,20 @@
 agents:
   story_agent:
     role: Application
-    mandate: Match stories and documents, run the bias check, read back the consensus story, assemble the sample dossier.
+    mandate: Keep the household register, match stories and documents, run the bias check, read back the consensus story, assemble the sample dossier.
     kb_folders: [PH_Laws, PH_NCIP_Rules, PH_Data_Privacy, PH_IKSP_Publications]
-  ncip_agent:
-    role: Lead regulator (National Commission on Indigenous Peoples)
-    mandate: Delineation and CADT process, FPIC, certification of no overlap, indigenous data.
+  ncip_fpic_team_agent:
+    role: NCIP regional FPIC team
+    mandate: Runs FPIC under the community's customary decision process; checks the household register and the consent count (majority of all households concerned).
     kb_folders: [PH_Laws, PH_NCIP_Rules, PH_Jurisprudence, PH_Context_Data]
-  denr_agent:
-    role: Land and mining agency (DENR, with LMB and MGB)
-    mandate: Surveys, land records, mining permits, protected areas.
-    kb_folders: [PH_Laws, PH_NCIP_Rules]
+  ncip_en_banc_agent:
+    role: NCIP Commission en banc
+    mandate: Certification Precondition (IPRA s59), appeals, review of consent records before certifying, CADT process, indigenous data.
+    kb_folders: [PH_Laws, PH_NCIP_Rules, PH_Jurisprudence, PH_Context_Data]
+  denr_mgb_agent:
+    role: DENR Mines and Geosciences Bureau, regional office
+    mandate: Exploration permits and mining agreements; must have NCIP certification before granting; land records and surveys through DENR-LMB.
+    kb_folders: [PH_Laws, PH_NCIP_Rules, PH_Jurisprudence]
   npc_agent:
     role: Data protection (National Privacy Commission)
     mandate: Consent, sensitive personal information, AI systems processing personal data, breach response.
@@ -24,7 +28,7 @@ agents:
     kb_folders: [PH_Laws, PH_Strategies, PH_Context_Data]
   legal_adviser:
     role: Policy and legal adviser
-    mandate: Applicable law, gaps, and global policy examples. Cites only binding law as a requirement; labels declarations and guidance as benchmarks (team register status column). Flags FPIC steps for human legal check until NCIP AO 3, s.2026 is confirmed.
+    mandate: Applicable law, case law, gaps, and global policy examples. Cites only binding law as a requirement; labels declarations and guidance as benchmarks (team register status column). Flags FPIC steps for human legal check until NCIP AO 3, s.2026 is confirmed.
     kb_folders: [PH_Laws, PH_NCIP_Rules, PH_Data_Privacy, PH_Strategies, PH_Jurisprudence, PH_Context_Data, PH_IKSP_Publications, Global_Practice, Curated]
 coordination:
   protocol: Orchestrator routes events; agents post assessments to a shared board; conflicts escalate to human review.

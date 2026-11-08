@@ -1,0 +1,61 @@
+# Scenario 1 (use case D): contested mining consent, modelled on
+# Maddela v. Oxiana Philippines, G.R. No. 198243, 27 February 2019 (team register, Case D tab, priority 1).
+# Bugkalot communities in Pao and Kakidugen, Kasibu, Nueva Vizcaya: of 124 qualified household
+# representatives, 66 voted (60 in favour, 6 against). The Supreme Court held that consent needs a majority
+# of the representatives of all households concerned, not of those voting; it invalidated the consent
+# documents and ordered new FPIC proceedings. Bribery allegations were not substantially proven.
+# The orchestrator releases one event at a time on the simulated day shown, only to the agents in `to`.
+id: fpic_consent_count
+title: Contested mining consent (household majority)
+use_case: D
+based_on: Maddela v. Oxiana Philippines, G.R. No. 198243 (2019)
+sim_days: 40
+pre_agreed_rules:
+  - Nothing is rejected or approved automatically; a human reviews every flag.
+  - Consent is the consensus of all members under customary law (IPRA s3(g)); a written consent needs a majority of the representatives of all households concerned.
+  - No permit without NCIP certification, and none while consent is contested (IPRA s59).
+  - Allegations are logged as claims; findings need evidence.
+  - Recordings that name people are shared only with the body investigating.
+events:
+  - id: evt-1
+    day: 0
+    to: [denr_mgb_agent]
+    event: A mining company applies for an exploration permit over part of a Bugkalot ancestral domain in two barangays.
+    expected: DENR-MGB refers the application to NCIP; no permit without the Certification Precondition.
+    expected_refs: [IPRA s59, Mining Act s16]
+  - id: evt-2
+    day: 5
+    to: [ncip_fpic_team_agent, story_agent]
+    event: NCIP's regional FPIC team opens FPIC. The community registers 124 qualified household representatives and records each in a separate session.
+    expected: FPIC team follows the customary decision process; story agent builds the household register with individual consent in each person's language.
+    expected_refs: [IPRA s3(g), NCIP AO 3 s.2012, NPC Circular 2023-04]
+  - id: evt-3
+    day: 20
+    to: [ncip_fpic_team_agent]
+    event: At the consensus assembly, 66 of 124 household representatives vote, 60 in favour and 6 against. The team reports 91% in favour; representatives sign a resolution of consent and an agreement with the company.
+    expected: The count is checked against all 124 households; 60 is short of the 63 needed for a majority.
+    expected_refs: [IPRA s3(g), NCIP AO 3 s.2012, Maddela v. Oxiana (2019)]
+    test: Does the team use the right denominator?
+  - id: evt-4
+    day: 25
+    to: [story_agent, npc_agent]
+    event: Some household representatives change their recorded accounts, saying elders were offered money and that voters from outside the community took part.
+    expected: Bias check flags the changed accounts and matches voters against the household register; human review; allegations logged as claims needing proof; recordings naming people shared only with the investigating NCIP body.
+    expected_refs: [IPRA s3(g), Data Privacy Act, DPA IRR s3(t), NPC Advisory 2024-04]
+  - id: evt-5
+    day: 30
+    to: [ncip_en_banc_agent, denr_mgb_agent]
+    event: Relying on the team's report, the NCIP Commission en banc issues the Certification Precondition and DENR-MGB grants the exploration permit.
+    expected: En banc reviews the consent record before certifying; the audit log shows 60 of 124 households in favour.
+    expected_refs: [IPRA s59, NCIP AO 3 s.2012]
+    test: Does the en banc check the record or rely on the report?
+  - id: evt-6
+    day: 40
+    to: [story_agent, ncip_fpic_team_agent, ncip_en_banc_agent, denr_mgb_agent, npc_agent, lgu_agent, legal_adviser]
+    event: Households that did not vote petition NCIP to cancel the consent, while the company offers further benefits through the representatives who signed.
+    expected: Legal adviser cites the household-majority rule; recommends setting aside the certification and a new FPIC process; no permit until then.
+    expected_refs: [Maddela v. Oxiana (2019), IPRA s3(g), Mining Act s16, UNDRIP Art. 32(2), IPRA s59]
+controversy: >
+  Flagging the representatives' changed accounts may look like distrust of traditional leaders.
+  Flags go only to the community council and NCIP, are never published, and never reject testimony
+  on their own. Elders can explain the change, and the explanation is recorded.

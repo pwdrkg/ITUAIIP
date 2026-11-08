@@ -27,13 +27,13 @@ events:
     expected_refs: [IPRA s34, NCIP AO 1 s.2012]
   - id: evt-3
     day: 5
-    to: [ncip_agent, npc_agent]
+    to: [ncip_fpic_team_agent, npc_agent]
     event: The office asks for the full archive, including stories not yet approved for policy use, to speed up the plan.
     expected: NCIP applies AO 1, s.2012 and community FPIC; NPC confirms consent was given per purpose and personal data is minimised. Records without policy-use approval are not shared without a new community decision.
     expected_refs: [NCIP AO 1 s.2012, IPRA s3(g), Data Privacy Act, NPC Circular 2023-04]
   - id: evt-4
     day: 10
-    to: [story_agent, ncip_agent, npc_agent, lgu_agent, legal_adviser]
+    to: [story_agent, ncip_fpic_team_agent, npc_agent, lgu_agent, legal_adviser]
     event: The community council approves policy use for a further set of stories, on condition that the hazard map credits the community and keeps the original place names.
     expected: Approved records are shared with context and original language kept; the legal adviser maps the gap (no process under RA 10121 s2(j) to document, validate or authorise IKSP) to global examples; request and decision are logged.
     expected_refs: [RA 10121 s2(j), IPRA s32, IPRA s34, IPCC AR6 WGII, Sendai Framework para. 24(i)]

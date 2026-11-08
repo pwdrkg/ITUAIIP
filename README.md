@@ -61,7 +61,7 @@ One source (the IP Code, `PH-L04`) must be downloaded by hand; the fetch script 
 - [ ] Agents and orchestrator
 - [ ] Speech-to-text and entity-extraction fine-tunes
 - [ ] Web interface
-- [ ] End-to-end run of `scenarios/mining_overlap.yaml` (Scenario 1, use case D) and `scenarios/policy_reuse.yaml` (Scenario 2, use case C) with audit log
+- [ ] End-to-end run of `scenarios/fpic_consent_count.yaml` (Scenario 1, use case D) and `scenarios/policy_reuse.yaml` (Scenario 2, use case C) with audit log
 - [ ] Demo video (if shortlisted)
 
 Key dates: registration 21 October 2026 · submission 10 November 2026.
