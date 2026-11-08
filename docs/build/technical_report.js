@@ -142,7 +142,7 @@ children.push(table([34, 66], ["Perspective", "How we address it"], [
   ["Digital infrastructure and energy", "Offline recording on mobile, sync later"],
 ]));
 
-children.push(p("**Knowledge base.** Built with the ITU reference code (docling parsing, 256-word chunks, nomic-embed-text, ChromaDB). It adds 112 sources in eight folders (Philippine laws, NCIP rules, data privacy, strategies, jurisprudence, context data, IKSP publications, global practice), 53 of them from the team's IKSP reference register; each chunk tagged with source, issuer, year and section numbers, plus 25 key clauses, 16 key figures, 17 policy gaps and 5 gaps in current practice stored one per chunk for exact citation. A 35-question retrieval test must return the expected source in the top five. Community stories stay in a separate private store and are never published."));
+children.push(p("**Knowledge base.** Built with the ITU reference code (docling parsing, 256-word chunks, nomic-embed-text, ChromaDB). It adds 117 sources in eight folders (Philippine laws, NCIP rules, data privacy, strategies, jurisprudence, context data, IKSP publications, global practice), 58 of them from the team's IKSP reference register; each chunk tagged with source, issuer, year and section numbers, plus 27 key clauses, 16 key figures, 17 policy gaps and 5 gaps in current practice stored one per chunk for exact citation. A 37-question retrieval test must return the expected source in the top five. Community stories stay in a separate private store and are never published."));
 
 // 5. Error scenarios
 children.push(h1("5. Error scenarios"));
@@ -198,6 +198,7 @@ children.push(h1("References"));
   "Ibrahim, H. O. (2026). Indigenous Peoples and artificial intelligence (E/C.19/2026/4). UN Permanent Forum on Indigenous Issues, 25th session.",
   "IPCC (2022). Climate Change 2022: Impacts, Adaptation and Vulnerability (AR6 WGII).",
   "ITU-T (2019). Recommendation Y.3172: Architectural framework for machine learning in future networks including IMT-2020. ITU AI Readiness Framework 2.0.",
+  "Republic v. Lepanto Consolidated Mining Co., G.R. Nos. 244063 and 244216 (Supreme Court of the Philippines, 21 June 2022).",
   "Republic Act 8371 (1997), Indigenous Peoples' Rights Act; Republic Act 10121 (2010), Philippine Disaster Risk Reduction and Management Act, s2(j).",
   "UNESCO (2024). Decision 19.COM 6.A.4 (Buklog, thanksgiving ritual system of the Subanen).",
   "WHO (2026). Global Plan of Action for the Health of Indigenous Peoples (2027–2040), draft.",

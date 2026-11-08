@@ -273,3 +273,23 @@ provisions:
       representative institutions in order to obtain their free and informed consent prior to the approval of
       any project affecting their lands or territories and other resources, particularly in connection with the
       development, utilization or exploitation of mineral, water or other resources.
+  - id: MADDELA-2019
+    source_id: K-CD01
+    cite: Maddela v. Oxiana Philippines, G.R. No. 198243 (2019)
+    topic: [consent, FPIC, household_majority, consent_record]
+    kind: summary
+    text: >-
+      Written consent for a mining exploration permit requires a majority of the representatives of all households
+      of the concerned community, not a majority of those who voted. Of 124 qualified household representatives,
+      66 voted (60 in favour, 6 against); the favourable votes were insufficient, the consent documents were
+      invalidated and new FPIC proceedings were ordered. Bribery allegations were not substantially proven.
+  - id: LEPANTO-2022
+    source_id: K-CD02
+    cite: Republic v. Lepanto Consolidated Mining, G.R. Nos. 244063 and 244216 (2022)
+    topic: [consent, FPIC, certification_precondition, renewal, arbitration, public_policy]
+    kind: summary
+    text: >-
+      An arbitral award that exempts the renewal of a mining agreement (MPSA No. 001-90, Mankayan, Benguet) from FPIC
+      and the NCIP Certification Precondition violates public policy protecting ICCs/IPs and is vacated. Renewal
+      remains subject to full FPIC of the affected community and NCIP certification (IPRA s59); a right to renewal
+      depends on complying with the law in force.

@@ -991,5 +991,71 @@
 "url": "https://docs.un.org/E/C.19/2026/4",
 "kb_id": "G-22",
 "sheet": "IP & AI"
+},
+{
+"id": "CD01",
+"priority": "1 — Consent-record verification",
+"title": "Maddela v. Oxiana Philippines, Inc. — G.R. No. 198243, 27 February 2019. Resolution text",
+"context": "Bugkalot communities in Pao and Kakidugen, Kasibu, Nueva Vizcaya, challenged mining-exploration FPIC. Of 124 qualified household representatives, 66 voted: 60 in favour and six against.",
+"ruling": "The favourable votes were insufficient under the rules applied: consent required a majority of representatives of all households concerned, rather than those voting. The Court invalidated the documents and ordered new FPIC proceedings. Bribery allegations were not substantially proven.",
+"government_roles": "DENR–MGB Region II — Issued the exploration permit.\n\nNCIP regional office/FPIC team — Conducted investigation and facilitated FPIC.\n\nNCIP Regional Hearing Office II — Earlier compelled FPIC; later dismissed the challenge.\n\nNCIP en banc — Approved certification and subsequently dismissed the administrative appeal.\n\nCourt of Appeals (CA) — Affirmed the administrative rulings.\n\nSupreme Court (SC) — Reversed and remanded for new proceedings.",
+"url": "https://legaldex.com/jurisprudence/maddela-v-oxiana-philippines-inc",
+"kb_id": "K-CD01",
+"sheet": "Case D"
+},
+{
+"id": "CD02",
+"priority": "2 — Institutional conflict and renewal",
+"title": "Lone Congressional District of Benguet Province v. Lepanto; Republic v. Lepanto — G.R. Nos. 244063 and 244216, 21 June 2022. SC judgment",
+"context": "Renewal of a mining agreement overlapping Mankayan ancestral domains, Benguet. The companies obtained an arbitral award dispensing with FPIC and NCIP certification.",
+"ruling": "The Court vacated the award because dispensing with these safeguards violated public policy protecting Indigenous Peoples. Renewal remained subject to FPIC compliance.",
+"government_roles": "DENR — Contracting authority and government party to arbitration.\n\nMGB–CAR — Evaluated renewal and referred certification requirements to NCIP.\n\nNCIP — Responsible for FPIC/certification; not impleaded in arbitration.\n\nMakati RTC Branch 149 — Issued an injunction protecting operations pending resolution.\n\nMakati RTC Branch 141 — Vacated the award.\n\nCA — Reinstated it; denied intervention.\n\nBenguet congressional district — Sought intervention and challenged its denial.\n\nSC — Vacated the award.\n\nAd hoc arbitral tribunal — Issued the disputed award; not a government agency.",
+"url": "https://elibrary.judiciary.gov.ph/assets/pdf/philrep/2022/G.R.%20No.%20244063.pdf",
+"kb_id": "K-CD02",
+"sheet": "Case D"
+},
+{
+"id": "CD03",
+"priority": "3 — Affected-community coverage",
+"title": "NCIP v. Macroasia Corporation — G.R. No. 226176, 9 August 2023. SC judgment",
+"context": "Mining in Brooke’s Point, Palawan, involving directly affected Pala’wan communities and indirectly affected Aribungos and Barong-barong.",
+"ruling": "The Court approved a compromise agreement, recording subsequent separate FPIC processes for the two indirectly affected barangays, and closed the case. Settlement-based outcome, rather than a broad merits ruling.",
+"government_roles": "DENR–MGB — Processed permit applications and endorsed them to NCIP.\n\nDENR Secretary — Approved assignment of the mining agreement.\n\nNCIP regional office/FPIC team — Conducted initial FPIC.\n\nRegional Review Team — Recommended validation and inclusion of indirectly affected communities.\n\nNCIP Validation Team — Investigated and recommended certification.\n\nNCIP en banc — Denied certification, pursued review and later compromised.\n\nNCIP provincial/regional offices — Validated subsequent FPIC.\n\nCA — Directed certification in its amended decision.\n\nSC — Approved the compromise.",
+"url": "https://sc.judiciary.gov.ph/wp-content/uploads/2023/10/226176.pdf",
+"kb_id": "K-CD03",
+"sheet": "Case D"
+},
+{
+"id": "CD04",
+"priority": "4 — Constitutional mining landmark",
+"title": "La Bugal-B’laan Tribal Association, Inc. v. Ramos — G.R. No. 127882, 1 December 2004 resolution. SC resolution",
+"context": "A B’laan association and other petitioners challenged the Mining Act, its regulations and the Western Mining financial or technical assistance agreement (FTAA).",
+"ruling": "On reconsideration, the Court reversed its January 2004 decision, upheld the challenged FTAA framework and agreement, and invalidated two agreement provisions.",
+"government_roles": "Congress — Enacted the challenged Mining Act.\n\nDENR Secretary — Issued implementing regulations; respondent.\n\nMGB Director — Respondent in the challenge.\n\nExecutive Secretary — Executive-branch respondent.\n\nOffice of the Solicitor General (OSG) — Presented government arguments and sought reconsideration.\n\nNEDA Secretary — Presented economic arguments supporting the framework, discussed in the opinions.\n\nSC — Heard the challenge directly and reconsidered its earlier ruling.",
+"url": "https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/57883",
+"kb_id": "K-CD04",
+"sheet": "Case D"
+},
+{
+"id": "CD05",
+"priority": "5 — Land access and compensation",
+"title": "Didipio Earth-Savers’ Multi-Purpose Association, Inc. v. Gozun — G.R. No. 157882, 30 March 2006. Judgment",
+"context": "Farmers and Indigenous Peoples affected by the Climax-Arimco FTAA in Nueva Vizcaya and Quirino challenged the mining framework, including taking and compensation provisions.",
+"ruling": "The Court dismissed the petition and upheld the challenged provisions. Courts retained authority to determine just compensation. This was not a finding of an FPIC violation.",
+"government_roles": "Office of the President — President Ramos executed the FTAA; later cancellation demands reached President Arroyo.\n\nExecutive Secretary/OP Undersecretary — Named respondents; executive offices received or routed demands.\n\nDENR — Issued regulations, received demands and referred them to MGB.\n\nMGB Region II–Panel of Arbitrators — Required procedural compliance before acting on the referral.\n\nMGB central office — Rejected the cancellation demand.\n\nSC — Resolved the constitutional challenge.",
+"url": "https://lawphil.net/judjuris/juri2006/mar2006/gr_157882_2006.html",
+"kb_id": "K-CD05",
+"sheet": "Case D"
+},
+{
+"id": "CD06",
+"priority": "6 — Foundational IPRA reference",
+"title": "Cruz v. Secretary of Environment and Natural Resources — G.R. No. 135385, 6 December 2000. SC resolution and opinions",
+"context": "Constitutional challenge to IPRA’s ancestral-domain and natural-resource provisions; not litigation over one mining project.",
+"ruling": "The challenge was dismissed after a 7–7 division, leaving IPRA standing. Explanations in separate opinions require appropriate attribution.",
+"government_roles": "Congress — Enacted IPRA.\n\nNCIP Chairperson/Commissioners — Defended constitutionality.\n\nDENR and DBM Secretaries — Respondents submitting a consolidated comment through OSG.\n\nOSG — Argued partial unconstitutionality, differing from NCIP.\n\nCommission on Human Rights — Intervened in support of IPRA.\n\nSenator Juan Flavier — Joined intervenors defending IPRA; not a separate institutional Senate action.\n\nSC — Heard the challenge directly and dismissed it following the equal division.",
+"url": "https://lawphil.net/judjuris/juri2000/dec2000/gr_135385_2000.html",
+"kb_id": "PH-J01",
+"sheet": "Case D"
 }
 ]

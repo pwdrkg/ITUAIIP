@@ -2,13 +2,13 @@
 
 | Path | What it is |
 | --- | --- |
-| `sources.csv` | Manifest of 112 sources (53 from the team IKSP register, ids K-*): URL, issuer, year, how the solution uses it, key sections, and how each was checked |
+| `sources.csv` | Manifest of 117 sources (58 from the team IKSP register, ids K-*): URL, issuer, year, how the solution uses it, key sections, and how each was checked |
 | `SOURCES.md` | The same list, readable |
 | `InputDocs/<folder>/` | Downloaded documents (filled by `scripts/fetch_sources.py`) |
 | `curated/provisions.yaml` | Key clauses, one per entry, verbatim where the text is official |
 | `curated/facts.yaml` | Key figures with sources |
 | `curated/gaps.yaml` | 17 domain policy gaps and 5 gaps in current practice (`scope: practice`), linked to Philippine clauses and global examples |
-| `retrieval_tests.yaml` | 35 questions with the sources each must retrieve |
+| `retrieval_tests.yaml` | 37 questions with the sources each must retrieve |
 | `fetch_log.csv` | Created on download: file, size, SHA-256, time |
 | `private_store/` | Community data for local testing only; git-ignored |
 
