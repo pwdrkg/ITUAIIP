@@ -1,40 +1,46 @@
-# Scenario 2 (use case C): a local disaster office asks to reuse recorded IKSP for its hazard map.
+# Scenario 2 (use case C): flood stories versus the official hazard map.
+# Modelled on Case C of the team register: Leyte community mapping compared with official flood maps
+# (GIZ 2014, s6.3; K-CC11) - discrepancies in both directions with DENR-MGB's 2007 flood map.
+# Related: Malinta, Los Banos (K-CC06) and Naga, Cebu (K-CC09) on conflicting hazard evidence.
 # Tests RA 10121 s2(j) (disaster measures sensitive to indigenous knowledge) against
 # community control of knowledge (IPRA s32-s35). Events are released one at a time,
 # only to the agents listed in `to`.
 id: policy_reuse
-title: Disaster office asks to reuse recorded flood and landslide stories
+title: Flood stories versus the official hazard map
 use_case: C
+based_on: GIZ (2014) assessment of Leyte community mapping against official flood maps (K-CC11)
 sim_days: 10
 pre_agreed_rules:
   - A record leaves the private store only for a use listed in its permitted-use field.
   - Community FPIC is the consensus of all members under customary law (IPRA s3(g)).
   - Controlled (tapu) parts of a story are never shared.
   - Shared records keep their context and original language.
-  - Every request and decision is written to the audit log.
+  - Neither the official map nor community accounts are accepted or discarded automatically; discrepancies go to joint validation.
+  - Every request, discrepancy and decision is written to the audit log.
 events:
   - id: evt-1
     day: 0
     to: [lgu_agent]
-    event: The municipal disaster risk reduction office asks to use recorded flood and landslide stories for its hazard map.
-    expected: LGU agent files a request naming the purpose (hazard map) and the records sought; it does not access records directly.
+    event: The municipal disaster risk reduction office asks to use recorded flood stories to update its hazard map.
+    expected: LGU agent files a request naming the purpose (hazard map update), area and records sought; it does not access records directly.
     expected_refs: [RA 10121 s2(j)]
   - id: evt-2
     day: 2
     to: [story_agent]
-    event: The request reaches the pipeline. Some matching records allow policy use; others allow only the community archive.
-    expected: Story agent checks each record's permitted-use field; only records approved for policy use are eligible; controlled (tapu) parts are excluded.
+    event: Some matching records allow policy use; others allow only the community archive.
+    expected: Story agent checks each record's permitted-use field; only records approved for policy use are eligible; controlled (tapu) parts excluded; context and original language kept.
     expected_refs: [IPRA s34, NCIP AO 1 s.2012]
   - id: evt-3
     day: 5
-    to: [ncip_fpic_team_agent, npc_agent]
-    event: The office asks for the full archive, including stories not yet approved for policy use, to speed up the plan.
-    expected: NCIP applies AO 1, s.2012 and community FPIC; NPC confirms consent was given per purpose and personal data is minimised. Records without policy-use approval are not shared without a new community decision.
-    expected_refs: [NCIP AO 1 s.2012, IPRA s3(g), Data Privacy Act, NPC Circular 2023-04]
+    to: [story_agent, denr_mgb_agent, lgu_agent]
+    event: The approved stories disagree with the official flood-susceptibility map in both directions - some flooded places are missing from the map; elsewhere residents describe a smaller flood-prone area.
+    expected: Keep both sources; flag each discrepancy with the tellers and map layer behind it; do not discard the stories or redraw boundaries from them; refer to DENR-MGB and the knowledge holders for joint validation.
+    expected_refs: [RA 10121 s2(j), K-CC11, K-CC06]
+    test: Does any agent treat the official map, or the stories, as automatically correct?
   - id: evt-4
     day: 10
-    to: [story_agent, ncip_fpic_team_agent, npc_agent, lgu_agent, legal_adviser]
-    event: The community council approves policy use for a further set of stories, on condition that the hazard map credits the community and keeps the original place names.
-    expected: Approved records are shared with context and original language kept; the legal adviser maps the gap (no process under RA 10121 s2(j) to document, validate or authorise IKSP) to global examples; request and decision are logged.
-    expected_refs: [RA 10121 s2(j), IPRA s32, IPRA s34, IPCC AR6 WGII, Sendai Framework para. 24(i)]
+    to: [story_agent, ncip_fpic_team_agent, npc_agent, lgu_agent, denr_mgb_agent, legal_adviser]
+    event: Joint validation confirms some discrepancies; the office asks for the full georeferenced archive to finish the map.
+    expected: Share only an authorised extract for the requested purpose and area; no full archive without a new community decision; legal adviser maps the gap (no process under RA 10121 s2(j) to document, validate or authorise IKSP) to global examples; incorporation into the plan is recorded.
+    expected_refs: [RA 10121 s2(j), IPRA s32, IPRA s34, NCIP AO 1 s.2012, IPCC AR6 WGII, Sendai Framework para. 24(i), K-CC07]
 gap_tested: GAP-14

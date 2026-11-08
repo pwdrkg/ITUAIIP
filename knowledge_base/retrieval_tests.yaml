@@ -81,3 +81,7 @@ tests:
     expect: [K-CD02]
   - q: Is a majority of those who voted enough for written consent to a mining exploration permit?
     expect: [K-CD01]
+  - q: Have community flood accounts in the Philippines disagreed with official flood susceptibility maps?
+    expect: [K-CC11, K-CC06]
+  - q: Is there an example of an Indigenous community reading environmental signs to warn residents before a typhoon?
+    expect: [K-CC01, K-CC02, K-CC04]

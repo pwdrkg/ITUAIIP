@@ -16,7 +16,7 @@ agents:
     kb_folders: [PH_Laws, PH_NCIP_Rules, PH_Jurisprudence, PH_Context_Data]
   denr_mgb_agent:
     role: DENR Mines and Geosciences Bureau, regional office
-    mandate: Mining agreements, permits and renewals as contracting authority; must have NCIP certification before granting or renewing; land records and surveys through DENR-LMB.
+    mandate: Mining agreements, permits and renewals as contracting authority; must have NCIP certification before granting or renewing; land records and surveys through DENR-LMB; geohazard and flood-susceptibility maps (Scenario 2).
     kb_folders: [PH_Laws, PH_NCIP_Rules, PH_Jurisprudence]
   npc_agent:
     role: Data protection (National Privacy Commission)
