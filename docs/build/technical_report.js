@@ -11,8 +11,8 @@ const {
 
 const FONT = "Calibri";
 const BODY = 20;   // 10 pt
-const SMALL = 17;  // 8.5 pt (tables)
-const PAGE_W = 11906 - 2 * 1021; // A4 minus 1.8 cm margins
+const SMALL = 16;  // 8 pt (tables)
+const PAGE_W = 11906 - 2 * 907; // A4 minus 1.8 cm margins
 
 // Inline markup: **bold**, _italic_
 function runs(text, size = BODY, extra = {}) {
@@ -29,11 +29,11 @@ function runs(text, size = BODY, extra = {}) {
   if (last < text.length) out.push(new TextRun({ text: text.slice(last), size, font: FONT, ...extra }));
   return out;
 }
-const p = (text, opts = {}) => new Paragraph({ children: runs(text, opts.size || BODY), spacing: { after: opts.after ?? 80, line: 252 }, alignment: opts.align, keepNext: opts.keepNext });
+const p = (text, opts = {}) => new Paragraph({ children: runs(text, opts.size || BODY), spacing: { after: opts.after ?? 60, line: 240 }, alignment: opts.align, keepNext: opts.keepNext });
 const h1 = (t) => new Paragraph({ heading: HeadingLevel.HEADING_1, children: [new TextRun({ text: t, font: FONT })] });
 const h2 = (t) => new Paragraph({ heading: HeadingLevel.HEADING_2, children: [new TextRun({ text: t, font: FONT })] });
-const bullet = (t) => new Paragraph({ numbering: { reference: "bul", level: 0 }, children: runs(t), spacing: { after: 40, line: 252 } });
-const num = (t, ref) => new Paragraph({ numbering: { reference: ref, level: 0 }, children: runs(t), spacing: { after: 40, line: 252 } });
+const bullet = (t) => new Paragraph({ numbering: { reference: "bul", level: 0 }, children: runs(t), spacing: { after: 20, line: 240 } });
+const num = (t, ref) => new Paragraph({ numbering: { reference: ref, level: 0 }, children: runs(t), spacing: { after: 20, line: 240 } });
 
 const border = { style: BorderStyle.SINGLE, size: 4, color: "A6A6A6" };
 const borders = { top: border, bottom: border, left: border, right: border };
@@ -43,8 +43,8 @@ function table(widthsPct, header, rows) {
   const cell = (text, i, isHead) => new TableCell({
     borders, width: { size: widths[i], type: WidthType.DXA },
     shading: isHead ? { fill: "D9E2F3", type: ShadingType.CLEAR, color: "auto" } : undefined,
-    margins: { top: 30, bottom: 30, left: 70, right: 70 },
-    children: [new Paragraph({ children: runs(text, SMALL, isHead ? { bold: true } : {}), spacing: { after: 0 } })],
+    margins: { top: 10, bottom: 10, left: 60, right: 60 },
+    children: [new Paragraph({ children: runs(text, SMALL, isHead ? { bold: true } : {}), spacing: { before: 0, after: 0, line: 228 } })],
   });
   return new Table({
     width: { size: PAGE_W, type: WidthType.DXA }, columnWidths: widths,
@@ -101,7 +101,7 @@ children.push(p("**How our solution closes them:**", { after: 40, keepNext: true
 ].forEach((t) => children.push(num(t, "steps")));
 children.push(p("**Use cases.** A. Community archive and transmission (RA 11961 cultural mapping). B. Education (DepEd IPEd orders). C. Disaster and climate planning (RA 10121 s2(j)). D. Ancestral domain recognition (IPRA s52(d); only 22% of approved CADTs fully registered by early 2023). E. Protection against appropriation (IPOPHL–NCIP AO 1, s.2016). Scenarios test D and C."));
 const img = fs.readFileSync(path.join(__dirname, "..", "architecture.png"));
-children.push(new Paragraph({ alignment: AlignmentType.CENTER, keepNext: true, spacing: { after: 20 }, children: [new ImageRun({ type: "png", data: img, transformation: { width: 380, height: 316 }, altText: { title: "Figure 1", description: "Y.3172 pipeline with orchestrator, sandbox and audit log", name: "architecture" } })] }));
+children.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 20 }, children: [new ImageRun({ type: "png", data: img, transformation: { width: 300, height: 249 }, altText: { title: "Figure 1", description: "Y.3172 pipeline with orchestrator, sandbox and audit log", name: "architecture" } })] }));
 children.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 80 }, children: [new TextRun({ text: "Figure 1. Y.3172 pipeline with orchestrator, sandbox and audit log", italics: true, size: SMALL, font: FONT })] }));
 children.push(p("The pipeline follows Y.3172 from source (SRC) to output (SINK). A voice reader and a text reader feed the same cross-checker, so written documents are checked against spoken accounts. The orchestrator (MLFO) runs the agents and scenarios, and every step writes to the audit log."));
 
@@ -141,7 +141,7 @@ children.push(table([34, 66], ["Perspective", "How we address it"], [
   ["AI for social inclusion", "Many voices: women, youth, remote members; self-identification"],
   ["Digital infrastructure and energy", "Offline recording on mobile, sync later"],
 ]));
-children.push(p("", { after: 40 }));
+
 children.push(p("**Knowledge base.** Built with the ITU reference code (docling parsing, 256-word chunks, nomic-embed-text, ChromaDB). It adds 108 sources in eight folders (Philippine laws, NCIP rules, data privacy, strategies, jurisprudence, context data, IKSP publications, global practice), 49 of them from the team's IKSP reference register; each chunk tagged with source, issuer, year and section numbers, plus 25 key clauses, 16 key figures, 17 policy gaps and 5 gaps in current practice stored one per chunk for exact citation. A 34-question retrieval test must return the expected source in the top five. Community stories stay in a separate private store and are never published."));
 
 // 5. Error scenarios
@@ -210,7 +210,7 @@ const doc = new Document({
     default: { document: { run: { font: FONT, size: BODY } } },
     paragraphStyles: [
       { id: "Heading1", name: "Heading 1", basedOn: "Normal", next: "Normal", quickFormat: true,
-        run: { font: FONT, size: 26, bold: true, color: "1F3864" }, paragraph: { spacing: { before: 140, after: 60 }, keepNext: true, outlineLevel: 0 } },
+        run: { font: FONT, size: 26, bold: true, color: "1F3864" }, paragraph: { spacing: { before: 100, after: 40 }, keepNext: true, outlineLevel: 0 } },
       { id: "Heading2", name: "Heading 2", basedOn: "Normal", next: "Normal", quickFormat: true,
         run: { font: FONT, size: 21, bold: true, color: "1F3864" }, paragraph: { spacing: { before: 60, after: 40 }, keepNext: true, outlineLevel: 1 } },
     ],
@@ -221,7 +221,7 @@ const doc = new Document({
     { reference: "scen", levels: [{ level: 0, format: LevelFormat.DECIMAL, text: "%1.", alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left: 360, hanging: 260 } } } }] },
   ] },
   sections: [{
-    properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1021, bottom: 1021, left: 1021, right: 1021, header: 500, footer: 500 } } },
+    properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 907, bottom: 907, left: 907, right: 907, header: 500, footer: 500 } } },
     footers: { default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ children: ["Page ", PageNumber.CURRENT], size: 16, font: FONT })] })] }) },
     children,
   }],
