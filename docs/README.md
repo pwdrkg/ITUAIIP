@@ -5,4 +5,6 @@
 - `full-report.docx`: everything, including scenario script, audit design, knowledge base and all gaps
 - `architecture.png`: Y.3172 architecture diagram
 
-Placeholders to fill before submission: team name, members, contact details, GitHub link.
+`build/technical_report.js` rebuilds `technical-report.docx` (run `node docs/build/technical_report.js` from the repo root).
+
+The technical report follows the team PDF *IKSP Record Pipeline – tech 5 pages* (8 November 2026).

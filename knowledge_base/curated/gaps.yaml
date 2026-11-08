@@ -160,3 +160,61 @@ gaps:
     ph_refs: [IPRA-3g]
     detail: "NCIP's index lists AO 3, s.2026 (2026 Guidelines on FPIC and Related Processes, 28 September 2026); its text and transition rules were not yet obtained, so the 2012 FPIC procedures cannot be assumed to still control."
     global_examples: []
+  # Gaps in current practice (problem statement, Section 2.1 of the technical report).
+  # scope: practice = system-level gaps the pipeline responds to, not readings of a specific clause.
+  - id: GAP-18
+    title: Dispossession, environmental degradation and language loss weaken IKSP transmission
+    type: conflict_between_objectives
+    scope: practice
+    ph_refs: [IPRA-32, IPRA-34]
+    detail: "Dispossession and environmental degradation threaten the conditions sustaining IKSP, while Indigenous language loss further weakens its continued practice and intergenerational transmission (WHO, 2026)."
+    global_examples:
+      - source_id: G-21
+        example: "WHO draft Global Plan of Action for the Health of Indigenous Peoples (2026): links land, language and culture to Indigenous Peoples' wellbeing."
+      - source_id: G-20
+        example: "UNESCO Decision 19.COM 6.A.4 (2024) on Buklog: practice declines when space and materials shrink."
+  - id: GAP-19
+    title: Inadequate FPIC implementation leaves IKSP open to appropriation and unauthorised reuse
+    type: legislative
+    scope: practice
+    ph_refs: [IPRA-3g, IPRA-34]
+    detail: "Inadequate implementation of FPIC leaves IKSP vulnerable to appropriation and unauthorised reuse, undermining Indigenous Peoples' self-determination and cultural and intellectual rights (EMRIP, 2025; Ibrahim, 2026)."
+    global_examples:
+      - source_id: K-IN17
+        example: "EMRIP study A/HRC/60/66 (2025) on Indigenous Peoples' right to data."
+      - source_id: G-22
+        example: "Ibrahim (2026), UNPFII study: AI becomes harmful when imposed without free, prior and informed consent."
+  - id: GAP-20
+    title: External control over Indigenous data weakens Indigenous data sovereignty
+    type: unclear_responsibility
+    scope: practice
+    ph_refs: [IPRA-34, IPRA-45]
+    detail: "External control over Indigenous data constrains communities' authority to determine how their knowledge is documented, interpreted and used, weakening Indigenous data sovereignty (EMRIP, 2025; Ibrahim, 2026)."
+    global_examples:
+      - source_id: G-02
+        example: "CARE Principles for Indigenous Data Governance: collective benefit, authority to control, responsibility, ethics."
+      - source_id: G-22
+        example: "Ibrahim (2026): Indigenous data is often collective; consultation frameworks should reflect this."
+  - id: GAP-21
+    title: Structural discrimination and the digital divide restrict Indigenous participation
+    type: technology
+    scope: practice
+    ph_refs: [IPRA-16]
+    detail: "Structural discrimination and the digital divide restrict full and effective Indigenous participation, including that of women and youth. Systems that privilege dominant languages and knowledge frameworks further marginalise Indigenous perspectives and distort the representation of IKSP (EMRIP, 2025; Ibrahim, 2026)."
+    facts: [F-gida]
+    global_examples:
+      - source_id: K-IN17
+        example: "EMRIP study A/HRC/60/66 (2025): participation of Indigenous women and youth in data governance."
+      - source_id: G-22
+        example: "Ibrahim (2026): Indigenous participation in AI governance; community-controlled language and culture models."
+  - id: GAP-22
+    title: Insufficient investment in Indigenous-led information systems and disaggregated data
+    type: data
+    scope: practice
+    ph_refs: []
+    detail: "Insufficient investment in Indigenous-led information systems limits sustained documentation and community control. Incomplete ethnicity-disaggregated data and inconsistent collection methods compound these limitations, weakening the evidence available for equitable policy and programme design (World Bank, 2024; Ibrahim, 2026)."
+    global_examples:
+      - source_id: PH-C01
+        example: "World Bank (2024), No Data, No Story: standard ethnicity variables, self-identification, FPIC in local languages."
+      - source_id: G-14
+        example: "Mexico INEGI: self-identification question in national surveys."

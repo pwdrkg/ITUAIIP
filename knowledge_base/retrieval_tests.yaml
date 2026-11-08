@@ -71,3 +71,7 @@ tests:
     expect: [PH-N04]
   - q: Which international framework says traditional and indigenous knowledge should complement science in disaster risk reduction?
     expect: [K-IN16]
+  - q: How do land dispossession and language loss affect the transmission of indigenous knowledge?
+    expect: [G-21, G-20]
+  - q: What risks does artificial intelligence pose to Indigenous Peoples' knowledge and data without free, prior and informed consent?
+    expect: [G-22, K-IN17]

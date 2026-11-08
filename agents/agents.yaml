@@ -20,8 +20,8 @@ agents:
     kb_folders: [PH_Data_Privacy, PH_Laws]
   lgu_agent:
     role: Local government unit
-    mandate: Local records, zoning, local cybersecurity plan.
-    kb_folders: [PH_Laws, PH_Strategies]
+    mandate: Local records, zoning, local cybersecurity plan, local disaster risk reduction office (requests to reuse IKSP for hazard maps; Scenario 2).
+    kb_folders: [PH_Laws, PH_Strategies, PH_Context_Data]
   legal_adviser:
     role: Policy and legal adviser
     mandate: Applicable law, gaps, and global policy examples. Cites only binding law as a requirement; labels declarations and guidance as benchmarks (team register status column). Flags FPIC steps for human legal check until NCIP AO 3, s.2026 is confirmed.

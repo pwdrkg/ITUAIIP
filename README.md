@@ -51,7 +51,7 @@ One source (the IP Code, `PH-L04`) must be downloaded by hand; the fetch script 
 
 ## Knowledge base
 
-106 sources are listed in [`knowledge_base/SOURCES.md`](knowledge_base/SOURCES.md), each with its URL, the date it was checked, and how the solution uses it. Curated files add 25 key clauses (16 verbatim), 16 key figures and 17 policy gaps linked to global examples, each stored as its own chunk for exact citation. See [`knowledge_base/README.md`](knowledge_base/README.md). Philippine government works are not covered by copyright (IP Code s176), so the Philippine laws and rules can be published in the open knowledge base. Check the licence of each global-practice document before publishing it; community data is never published.
+108 sources are listed in [`knowledge_base/SOURCES.md`](knowledge_base/SOURCES.md), each with its URL, the date it was checked, and how the solution uses it. Curated files add 25 key clauses (16 verbatim), 16 key figures, 17 policy gaps and 5 gaps in current practice linked to global examples, each stored as its own chunk for exact citation. See [`knowledge_base/README.md`](knowledge_base/README.md). Philippine government works are not covered by copyright (IP Code s176), so the Philippine laws and rules can be published in the open knowledge base. Check the licence of each global-practice document before publishing it; community data is never published.
 
 ## Status
 
@@ -61,7 +61,7 @@ One source (the IP Code, `PH-L04`) must be downloaded by hand; the fetch script 
 - [ ] Agents and orchestrator
 - [ ] Speech-to-text and entity-extraction fine-tunes
 - [ ] Web interface
-- [ ] End-to-end run of `scenarios/mining_overlap.yaml` with audit log
+- [ ] End-to-end run of `scenarios/mining_overlap.yaml` (Scenario 1, use case D) and `scenarios/policy_reuse.yaml` (Scenario 2, use case C) with audit log
 - [ ] Demo video (if shortlisted)
 
 Key dates: registration 21 October 2026 · submission 10 November 2026.

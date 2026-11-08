@@ -1,4 +1,4 @@
-# Error scenario: mining permit over a pending ancestral domain claim.
+# Scenario 1 (use case D): mining permit over a pending ancestral domain claim.
 # The orchestrator releases one event at a time on the simulated day shown,
 # and only to the agents listed in `to`. No agent sees the whole picture at first.
 id: mining_overlap

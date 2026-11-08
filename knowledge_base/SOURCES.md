@@ -1,6 +1,6 @@
 # Knowledge base sources
 
-106 sources, checked between 6 and 31 October 2026: 47 opened by us; 11 checked in full text and 39 checked as official records only by the team IKSP register (ids `K-*`, see `team_register/`); 9 found through search or linked from a confirmed source. Record-only entries are not cited for their contents until read. Download with `python scripts/fetch_sources.py`; sources marked **manual download** must be saved by hand.
+108 sources, checked between 6 October and 8 November 2026: 47 opened by us; 11 checked in full text and 39 checked as official records only by the team IKSP register (ids `K-*`, see `team_register/`); 11 found through search or linked from a confirmed source (2 still to confirm: G-21, G-22). Record-only entries are not cited for their contents until read. Download with `python scripts/fetch_sources.py`; sources marked **manual download** must be saved by hand.
 
 
 ## Philippine laws (22)
@@ -110,7 +110,7 @@
 | K-PU15 | [Philippine Traditional Knowledge Digital Library on Health (TKDL) — PCHRD/PITAHC/UP Manila](https://www.tkdl.ph/) · Official research repository/platform, 2011 · **manual download** | Community health research, language, knowledge stewardship and research discovery. *Team register PU15; Community health knowledge across Philippine ethnolinguistic groups* | 2011 denotes programme origin. Individual studies have their own dates and permissions; web availability does not establish clinical validation or consent for AI training. | team-checked record |
 | K-PU16 | [Sia, I.C., Ramos, T.B., Baguno, F. & Manalo, E. — Batak, Palawan ethnomedical documentation report (PITAHC catalog entry)](https://pitahc.gov.ph/library-of-information-resources-researches-and-publication/) · Research report identified in official catalog, 1997 · **manual download** | Locating underlying health-knowledge reports beyond promotional accounts. *Team register PU16; Batak communities, Palawan* | Use catalog wording to identify the item; full report, consent arrangements, precise findings and clinical evidence were not retrieved. | team-checked record |
 
-## Global practice (34)
+## Global practice (36)
 
 | ID | Document | Use in solution | Key sections | Check |
 | --- | --- | --- | --- | --- |
@@ -134,6 +134,8 @@
 | G-18 | [Native Title Amendment Act 2009 (No. 83, 2009), Australia](https://www.legislation.gov.au/C2009A00083/asmade) · Parliament of Australia, 2009 · **manual download** | Primary text for court-managed mediation of native title claims *RTF from ComLaw converted to text* | s86B: Federal Court refers applications to mediation | opened |
 | G-19 | [Climate Change 2022: Impacts, Adaptation and Vulnerability (AR6 WGII)](https://www.ipcc.ch/report/ar6/wg2/) · IPCC, 2022 · **manual download** | Indigenous knowledge in adaptation planning; avoiding maladaptation *Large report; download the Summary for Policymakers* | SPM on maladaptation and Indigenous knowledge and local knowledge | search result |
 | G-20 | [Decision of the Intergovernmental Committee: 19.COM 6.A.4 (Buklog, thanksgiving ritual system of the Subanen)](https://ich.unesco.org/en/decisions/19.COM/6.A.4) · UNESCO, 2024 | Continuity of practice: documentation cannot replace transmission *Philippine element on the Urgent Safeguarding List* | Concern over declining practice, reduced space, scarce materials | opened |
+| G-21 | [Global Plan of Action for the Health of Indigenous Peoples (2027-2040), draft](https://www.who.int/initiatives/global-plan-of-action-for-health-of-indigenous-peoples) · World Health Organization, 2026 | Problem statement gap: dispossession, environmental degradation and language loss weaken IKSP transmission *Cited as WHO (2026); draft* | Priorities on Indigenous leadership, determinants of health, land and language | to confirm |
+| G-22 | [Study on artificial intelligence and Indigenous Peoples (UNPFII 25th session)](https://www.un.org/development/desa/indigenouspeoples/unpfii-sessions-2/25th-session.html) · Hindou Oumarou Ibrahim, UNPFII, 2026 | Problem statement gaps: FPIC, data sovereignty, participation, Indigenous-led information systems *Cited as Ibrahim (2026); UN expert study, not binding* | AI harmful without FPIC; collective Indigenous data; participation in AI governance | to confirm |
 | K-IN02 | [Convention on Biological Diversity (CBD)](https://www.cbd.int/convention/articles/default.shtml?a=cbd-08&lg=0) · Binding treaty for the Philippines, 1992 · **manual download** | Conservation, customary resource management and benefit-sharing. *Team register IN02; Biodiversity and traditional knowledge* | Subject to the treaty’s wording, including national legislation. PH party status: 6 January 1994. | team-checked record |
 | K-IN03 | [Nagoya Protocol on Access and Benefit-sharing](https://www.cbd.int/abs/text) · Binding treaty for the Philippines, 2010 · **manual download** | Research or commercial access and equitable benefit-sharing. *Team register IN03; Genetic resources and associated traditional knowledge* | Arts.5(5),7,12; not a universal instrument covering all unrelated cultural knowledge. PH party from 28 December 2015. | team-checked record |
 | K-IN04 | [UNESCO Convention for the Safeguarding of the Intangible Cultural Heritage](https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage?hub=72609) · Binding treaty for the Philippines, 2003 · **manual download** | Intergenerational transmission, community education and living cultural practices. *Team register IN04; Living heritage including knowledge about nature and the universe* | Arts.2,11–15; PH ratification 18 August 2006. Inventory or inscription is not blanket consent for disclosure or reuse. | team-checked record |
@@ -153,7 +155,7 @@
 
 - **provisions.yaml**: 25 key clauses, one per entry (18 verbatim from official text, 7 summaries), tagged by topic.
 - **facts.yaml**: 16 key figures, each with its source; conflicting figures are kept side by side.
-- **gaps.yaml**: 13 domain policy gaps, typed by evaluation category, each linked to Philippine clauses and global examples.
+- **gaps.yaml**: 17 domain policy gaps and 5 gaps in current practice (`scope: practice`), typed by evaluation category, each linked to Philippine clauses and global examples.
 
 Each curated item is stored as its own chunk, so agents retrieve and cite the exact clause.
 

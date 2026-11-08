@@ -115,10 +115,11 @@ def ingest_curated(kb, embed_texts) -> int:
                       {"source_id": f["source_id"], "curated": "fact", "sections": ""}))
     for g in yaml.safe_load((cur / "gaps.yaml").read_text(encoding="utf-8"))["gaps"]:
         ex = " ".join(e["example"] for e in g.get("global_examples", []))
-        text = f"Policy gap ({g['type']}): {g['title']}. {g['detail']} Global examples: {ex}"
+        label = "Gap in current practice" if g.get("scope") == "practice" else "Policy gap"
+        text = f"{label} ({g['type']}): {g['title']}. {g['detail']} Global examples: {ex}"
         srcs = [e["source_id"] for e in g.get("global_examples", [])]
         items.append((f"CUR::{g['id']}", text,
-                      {"source_id": srcs[0] if srcs else "", "curated": "gap", "gap_type": g["type"],
+                      {"source_id": srcs[0] if srcs else "", "curated": "gap", "gap_type": g["type"], "gap_scope": g.get("scope", "policy"),
                        "related_sources": ",".join(srcs), "ph_refs": ",".join(g.get("ph_refs", [])),
                        "sections": ""}))
     ids = [i[0] for i in items]
