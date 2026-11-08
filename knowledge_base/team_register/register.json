@@ -855,7 +855,13 @@
 "limits": "News does not establish that all ICCs/IPs are comprehensively represented. Read the books and their selection/editorial methods before assessing coverage.",
 "url": "https://www.pna.gov.ph/articles/1133034",
 "verif": "Primary publisher: https://ncip.gov.ph/news/ncip-launching-indigenous-peoples-pagkilala-recognize-paggalang-respect-and-pagtaguyod-promote-coffee-table-books/",
-"sheet": "Report Tracing"
+"sheet": "Report Tracing",
+"kb_id": [
+"K-PU01",
+"K-PU02",
+"K-PU03"
+],
+"kb_note": "Verification trail; the traced publications are the knowledge-base sources listed in kb_id."
 },
 {
 "id": "TR02",
@@ -868,7 +874,13 @@
 "limits": "Annual report is evidence of the publication activity, not independent evaluation of every cultural account. Some later notices use a different launch year; prioritize contemporaneous 2021 sources.",
 "url": "https://ncip.gov.ph/wp-content/uploads/2024/03/2021-AARv2.pdf",
 "verif": "Official report indexed content verified; full volumes remain unreviewed.",
-"sheet": "Report Tracing"
+"sheet": "Report Tracing",
+"kb_id": [
+"K-PU01",
+"K-PU02",
+"K-PU03"
+],
+"kb_note": "Verification trail; the traced publications are the knowledge-base sources listed in kb_id."
 },
 {
 "id": "TR03",
@@ -881,7 +893,13 @@
 "limits": "Receipt notice is not a searchable national union catalog or confirmation of current loan/scan availability. No ISBN was verified.",
 "url": "https://chmsu.edu.ph/ncip-turns-over-project-epanaw-books-to-chmsu/",
 "verif": "Additional receipt lead: https://www.dmmmsu.edu.ph/2023/09/19/ncip-gifts-dmmmsu-coffee-table-books/",
-"sheet": "Report Tracing"
+"sheet": "Report Tracing",
+"kb_id": [
+"K-PU01",
+"K-PU02",
+"K-PU03"
+],
+"kb_note": "Verification trail; the traced publications are the knowledge-base sources listed in kb_id."
 },
 {
 "id": "TR04",
@@ -894,7 +912,12 @@
 "limits": "Full guide not retrieved; programme recognition is not proof that every SLT has equal results.",
 "url": "https://ich.unesco.org/en/BSP/the-school-of-living-traditions-slt-01739",
 "verif": "Output trail: https://ich.unesco.org/en/project-education/schools-of-living-traditions-slts-safeguarding-ich-in-non-formal-education-in-the-philippines-00489",
-"sheet": "Report Tracing"
+"sheet": "Report Tracing",
+"kb_id": [
+"K-PU10",
+"K-PU11"
+],
+"kb_note": "Verification trail; the traced publications are the knowledge-base sources listed in kb_id."
 },
 {
 "id": "TR05",
@@ -907,7 +930,12 @@
 "limits": "Report identification is complete for the catalog example PU16; substantive appraisal remains pending full-text access. No healing efficacy conclusion is drawn.",
 "url": "https://www.dost.gov.ph/knowledge-resources/databases.html",
 "verif": "Research catalog: https://pitahc.gov.ph/library-of-information-resources-researches-and-publication/",
-"sheet": "Report Tracing"
+"sheet": "Report Tracing",
+"kb_id": [
+"K-PU15",
+"K-PU16"
+],
+"kb_note": "Verification trail; the traced publications are the knowledge-base sources listed in kb_id."
 },
 {
 "id": "TR06",
@@ -920,7 +948,11 @@
 "limits": "The report’s limited/inconsistent harvest records do not justify a broad causal claim of increased yields.",
 "url": "https://swed.bio/reports/report/mobilizing-indigenous-knowledge-innovations-and-practices-of-the-kalanguyas-farming-systems-in-tinoc-ifuago-the-philippines/",
 "verif": "Full publication: https://swed.bio/wp-content/uploads/2017/03/MEB-Pilot-Report-Philippines_2016.pdf.pdf",
-"sheet": "Report Tracing"
+"sheet": "Report Tracing",
+"kb_id": [
+"PH-C08"
+],
+"kb_note": "Verification trail; the traced publications are the knowledge-base sources listed in kb_id."
 },
 {
 "id": "AI01",
@@ -1011,9 +1043,8 @@
 "ruling": "The Court vacated the award because dispensing with these safeguards violated public policy protecting Indigenous Peoples. Renewal remained subject to FPIC compliance.",
 "government_roles": "DENR — Contracting authority and government party to arbitration.\n\nMGB–CAR — Evaluated renewal and referred certification requirements to NCIP.\n\nNCIP — Responsible for FPIC/certification; not impleaded in arbitration.\n\nMakati RTC Branch 149 — Issued an injunction protecting operations pending resolution.\n\nMakati RTC Branch 141 — Vacated the award.\n\nCA — Reinstated it; denied intervention.\n\nBenguet congressional district — Sought intervention and challenged its denial.\n\nSC — Vacated the award.\n\nAd hoc arbitral tribunal — Issued the disputed award; not a government agency.",
 "url": "https://elibrary.judiciary.gov.ph/assets/pdf/philrep/2022/G.R.%20No.%20244063.pdf",
-"kb_id": null,
-"sheet": "Case D",
-"kb_note": "Not included in the knowledge base at the team's request (9 November 2026)."
+"kb_id": "K-CD02",
+"sheet": "Case D"
 },
 {
 "id": "CD03",
