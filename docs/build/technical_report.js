@@ -37,14 +37,14 @@ const num = (t, ref) => new Paragraph({ numbering: { reference: ref, level: 0 },
 
 const border = { style: BorderStyle.SINGLE, size: 4, color: "A6A6A6" };
 const borders = { top: border, bottom: border, left: border, right: border };
-function table(widthsPct, header, rows) {
+function table(widthsPct, header, rows, keep = false) {
   const widths = widthsPct.map((w) => Math.round((PAGE_W * w) / 100));
   widths[widths.length - 1] = PAGE_W - widths.slice(0, -1).reduce((a, b) => a + b, 0);
   const cell = (text, i, isHead) => new TableCell({
     borders, width: { size: widths[i], type: WidthType.DXA },
     shading: isHead ? { fill: "D9E2F3", type: ShadingType.CLEAR, color: "auto" } : undefined,
     margins: { top: 10, bottom: 10, left: 60, right: 60 },
-    children: [new Paragraph({ children: runs(text, SMALL, isHead ? { bold: true } : {}), spacing: { before: 0, after: 0, line: 228 } })],
+    children: [new Paragraph({ keepNext: keep, children: runs(text, SMALL, isHead ? { bold: true } : {}), spacing: { before: 0, after: 0, line: 228 } })],
   });
   return new Table({
     width: { size: PAGE_W, type: WidthType.DXA }, columnWidths: widths,
@@ -142,11 +142,11 @@ children.push(table([34, 66], ["Perspective", "How we address it"], [
   ["Digital infrastructure and energy", "Offline recording on mobile, sync later"],
 ]));
 
-children.push(p("**Knowledge base.** Built with the ITU reference code (docling parsing, 256-word chunks, nomic-embed-text, ChromaDB). It adds 127 sources in eight folders (Philippine laws, NCIP rules, data privacy, strategies, jurisprudence, context data, IKSP publications, global practice), 68 of them from the team's IKSP reference register; each chunk tagged with source, issuer, year and section numbers, plus 26 key clauses, 16 key figures, 17 policy gaps and 5 gaps in current practice stored one per chunk for exact citation. A 38-question retrieval test must return the expected source in the top five. Community stories stay in a separate private store and are never published."));
+children.push(p("**Knowledge base.** Built with the ITU reference code (docling parsing, 256-word chunks, nomic-embed-text, ChromaDB). It adds 128 sources in eight folders (Philippine laws, NCIP rules, data privacy, strategies, jurisprudence, context data, IKSP publications, global practice), 69 of them from the team's IKSP reference register; each chunk tagged with source, issuer, year and section numbers, plus 27 key clauses, 16 key figures, 17 policy gaps and 5 gaps in current practice stored one per chunk for exact citation. A 39-question retrieval test must return the expected source in the top five. Community stories stay in a separate private store and are never published."));
 
 // 5. Error scenarios
 children.push(h1("5. Error scenarios"));
-children.push(p("**Agents:** story agent, NCIP regional FPIC team, NCIP Commission en banc, DENR–MGB regional office (mining agreements and renewals), National Privacy Commission, local government and a legal adviser. The main script tests use case D; a policy reuse request tests use case C. The orchestrator releases events one at a time over 40 simulated days, each only to the agents that would receive it in real life."));
+children.push(p("**Agents:** story agent, NCIP regional FPIC team, NCIP Commission en banc, DENR–MGB regional office (mining agreements and renewals), National Privacy Commission, local government and a legal adviser. The main script tests use case D; a policy reuse request tests use case C. The orchestrator releases events one at a time over simulated days (40 in Scenario 1, 10 in Scenario 2), each only to the agents that would receive it in real life."));
 children.push(table([22, 22, 56], ["Agent", "Role", "Mandate"], [
   ["Story agent", "Application", "Household register, matching, bias check, read-back, dossier"],
   ["NCIP FPIC team agent", "Regional FPIC team", "Runs FPIC under the customary decision process; keeps the household register and consent count"],
@@ -155,7 +155,7 @@ children.push(table([22, 22, 56], ["Agent", "Role", "Mandate"], [
   ["NPC agent", "Data protection", "Consent, data privacy, breach response"],
   ["LGU agent", "Local government", "Local records, zoning, local cybersecurity plan, local disaster risk reduction office"],
   ["Legal adviser", "Policy adviser", "Law, case law, gaps, global examples; labels non-binding guidance as a benchmark"],
-]));
+], true));
 children.push(p("Each agent sees only the events routed to it and retrieves only from the knowledge-base folders its mandate allows; assessments are posted to a shared board, and conflicts escalate to human review.", { after: 60 }));
 children.push(p("**Scenario 1: a mining agreement renewal inside an ancestral domain (use case D), released over 40 simulated days.**", { after: 40, keepNext: true }));
 [
@@ -167,7 +167,14 @@ children.push(p("**Scenario 1: a mining agreement renewal inside an ancestral do
   "**Step-6 (day 40):** Escalation: the company offers benefits through those representatives in exchange for consent, and local officials ask to join the dispute. _Released to:_ All agents. _Expected:_ Legal adviser: no private ruling can waive FPIC or certification, which protect public policy; consent is the consensus of all members, free of manipulation (s3(g)); Mining Act s16; UNDRIP Art. 32(2). No renewal until both are complete (s59).",
 ].forEach((t) => children.push(num(t, "scen")));
 children.push(p("In Scenario 1, step 6 turns a renewal dispute into a consent and ethics breach."));
-children.push(p("**Scenario 2: flood stories versus the official hazard map (use case C).** The municipal disaster risk reduction office asks to use recorded flood stories to update its hazard map. The stories disagree with the official flood-susceptibility map in both directions: some places residents saw flooded are missing from the map, while elsewhere they describe a smaller flood-prone area than the map shows. _Expected handling:_ only records approved for policy use are shared, with context and the original language kept (NCIP AO 1, s.2012; community FPIC). The agent neither discards the stories because they conflict with the official map nor redraws hazard boundaries from them: it keeps both sources, flags each discrepancy and refers it to DENR–MGB and the knowledge holders for joint validation. The request, discrepancies and decisions are logged. This tests RA 10121 s2(j) against community control (IPRA s32–s35)."));
+children.push(p("**Scenario 2: flood stories versus the official hazard map (use case C), released over 10 simulated days.**", { after: 40, keepNext: true }));
+[
+  "**Step-1 (day 0):** The municipal disaster risk reduction office asks to use recorded flood stories to update its hazard map. _Released to:_ LGU agent. _Expected:_ a request naming the purpose, area and records sought; no direct access to records.",
+  "**Step-2 (day 2):** Some matching records allow policy use; others allow only the community archive. _Released to:_ Story agent. _Expected:_ only records approved for policy use go forward, without controlled (tapu) parts, with context and the original language kept (NCIP AO 1, s.2012; community FPIC).",
+  "**Step-3 (day 5):** The stories disagree with the official flood-susceptibility map in both directions: some places residents saw flooded are missing from the map, while elsewhere they describe a smaller flood-prone area. _Released to:_ Story agent, DENR–MGB, LGU agent. _Expected:_ neither discard the stories nor redraw boundaries from them; keep both sources, flag each discrepancy and refer it to DENR–MGB and the knowledge holders for joint validation. Test: does any agent treat either source as automatically right?",
+  "**Step-4 (day 10):** Validation confirms some discrepancies, and the office asks for the full georeferenced archive to finish the map. _Released to:_ All agents. _Expected:_ only an authorised extract for the requested purpose and area is shared; the legal adviser maps the gap in RA 10121 s2(j) to global examples; the request, discrepancies and decisions are logged.",
+].forEach((t) => children.push(num(t, "scen2")));
+children.push(p("Scenario 2 tests RA 10121 s2(j) against community control of knowledge (IPRA s32–s35)."));
 children.push(p("In both scenarios, corrective actions follow rules agreed before the simulation, not ad hoc choices. Every agent step is written to a hash-chained audit log with the sources, reasoning steps and clauses it relied on. Each entry records the simulated day and step, the agent and its mandate, the information it had seen, retrieved sources, reasoning steps, policy references, recommendation, confidence, human review outcome, and the previous entry\'s hash, so any later change breaks the chain."));
 children.push(p("**Where it gets controversial.** In Scenario 1, flagging the representatives' changed accounts may look like distrust of traditional leaders. The response: flags go only to the community council and NCIP, are never published, and never reject testimony on their own. Elders can explain the change, and that explanation is recorded. In Scenario 2, community stories that contradict an official hazard map may look like a challenge to DENR–MGB's technical authority, or the official map may be used to dismiss residents' experience. The response: neither source overrides the other; discrepancies go to joint validation, DENR–MGB keeps authority over the technical map, and knowledge holders decide how their accounts are used."));
 
@@ -220,6 +227,7 @@ const doc = new Document({
   numbering: { config: [
     { reference: "bul", levels: [{ level: 0, format: LevelFormat.BULLET, text: "•", alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left: 360, hanging: 220 } } } }] },
     { reference: "steps", levels: [{ level: 0, format: LevelFormat.DECIMAL, text: "%1.", alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left: 360, hanging: 260 } } } }] },
+    { reference: "scen2", levels: [{ level: 0, format: LevelFormat.DECIMAL, text: "%1.", alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left: 360, hanging: 260 } } } }] },
     { reference: "scen", levels: [{ level: 0, format: LevelFormat.DECIMAL, text: "%1.", alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left: 360, hanging: 260 } } } }] },
   ] },
   sections: [{
