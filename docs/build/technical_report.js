@@ -10,8 +10,8 @@ const {
 } = require("docx");
 
 const FONT = "Calibri";
-const BODY = 19;   // 9.5 pt
-const SMALL = 16;  // 8 pt (tables)
+const BODY = 20;   // 10 pt
+const SMALL = 17;  // 8.5 pt (tables)
 const PAGE_W = 11906 - 2 * 1021; // A4 minus 1.8 cm margins
 
 // Inline markup: **bold**, _italic_
@@ -130,11 +130,32 @@ children.push(table([7, 28, 24, 41], ["", "Use case (public services: IKSP recor
   ["SINK", "Consensus read-back, sample dossier, multi-agent simulation with a simulated timeline", "AI and policies (policy sandbox); Granular priorities", "IPRA s52(d), s52(k), s54, s59, s62; NCIP AO 4 s.2012 (delineation); Mining Act s16; UNDRIP Art. 32(2)"],
 ]));
 children.push(p("Country documents also mapped: Mining Act (economic), IP Code (intellectual property), UNDRIP and the Convention on Biological Diversity (treaties), and World Bank (2024) data on labour and isolated areas. Full mapping and Readiness perspectives are in the full report.", { after: 60 }));
+children.push(p("**ITU AI Readiness perspectives.**", { after: 40, keepNext: true }));
+children.push(table([34, 66], ["Perspective", "How we address it"], [
+  ["Open data and open source", "Open knowledge base built with the ITU reference code; community data stays private"],
+  ["Generative AI content ecosystem", "Read-back story and IKSP summaries, always confirmed by the knowledge holders; original language kept"],
+  ["Contextualization and regional focus", "Local languages (222 indigenous groups and 110 languages in NCIP's database) and customary law"],
+  ["AI integration and cross-domain analysis", "Land, data protection, environment and mining, local government, disaster planning"],
+  ["Human interaction and supervision", "Human review and override at the policy gate"],
+  ["Policy and implementation opportunities", "Gap table in Section 6"],
+  ["AI for social inclusion", "Many voices: women, youth, remote members; self-identification"],
+  ["Digital infrastructure and energy", "Offline recording on mobile, sync later"],
+]));
+children.push(p("", { after: 40 }));
 children.push(p("**Knowledge base.** Built with the ITU reference code (docling parsing, 256-word chunks, nomic-embed-text, ChromaDB). It adds 108 sources in eight folders (Philippine laws, NCIP rules, data privacy, strategies, jurisprudence, context data, IKSP publications, global practice), 49 of them from the team's IKSP reference register; each chunk tagged with source, issuer, year and section numbers, plus 25 key clauses, 16 key figures, 17 policy gaps and 5 gaps in current practice stored one per chunk for exact citation. A 34-question retrieval test must return the expected source in the top five. Community stories stay in a separate private store and are never published."));
 
 // 5. Error scenarios
 children.push(h1("5. Error scenarios"));
 children.push(p("**Agents:** story agent, NCIP, DENR (land and mining permits), National Privacy Commission, local government and a legal adviser. The main script tests use case D; a policy reuse request tests use case C. The orchestrator releases events one at a time over 40 simulated days, each only to the agents that would receive it in real life."));
+children.push(table([22, 22, 56], ["Agent", "Role", "Mandate"], [
+  ["Story agent", "Application", "Matching, bias check, read-back, dossier"],
+  ["NCIP agent", "Lead regulator", "CADT process, FPIC, indigenous peoples' rights, indigenous data"],
+  ["DENR agent (LMB, MGB)", "Land and mining agency", "Surveys, land records, mining permits"],
+  ["NPC agent", "Data protection", "Consent, data privacy, breach response"],
+  ["LGU agent", "Local government", "Local records, zoning, local cybersecurity plan, local disaster risk reduction office"],
+  ["Legal adviser", "Policy adviser", "Law, gaps, global examples; labels non-binding guidance as a benchmark"],
+]));
+children.push(p("Each agent sees only the events routed to it and retrieves only from the knowledge-base folders its mandate allows; assessments are posted to a shared board, and conflicts escalate to human review.", { after: 60 }));
 children.push(p("**Scenario 1: mining overlap (use case D), released over 40 simulated days.**", { after: 40, keepNext: true }));
 [
   "**Step-1 (day 0):** A community files a petition. 40 members are recorded; most name a river and a ridge as the boundary. _Released to:_ Story agent, NCIP agent. _Expected handling:_ Story agent drafts a boundary from the matched stories. NCIP opens delineation (IPRA s52(b)–(c)).",
@@ -145,7 +166,7 @@ children.push(p("**Scenario 1: mining overlap (use case D), released over 40 sim
   "**Step-6 (day 40):** Escalation: the company offers benefits through the appointed representatives, in exchange for consent. _Released to:_ All agents. _Expected handling:_ Legal adviser: consent must be the consensus of all members, free of manipulation (s3(g)); Mining Act s16; UNDRIP Art. 32(2). No new permit while a CADT application is pending (s59).",
 ].forEach((t) => children.push(num(t, "scen")));
 children.push(p("**Scenario 2: policy reuse request (use case C).** The municipal disaster risk reduction office asks to use recorded flood and landslide stories for its hazard map. _Expected handling:_ the records' permitted-use field is checked; NCIP's AO 1, s.2012 and community FPIC apply; only records approved for policy use are shared, with context and the original language kept; the request and decision are logged. This tests RA 10121 s2(j) against community control (IPRA s32–s35)."));
-children.push(p("Step 6 turns a permit issue into a consent and ethics breach. Corrective actions follow rules agreed before the simulation, not ad hoc choices. Every agent step is written to a hash-chained audit log with the sources, reasoning steps and clauses it relied on."));
+children.push(p("Step 6 turns a permit issue into a consent and ethics breach. Corrective actions follow rules agreed before the simulation, not ad hoc choices. Every agent step is written to a hash-chained audit log with the sources, reasoning steps and clauses it relied on. Each entry records the simulated day and step, the agent and its mandate, the information it had seen, retrieved sources, reasoning steps, policy references, recommendation, confidence, human review outcome, and the previous entry\'s hash, so any later change breaks the chain."));
 children.push(p("**Where it gets controversial.** Flagging the representatives' changed accounts may look like distrust of traditional leaders. The response: flags go only to the community council and NCIP, are never published, and never reject testimony on their own. Elders can explain the change, and that explanation is recorded."));
 
 // 6. Gaps
@@ -168,6 +189,19 @@ children.push(table([42, 18, 40], ["Gap", "Type", "Global example"], [
 ]));
 children.push(p("Gaps on tellers, the register of pending applications, sacred content, boundary disputes and local representation are our reading of the law, not findings of a court or agency. IPRA s54 lets NCIP review and cancel fraudulently acquired titles on the community's written request; our bias check can support such reviews.", { after: 60 }));
 children.push(p("**Sources:** World Bank (2024); IPRA; NPC Advisory 2024-04; ITU reference code. Global example sources are listed in the full report."));
+children.push(h1("References"));
+[
+  "Daguitan, F., Batang-ay, M. J. C., Aquino, R. B., & Das-ilen, G. (2016). Mobilizing indigenous knowledge, innovations and practices of the Kalanguyas farming systems in Tinoc, Ifugao, the Philippines.",
+  "EMRIP (2025). Indigenous Peoples' right to data (A/HRC/60/66). UN Expert Mechanism on the Rights of Indigenous Peoples.",
+  "Göransson, M. B. (2022). Peace pacts and contentious politics: The Chico River Dam struggle in the Philippines, 1974–82. Journal of Southeast Asian Studies, 53(4).",
+  "Ibrahim, H. O. (2026). Study on artificial intelligence and Indigenous Peoples. UN Permanent Forum on Indigenous Issues, 25th session.",
+  "IPCC (2022). Climate Change 2022: Impacts, Adaptation and Vulnerability (AR6 WGII).",
+  "ITU-T (2019). Recommendation Y.3172: Architectural framework for machine learning in future networks including IMT-2020. ITU AI Readiness Framework 2.0.",
+  "Republic Act 8371 (1997), Indigenous Peoples' Rights Act; Republic Act 10121 (2010), Philippine Disaster Risk Reduction and Management Act, s2(j).",
+  "UNESCO (2024). Decision 19.COM 6.A.4 (Buklog, thanksgiving ritual system of the Subanen).",
+  "WHO (2026). Global Plan of Action for the Health of Indigenous Peoples (2027–2040), draft.",
+  "World Bank (2024). No Data, No Story: Indigenous Peoples in the Philippines.",
+].forEach((t) => children.push(new Paragraph({ children: runs(t, SMALL), spacing: { after: 20 }, indent: { left: 280, hanging: 280 } })));
 
 const doc = new Document({
   creator: "Paul Alvarez",
