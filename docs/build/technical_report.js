@@ -59,9 +59,9 @@ const children = [];
 
 // Title block
 children.push(new Paragraph({ children: [new TextRun({ text: "AI for Good Sandbox Hackathon – IKSP Record Pipeline", bold: true, size: 30, font: FONT })], spacing: { after: 80 } }));
-children.push(p("**Team leader:** Paul Alvarez", { after: 0 }));
-children.push(p("**Team members:** Paul Alvarez", { after: 0 }));
-children.push(p("**Contact details:** pevalvarez@gmail.com", { after: 0 }));
+children.push(p("**Team leader:** withheld in the public copy", { after: 0 }));
+children.push(p("**Team members:** withheld in the public copy", { after: 0 }));
+children.push(p("**Contact details:** via the GitHub repository", { after: 0 }));
 children.push(new Paragraph({ spacing: { after: 80 }, children: [
   new TextRun({ text: "Github link: ", bold: true, size: BODY, font: FONT }),
   new ExternalHyperlink({ link: "https://github.com/pwdrkg/ITUAIIP", children: [new TextRun({ text: "https://github.com/pwdrkg/ITUAIIP", style: "Hyperlink", size: BODY, font: FONT })] }),
@@ -213,7 +213,7 @@ children.push(h1("References"));
 ].forEach((t) => children.push(new Paragraph({ children: runs(t, SMALL), spacing: { after: 20 }, indent: { left: 280, hanging: 280 } })));
 
 const doc = new Document({
-  creator: "Paul Alvarez",
+  creator: "IKSP Record Pipeline team",
   title: "AI for Good Sandbox Hackathon – IKSP Record Pipeline",
   styles: {
     default: { document: { run: { font: FONT, size: BODY } } },
