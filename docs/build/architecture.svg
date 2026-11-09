@@ -115,5 +115,5 @@
   <rect class="bias" x="230" y="890" width="26" height="22" rx="4"/><text x="266" y="908" class="lg">Reduces reliance on a few voices</text>
   <rect class="gov"  x="600" y="890" width="26" height="22" rx="4"/><text x="636" y="908" class="lg">Control and governance</text>
   <path class="lb" d="M900 901 H950" marker-end="url(#ab)"/><text x="962" y="908" class="lg">Read-back loop</text>
-  <text x="230" y="960" class="lg">Stages follow ITU-T Y.3172: SRC → C → PP → M → P → D → SINK. Box descriptions are in the table below.</text>
+  <text x="230" y="960" class="lg">Stages follow ITU-T Y.3172: SRC → C → PP → M → P → D → SINK. Each stage is described below.</text>
 </svg>
