@@ -51,6 +51,10 @@ python scripts/run_retrieval_tests.py --itu-dir ../ITUAIReadiness
 
 To use the ITU code's own documented ingest instead, add `--export-inputdocs ../ITUAIReadiness/simulation/server/knowledge/InputDocs` to the ingest command, then run `python -m server.knowledge.ingest --reset` inside `ITUAIReadiness/simulation`.
 
+## Run the agents yourself (Colab, no setup)
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pwdrkg/ITUAIIP/blob/main/notebooks/run_scenarios.ipynb) `notebooks/run_scenarios.ipynb` installs Ollama, loads the public knowledge base, runs both error scenarios, verifies the audit logs and shows the transcripts and replay.
+
 ## Scenario replay
 
 **[Open the interactive replay](https://htmlpreview.github.io/?https://github.com/pwdrkg/ITUAIIP/blob/main/docs/replay.html)** (or download `docs/replay.html` and open it in a browser). It plays both error scenarios step by step from the audit logs: which agency received each event and when, what each agent retrieved, its reasoning and recommendation, the policy gate decision, the shared board and the human-review queue. It re-verifies the audit log hash chain in your browser. Toggle between the baseline run and the run with the policy gate. Rebuild with `python docs/build/build_replay.py`.
