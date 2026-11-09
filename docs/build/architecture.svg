@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="985" viewBox="0 0 1400 985" font-family="Inter, DejaVu Sans, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5F5C55"/>
+    </marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/>
+    </marker>
+    <style>
+      .t{font-size:24px;font-weight:700;fill:#1C1B19}
+      .b{font-size:22px;font-weight:700;fill:#1C1B19;text-anchor:middle}
+      .stage{font-size:20px;font-weight:700;fill:#1C1B19}
+      .stagesub{font-size:16px;fill:#6B6860}
+      .note{font-size:16px;fill:#5F5C55}
+      .lg{font-size:17px;fill:#3D3B37}
+      .plain{fill:#FFFFFF;stroke:#8A877E;stroke-width:2}
+      .bias{fill:#E8F0FE;stroke:#2563EB;stroke-width:3}
+      .gov{fill:#F1F0EC;stroke:#8A877E;stroke-width:2}
+      .ln{stroke:#5F5C55;stroke-width:2.2;fill:none}
+      .lb{stroke:#2563EB;stroke-width:2.2;fill:none;stroke-dasharray:8 6}
+      .lg2{stroke:#8A877E;stroke-width:2;fill:none;stroke-dasharray:6 6}
+      .band{fill:#FAFAF8}
+    </style>
+  </defs>
+
+  <text x="40" y="48" class="t">Accounts are cross-checked and community-reviewed before any record is released</text>
+
+  <!-- stage bands -->
+  <g>
+    <rect class="band" x="30" y="80"  width="1340" height="104" rx="8"/>
+    <rect class="band" x="30" y="304" width="1340" height="104" rx="8"/>
+    <rect class="band" x="30" y="528" width="1340" height="104" rx="8"/>
+    <rect class="band" x="30" y="752" width="1340" height="104" rx="8"/>
+  </g>
+
+  <!-- stage labels -->
+  <g>
+    <text x="48" y="128" class="stage">SRC</text><text x="48" y="152" class="stagesub">Sources</text>
+    <text x="48" y="240" class="stage">C</text><text x="48" y="264" class="stagesub">Collector</text>
+    <text x="48" y="352" class="stage">PP</text><text x="48" y="376" class="stagesub">Preprocessing</text>
+    <text x="48" y="464" class="stage">M</text><text x="48" y="488" class="stagesub">Models</text>
+    <text x="48" y="576" class="stage">P</text><text x="48" y="600" class="stagesub">Policy</text>
+    <text x="48" y="688" class="stage">D</text><text x="48" y="712" class="stagesub">Distributor</text>
+    <text x="48" y="800" class="stage">SINK</text><text x="48" y="824" class="stagesub">Outputs</text>
+  </g>
+
+  <!-- SRC -->
+  <rect class="bias"  x="230" y="98"  width="240" height="68" rx="12"/><text x="350" y="140" class="b">Holders</text>
+  <rect class="plain" x="500" y="98"  width="240" height="68" rx="12"/><text x="620" y="140" class="b">Documents</text>
+  <rect class="plain" x="770" y="98"  width="240" height="68" rx="12"/><text x="890" y="140" class="b">Policy corpus</text>
+
+  <!-- C -->
+  <rect class="plain" x="230" y="210" width="780" height="68" rx="12"/><text x="620" y="252" class="b">Collector (web and phone recorder)</text>
+
+  <!-- PP -->
+  <rect class="plain" x="230" y="322" width="240" height="68" rx="12"/><text x="350" y="364" class="b">Voice reader</text>
+  <rect class="plain" x="500" y="322" width="240" height="68" rx="12"/><text x="620" y="364" class="b">Text reader</text>
+  <rect class="plain" x="770" y="322" width="240" height="68" rx="12"/><text x="890" y="364" class="b" style="font-size:19px">Policy knowledge base</text>
+
+  <!-- M -->
+  <rect class="bias"  x="230" y="434" width="240" height="68" rx="12"/><text x="350" y="476" class="b">Cross-checker</text>
+  <rect class="bias"  x="500" y="434" width="240" height="68" rx="12"/><text x="620" y="476" class="b">Bias check</text>
+  <rect class="plain" x="770" y="434" width="240" height="68" rx="12"/><text x="890" y="476" class="b">Policy adviser</text>
+
+  <!-- P -->
+  <rect class="plain" x="230" y="546" width="780" height="68" rx="12" style="stroke-width:3"/><text x="620" y="588" class="b">Policy gate (consent, FPIC, human override)</text>
+
+  <!-- D -->
+  <rect class="plain" x="230" y="658" width="780" height="68" rx="12"/><text x="620" y="700" class="b">Distributor (by role and consent)</text>
+
+  <!-- SINK -->
+  <rect class="plain" x="230" y="770" width="780" height="68" rx="12"/><text x="620" y="812" class="b">Outputs (read-back, release by permitted use)</text>
+
+  <!-- governance column -->
+  <rect class="gov" x="1070" y="98"  width="280" height="404" rx="12"/>
+  <text x="1210" y="290" class="b">Orchestrator</text>
+  <text x="1210" y="318" class="note" text-anchor="middle">(MLFO)</text>
+  <rect class="gov" x="1070" y="658" width="280" height="68" rx="12"/><text x="1210" y="700" class="b">ML sandbox</text>
+  <rect class="gov" x="1070" y="770" width="280" height="68" rx="12"/><text x="1210" y="812" class="b">Audit log</text>
+
+  <!-- arrows: SRC -> C -->
+  <path class="ln" d="M350 166 V206" marker-end="url(#a)"/>
+  <path class="ln" d="M620 166 V206" marker-end="url(#a)"/>
+  <path class="ln" d="M890 166 V206" marker-end="url(#a)"/>
+  <!-- C -> PP -->
+  <path class="ln" d="M350 278 V318" marker-end="url(#a)"/>
+  <path class="ln" d="M620 278 V318" marker-end="url(#a)"/>
+  <path class="ln" d="M890 278 V318" marker-end="url(#a)"/>
+  <!-- PP -> M: both readers feed the cross-checker -->
+  <path class="ln" d="M350 390 V430" marker-end="url(#a)"/>
+  <path class="ln" d="M620 390 V410 H390 V430" marker-end="url(#a)"/>
+  <path class="ln" d="M890 390 V430" marker-end="url(#a)"/>
+  <!-- cross-checker -> bias check -->
+  <path class="ln" d="M470 468 H496" marker-end="url(#a)"/>
+  <!-- M -> P -->
+  <path class="ln" d="M350 502 V542" marker-end="url(#a)"/>
+  <path class="ln" d="M620 502 V542" marker-end="url(#a)"/>
+  <path class="ln" d="M890 502 V542" marker-end="url(#a)"/>
+  <!-- P -> D -> SINK -->
+  <path class="ln" d="M620 614 V654" marker-end="url(#a)"/>
+  <path class="ln" d="M620 726 V766" marker-end="url(#a)"/>
+  <!-- orchestrator -> policy adviser, -> sandbox -->
+  <path class="ln" d="M1070 468 H1014" marker-end="url(#a)"/>
+  <path class="ln" d="M1210 502 V654" marker-end="url(#a)"/>
+  <!-- outputs -> audit log -->
+  <path class="ln" d="M1010 804 H1066" marker-end="url(#a)"/>
+  <!-- read-back loop: outputs back to holders -->
+  <path class="lb" d="M230 820 H212 V132 H226" marker-end="url(#ab)"/>
+  <text x="200" y="470" class="note" transform="rotate(-90 200 470)" text-anchor="middle" style="fill:#2563EB">read-back: holders confirm or correct</text>
+  <!-- every step logs -->
+  <path class="lg2" d="M1040 120 V790 H1066"/>
+  <text x="1030" y="640" class="note" transform="rotate(-90 1030 640)" text-anchor="middle">every step is logged</text>
+
+  <!-- legend -->
+  <rect class="bias" x="230" y="890" width="26" height="22" rx="4"/><text x="266" y="908" class="lg">Reduces reliance on a few voices</text>
+  <rect class="gov"  x="600" y="890" width="26" height="22" rx="4"/><text x="636" y="908" class="lg">Control and governance</text>
+  <path class="lb" d="M900 901 H950" marker-end="url(#ab)"/><text x="962" y="908" class="lg">Read-back loop</text>
+  <text x="230" y="960" class="lg">Stages follow ITU-T Y.3172: SRC → C → PP → M → P → D → SINK. Box descriptions are in the table below.</text>
+</svg>
