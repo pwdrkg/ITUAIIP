@@ -293,3 +293,41 @@ provisions:
       and the NCIP Certification Precondition violates public policy protecting ICCs/IPs and is vacated. Renewal
       remains subject to full FPIC of the affected community and NCIP certification (IPRA s59); a right to renewal
       depends on complying with the law in force.
+  - id: ENIPAS-PAMB-IP
+    source_id: PH-L03
+    cite: E-NIPAS Act (RA 11038) s9, amending RA 7586 s11(i)
+    topic: [protected_area_boards, PAMB, indigenous_representatives, IP_seats, institutional_mandate]
+    kind: verbatim
+    text: >-
+      Protected Area Management Board (PAMB) membership includes: At least one (1) but not more than three (3)
+      representatives from all the IPs/ICCs present in the area and recognized by the National Commission on
+      Indigenous Peoples (NCIP).
+  - id: DRRM-2j
+    source_id: PH-L10
+    cite: Philippine DRRM Act (RA 10121) s2(j)
+    topic: [disaster_risk_reduction, indigenous_knowledge, IKSP, human_rights]
+    kind: verbatim
+    text: >-
+      It shall be the policy of the State to: Ensure that disaster risk reduction and climate change measures
+      are gender responsive, sensitive to indigenous knowledge systems, and respectful of human rights.
+  - id: NCIP-AO1-2012-8.8
+    source_id: PH-N04
+    cite: NCIP AO No. 1 s. 2012 (IKSP Research and Documentation Guidelines) s8.8
+    topic: [IKSP_research, community_selects_informants, key_informants, community_decision, consent, disclosure_limits]
+    kind: verbatim
+    text: >-
+      In case the ICCs/IPs accept the research application, they shall, during the decision-making process,
+      identify the selected key informant/s, the extent of the information that may be disclosed to the
+      researcher, possible restrictions and such terms and conditions which the community may deem appropriate,
+      and the authorized signatory to the memorandum of agreement. Whenever appropriate, youth and women IP
+      leaders from the community shall be involved in the research activities.
+  - id: TMR-6.3
+    source_id: G-04
+    cite: Te Mana Raraunga, Principles of Māori Data Sovereignty (2018), principles 1.1 and 6.3
+    topic: [data_sovereignty, community_decides_private_data, access_restrictions, tapu_noa, global_example]
+    kind: verbatim
+    text: >-
+      Restrictions. Māori shall decide which Māori data shall be controlled (tapu) or open (noa) access.
+      Control. Māori have an inherent right to exercise control over Māori data and Māori data ecosystems.
+      This right includes, but is not limited to, the creation, collection, access, analysis, interpretation, management, security, dissemination,
+      use and reuse.

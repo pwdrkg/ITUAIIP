@@ -49,3 +49,15 @@ facts:
   - id: F-mexico
     fact: Mexico's 2020 census counted 7.4 million indigenous-language speakers (6.1%) but 23.2 million people who self-identify as indigenous (19.4%), showing how much the definition changes the count.
     source_id: G-14
+  - id: F-ipdata-2025-agreed
+    fact: In January 2025, Philippine government agencies agreed at the IP data workshop to start harmonizing indigenous peoples data from existing data (222 IP groups, 110 languages), to form an Interagency Task Force to develop standardized IP data collection methods and a new IP data legal framework, and to create a master IP list and add an ethnic variable to the Labor Force Survey.
+    source_id: PH-C06
+  - id: F-digital-arang
+    fact: Philippine example of a community-governed repository restricting AI use of Indigenous knowledge - Kalinga State University launched Digital Arang (30 October 2026), a community-governed IKSP repository under a Kalinga provincial ordinance, with four tiers of access, free prior and informed consent for AI use of Kalinga IKSP, and an oversight committee guided by customary principles.
+    source_id: K-AI06
+  - id: F-flood-malinta
+    fact: Community flood accounts disagreed with an official flood map in Barangay Malinta, Los Banos, Laguna - the provincial hazard map identified the community as flood-free, but participatory mapping and community flood histories documented recurring floods (472 households affected; water up to about five feet); researchers recommended updating the map.
+    source_id: K-CC06
+  - id: F-flood-leyte
+    fact: In Leyte after Typhoon Haiyan/Yolanda, community flood mapping disagreed with the MGB 2007 official flood susceptibility map in both directions - some community-identified flood areas were missing from the map, while elsewhere residents described smaller flood-prone areas than the map showed (GIZ assessment, 2014 draft).
+    source_id: K-CC11
