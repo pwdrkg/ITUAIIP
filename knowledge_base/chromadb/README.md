@@ -4,7 +4,7 @@
 
 | Collection | Chunks | Content |
 |---|---|---|
-| `kb_main` | 6,059 | 95 public sources (Philippine laws, NCIP rules, data privacy issuances, Supreme Court decisions, government strategies and data, treaties binding on the Philippines) plus all curated clauses, figures and gaps |
+| `kb_main` | 6,059 | 76 public sources (Philippine laws, NCIP rules, data privacy issuances, Supreme Court decisions, government strategies and data, treaties binding on the Philippines) plus all 73 curated clauses, figures and gaps |
 | `kb_usecase` | 5 | IKSP Record Pipeline use case |
 
 Each chunk carries `source_id`, `title`, `issuer`, `year`, `url`, folder (`document_category`) and `sections`.
