@@ -38,7 +38,7 @@ tests:
   - q: Must humans be able to override a high-risk AI system?
     expect: [G-07]
   - q: How do indigenous communities decide which data stays private?
-    expect: [G-04]
+    expect: [G-04, G-02, K-IN17]  # Maori data sovereignty, CARE principles, EMRIP study on IP right to data
   - q: How are overlapping native title claims handled in Australia?
     expect: [G-10, G-11]
   - q: Do protected area boards include indigenous representatives?
