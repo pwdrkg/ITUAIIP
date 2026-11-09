@@ -1,0 +1,206 @@
+11/9/26, 8:39 PM
+
+National Al Strategy Roadmap 2.0 (NAISR 2.0) - OECD.AI
+
+Home > Policies and initiatives > Allinitiatives > National Al Strategy Roadmap 2.0 (NAISR 2.0)...
+
+The OECD.AI Policy Navigator
+
+Our policy navigator is a living repository from more than 80 jurisdictions and organisations. Use the filters to browse
+
+initiatives and find what you are looking for.
+
+Overview National International All initiatives
+
+National AI Strategy Roadmap 2.0 (NAISR
+2.0)
+
+Ss -
+
+izj Added by: OECD analyst
+@ Updated by: OECD analyst
+
+ 
+
+@ Added on: 24 Apr 2026
+@ Updated on: 28 Apr 2026
+
+The NAISR 2.0 builds on the Philippines’ 2021 Al roadmap, updated to integrate
+recent advancements including Generative Al. It recalibrates strategic actions,
+addresses Al ethics and governance, and aligns with the country's Science,
+Technology, and Innovation-driven Industrial Strategy. The roadmap aims to drive
+economic growth, strengthen national competitiveness, and improve Filipinos
+quality of life, positioning the Philippines as a Center of Excellence in Al R&D.
+
+Initiative overview
+
+The National Al Strategy Roadmap 2.0 (NAISR 2.0), launched in July 2024, is
+structured around two core pillars: Innovation and Implementation,
+operationalised through four strategic dimensions: Research and Development
+(R&D), Digitisation and Infrastructure, Workforce Development, and Al
+Governance and Ethics. Drawing inspiration from the Global Al Index, the
+roadmap outlines seven strategic imperatives and thirty strategic tasks
+distributed across government agencies, with lead responsibilities clearly
+assigned whilst encouraging cross-agency collaboration. The strategy is
+anchored on six core objectives, including increasing the regional and global
+competitiveness of local industries, identifying key areas for R&D investment,
+promoting triple-helix collaborations, preparing the workforce for future jobs,
+attracting major industries, and ensuring responsible Al governance.
+
+The roadmap builds on several national strengths. The Philippines possesses a
+large, young, and English-speaking talent pool, producing over 800,000 college
+graduates annually, with more than 200,000 from STEM fields. The country's
+well-established IT-BPM sector, comprising over 1,300 companies and
+generating USD 35.5 billion in annual revenue, provides a strong industrial
+foundation. A growing digital economy, projected to reach USD 35 billion in Gross
+Merchandise Value by 2025, further underpins the strategy's ambitions.
+
+https://oecd.ai/en/dashboards/policy-initiatives/national-ai-strategy-roadmap-20-naisr-20
+
+About the policy initiative
+
+Philippines
+
+Organisation:Department of
+Trade and
+Industry (DTI)
+and the
+Competitiveness
+and Innovation
+Group
+
+Category:National — Strategy
+
+Initiative National Al
+type: strategy
+
+Status:Active
+
+Start Year:2024
+
+Target Industry &
+Sectors: entrepreneurship
+
+Science &
+technology
+
+Employment &
+labour
+
+OECDAI 1.1 Inclusive
+
+Principles:growth, sustainable
+development and
+well-being
+
+1/2
+11/9/26, 8:39 PM National Al Strategy Roadmap 2.0 (NAISR 2.0) - OECD.AI
+The strategy also candidly identifies barriers to Al adoption, including limited local
+
+use cases, particularly for SMEs, scarce computational and human resources,
+
+insufficient enterprise capacity to develop data strategies, and emerging legal
+
+and regulatory uncertainties around intellectual property, and deepfakes. To
+
+address these, NAISR 2.0 pursues targeted actions such as promoting data
+
+literacy across all education levels, incentivising workforce upskilling and
+
+reskilling, funding Al startups, and establishing the Centre for Al Research
+
+(CAIR) as a national hub for synergistic partnerships across academia, industry,
+
+and government.
+
+On governance, the roadmap calls for a robust and adaptive Al governance
+framework developed in collaboration with agencies including the National
+Privacy Commission, the Intellectual Property Office, and the Philippine
+Competition Commission. It envisages the formation of a dedicated committee of
+Al and data ethics experts to oversee Al usage, ensure compliance, and provide
+regulatory guidance. The strategy commits to continuous review and adaptation
+in response to the rapid evolution of Al, with the overarching goal of fostering a
+competitive, sustainable, and inclusive Al economy for all Filipinos.
+
+Name of responsible organisation (in English)
+
+Department of Trade and Industry (DTI) and the Competitiveness and Innovation
+Group
+
+Mechanisms to involve stakeholders in strategy design,
+implementation or monitoring
+
+Expert consultation(s) and other engagement.,
+Stakeholder consultation(s) and other engagement.,
+Public consultation(s) and other engagement.
+
+Please describe these mechanisms or other efforts for
+stakeholder engagement
+
+The NAISR 2.0 was developed through a structured, multi-year stakeholder
+consultation process spanning from 2019 to its launch in July 2024. This involved
+
+a diverse range of participants, including academic institutions, government Other
+agencies, industry leaders, and civil society, engaged through focus group relevant
+discussions, inter-agency dialogues, and advisory panels. Key government urls:
+
+bodies such as DTI, DICT, DOST, NEDA, DepEd, and DOLE participated
+alongside private sector representatives from agriculture, manufacturing, and
+services sectors, including voices from Visayas and Mindanao to ensure regional
+inclusivity. This broad-based engagement ensured that the strategy reflects
+multisectoral perspectives in its design and implementation.
+
+AI Tags
+
+Data Al Governance & Policy
+
+https://oecd.ai/en/dashboards/policy-initiatives/national-ai-strategy-roadmap-20-naisr-20
+
+1.2 Respect for the
+rule of law, human
+rights and
+democratic values
+including fairness
+and privacy
+
+1.3 Transparency
+and explainability
+
+ 
+
+1.4 Robustness,
+security and safety
+
+1.5 Accountability
+
+2.1 Investing in Al
+research and
+
+development
+
+2.2 Fostering an
+inclusive Al-
+enabling ecosystem
+
+2.3 Shaping_an
+enabling
+interoperable
+governance and
+policy environment
+for Al
+
+2.4 Building human
+capacity and
+preparing for labour
+market
+transformation
+
+2.5 International co-
+operation for
+trustworthy Al
+
+https://naisr.cair.ph
+/introduction/
+
+2/2
+

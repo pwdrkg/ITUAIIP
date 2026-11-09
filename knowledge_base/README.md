@@ -2,7 +2,7 @@
 
 | Path | What it is |
 | --- | --- |
-| `sources.csv` | Manifest of 128 sources (69 from the team IKSP register, ids K-*): URL, issuer, year, how the solution uses it, key sections, and how each was checked |
+| `sources.csv` | Manifest of 131 sources (69 from the team IKSP register, ids K-*): URL, issuer, year, how the solution uses it, key sections, and how each was checked |
 | `SOURCES.md` | The same list, readable |
 | `InputDocs/<folder>/` | Downloaded documents (filled by `scripts/fetch_sources.py`) |
 | `curated/provisions.yaml` | Key clauses, one per entry, verbatim where the text is official |

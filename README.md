@@ -47,7 +47,7 @@ python scripts/ingest_ph.py --itu-dir ../ITUAIReadiness
 python scripts/run_retrieval_tests.py --itu-dir ../ITUAIReadiness
 ```
 
-86 sources download automatically; 42 are marked `manual` in `knowledge_base/sources.csv` and must be saved by hand into `knowledge_base/InputDocs/<folder>/<id>_<name>` (the fetch script lists them). Ingestion also loads `knowledge_base/use_case/` into the ITU use-case collection (`kb_usecase`), which the ITU use-case agent searches.
+61 sources download automatically; 70 are marked `manual` in `knowledge_base/sources.csv` and must be saved by hand into `knowledge_base/InputDocs/<folder>/<id>_<name>` (the fetch script lists them). Ingestion also loads `knowledge_base/use_case/` into the ITU use-case collection (`kb_usecase`), which the ITU use-case agent searches.
 
 To use the ITU code's own documented ingest instead, add `--export-inputdocs ../ITUAIReadiness/simulation/server/knowledge/InputDocs` to the ingest command, then run `python -m server.knowledge.ingest --reset` inside `ITUAIReadiness/simulation`.
 
@@ -63,7 +63,7 @@ Offline check, 9 November 2026: curated chunks (65) and the use-case document (5
 
 ## Knowledge base
 
-128 sources are listed in [`knowledge_base/SOURCES.md`](knowledge_base/SOURCES.md), each with its URL, the date it was checked, and how the solution uses it. Curated files add 27 key clauses (16 verbatim), 16 key figures, 17 policy gaps and 5 gaps in current practice linked to global examples, each stored as its own chunk for exact citation. See [`knowledge_base/README.md`](knowledge_base/README.md). Philippine government works are not covered by copyright (IP Code s176), so the Philippine laws and rules can be published in the open knowledge base. Check the licence of each global-practice document before publishing it; community data is never published.
+131 sources are listed in [`knowledge_base/SOURCES.md`](knowledge_base/SOURCES.md), each with its URL, the date it was checked, and how the solution uses it. Curated files add 27 key clauses (16 verbatim), 16 key figures, 17 policy gaps and 5 gaps in current practice linked to global examples, each stored as its own chunk for exact citation. See [`knowledge_base/README.md`](knowledge_base/README.md). Philippine government works are not covered by copyright (IP Code s176), so the Philippine laws and rules can be published in the open knowledge base. Check the licence of each global-practice document before publishing it; community data is never published.
 
 ## Status
 

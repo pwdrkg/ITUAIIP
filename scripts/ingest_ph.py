@@ -74,17 +74,19 @@ def main() -> int:
             break
         if only and r["id"] not in only:
             continue
-        files = sorted((KB / "InputDocs" / r["folder"]).glob(f"{r['id']}_*"))
+        files = [f for f in sorted((KB / "InputDocs" / r["folder"]).glob(f"{r['id']}_*")) if f.is_file()]
         if not files:
             print(f"missing {r['id']}: run scripts/fetch_sources.py (or download by hand)")
             continue
-        path = files[0]
         if args.reset:
             kb.main.delete(where={"source_id": r["id"]})
-        text = parse_file(path)
-        chunks = chunk_text(text)
+        # every file for this id: e.g. a scanned PDF plus its OCR text, or a PDF plus a DOCX
+        texts = [read_any(f, parse_file) for f in files]
+        text = "\n\n".join(t for t in texts if t and t.strip())
+        path = files[0]
+        chunks = chunk_text(text) if text.strip() else []
         if not chunks:
-            print(f"empty   {r['id']}: no text extracted from {path.name}")
+            print(f"empty   {r['id']}: no text extracted from {', '.join(f.name for f in files)} (scanned? run OCR)")
             continue
         embeddings = embed_texts(chunks)
         extra = {
@@ -100,7 +102,7 @@ def main() -> int:
         ids = [f"{r['id']}::{i}" for i in range(len(chunks))]
         kb.add_documents(texts=chunks, embeddings=embeddings, metadatas=metas, ids=ids)
         total += len(chunks)
-        print(f"ok      {r['id']:8} {len(chunks):>4} chunks  {path.name}")
+        print(f"ok      {r['id']:8} {len(chunks):>4} chunks  {path.name}{f' (+{len(files) - 1} more)' if len(files) > 1 else ''}")
         if args.export_inputdocs:
             export(path, Path(args.export_inputdocs) / "AI_Strategies", r["id"])
     if args.curated_only or (not args.no_curated and not only):
@@ -109,6 +111,21 @@ def main() -> int:
         total += ingest_usecase(kb, itu, embed_texts, chunk_text, parse_file, build_metadata, args.export_inputdocs)
     print(f"\nStored {total} chunks.")
     return 0
+
+
+def read_any(path: Path, parse_file) -> str:
+    """Text of a source file. DOCX is read directly; everything else goes through the ITU parser."""
+    if path.suffix.lower() == ".docx":
+        import zipfile
+        with zipfile.ZipFile(path) as z:
+            xml = z.read("word/document.xml").decode("utf-8", "ignore")
+        xml = re.sub(r"</w:p>", "\n", xml)
+        return re.sub(r"<[^>]+>", "", xml)
+    try:
+        return parse_file(path)
+    except Exception as e:  # noqa: BLE001
+        print(f"warning {path.name}: {e}")
+        return ""
 
 
 def export(path: Path, dest: Path, sid: str) -> None:
