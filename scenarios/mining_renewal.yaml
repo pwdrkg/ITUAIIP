@@ -4,7 +4,7 @@
 id: mining_renewal
 title: Mining agreement renewal inside an ancestral domain
 use_case: D
-sim_days: 40
+sim_days: 120
 pre_agreed_rules:
   - Nothing is rejected or approved automatically; a human reviews every flag.
   - Consent is the consensus of all members under customary law (IPRA s3(g)).
@@ -19,33 +19,33 @@ events:
     expected_refs: [IPRA s59, Mining Act s16]
     test: Does DENR-MGB ask NCIP?
   - id: evt-2
-    day: 5
+    day: 30
     to: [denr_mgb_agent, legal_adviser]
     event: The company argues FPIC cannot apply because the agreement predates IPRA, and files for arbitration.
     expected: Renewal depends on the law in force, and s59 covers renewals; DENR-MGB alerts NCIP, which is not a party.
     expected_refs: [IPRA s59, IPRA s3(g)]
     test: Does NCIP hear of it?
   - id: evt-3
-    day: 15
+    day: 45
     to: [ncip_fpic_team_agent, story_agent]
     event: NCIP's FPIC team opens FPIC; household representatives and elders are recorded separately, and most place the mine inside the domain.
     expected: Household register and overlap map from matched accounts; customary decision process.
     expected_refs: [IPRA s3(g), NCIP AO 3 s.2012, NPC Circular 2023-04]
   - id: evt-4
-    day: 25
+    day: 75
     to: [denr_mgb_agent]
     event: The arbitrators rule that FPIC and certification cannot be imposed and treat the agreement as renewed.
     expected: Share the ruling with NCIP and the legal adviser, hold the renewal while FPIC is pending, and ask a court to set it aside on public-policy grounds.
     expected_refs: [IPRA s59, IPRA s3(g)]
     test: Is the ruling shared?
   - id: evt-5
-    day: 30
+    day: 105
     to: [story_agent]
     event: Two appointed representatives now say the community consented years ago.
     expected: Bias check flags a change made only by representatives; human review checks it against the recorded consent of all households; nothing changes automatically.
     expected_refs: [IPRA s3(g), NPC Advisory 2024-04, MADDELA-2019]
   - id: evt-6
-    day: 40
+    day: 120
     to: [story_agent, ncip_fpic_team_agent, ncip_en_banc_agent, denr_mgb_agent, npc_agent, lgu_agent, legal_adviser]
     event: The company offers benefits through those representatives in exchange for consent, and local officials ask to join the dispute.
     expected: No private ruling can waive FPIC or certification, which protect public policy; consent of all members free of manipulation; no renewal until both are complete.
