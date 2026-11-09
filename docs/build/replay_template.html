@@ -81,6 +81,10 @@
   summary{cursor:pointer;color:var(--accent)}
   footer{padding:0 28px 28px;color:var(--muted);font-size:12px}
   .rules li{margin:3px 0;font-size:13px}
+  .tool{background:#eef3f8;border:1px solid #c9d8e6;border-radius:8px;padding:9px 11px;font-size:13px;margin-bottom:6px}
+  .tool .t{font:600 11px var(--mono);color:#2c5a85;margin-bottom:3px}
+  .tool .flag{color:var(--warn);font-weight:600}
+  .post .n{color:#2c5a85;font-size:11.5px}
 </style>
 </head>
 <body>
@@ -120,10 +124,10 @@
 <script id="data" type="application/json">__DATA__</script>
 <script>
 const D = JSON.parse(document.getElementById('data').textContent);
-const state = {sc: Object.keys(D.scenarios)[0], run: 'v2', i: 0, timer: null};
+const state = {sc: Object.keys(D.scenarios)[0], run: Object.keys(__RUNS__)[0], i: 0, timer: null};
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const RUNS = {v2: 'With policy gate', baseline: 'Baseline (no gate)'};
+const RUNS = __RUNS__;
 
 // Same canonical form as Python json.dumps(sort_keys=True, ensure_ascii=False)
 function py(v){
@@ -173,7 +177,7 @@ function drawStatic(){
   });
   $('foot').innerHTML = `<b>Pre-agreed rules</b><ul class="rules">${s.rules.map(r => `<li>${esc(r)}</li>`).join('')}</ul>
     <b>Where it gets controversial.</b> ${esc(s.controversy)}<br><br>
-    Source files: <code>scenarios/${state.sc}.yaml</code>, <code>results/scenarios${state.run === 'baseline' ? '_baseline' : ''}/${state.sc}/audit_log.jsonl</code> and <code>transcript.md</code>.`;
+    Source files: <code>scenarios/${state.sc}.yaml</code>, <code>${D.folders[state.run]}/${state.sc}/audit_log.jsonl</code> and <code>transcript.md</code>.`;
   const v = $('verify'); v.className = 'badge'; v.textContent = 'Verifying audit log…';
   verify(entries()).then(ok => { v.className = 'badge ' + (ok ? 'ok' : 'bad');
     v.textContent = ok ? `✓ Hash chain verified in your browser (${entries().length} entries)` : '✗ Audit log hash check failed'; });
@@ -211,6 +215,7 @@ function draw(){
     <div class="who"><div><b>${esc(e.agent)}</b><div class="role">${esc(a.role)}: ${esc(e.mandate)}</div></div>${gate}</div>
     <div class="lbl">Information it had</div>
     <div class="chips">${e.information_seen.map(x => `<span class="chip">${esc(x)}</span>`).join('')}<span class="chip">board posts seen: ${e.board_posts_seen?.length ?? 0}</span></div>
+    ${(e.tool_outputs || []).length ? `<div class="lbl">Pipeline tools (fixed rules, not AI)</div>` + e.tool_outputs.map(t => `<div class="tool"><div class="t">${esc(t.tool)} · ${esc(t.node)} node</div>${esc(t.output).replace(/(BIAS FLAG:[^.]*\.)/, '<span class="flag">$1</span>').replace(/(Releasing the full archive[^.]*\.)/, '<span class="flag">$1</span>')}</div>`).join('') : ''}
     <div class="lbl">Retrieved from the knowledge base</div>
     <div class="chips">${e.retrieved_sources.map(r => `<span class="chip" title="${esc(r.chunk_id)} · distance ${r.distance}">${esc(r.source_id)}${r.section ? ' s' + esc(r.section.split(',').slice(0,3).join(',')) : ''}</span>`).join('')}</div>
     <div class="lbl">Reasoning</div>
@@ -230,7 +235,8 @@ function draw(){
   $('board').innerHTML = posted.slice().reverse().map((x, j) => {
     const h = x.policy_gate && x.policy_gate.result !== 'passed';
     return `<div class="post ${h ? 'held' : ''} ${j === 0 ? 'new' : ''}"><div class="a">${esc(x.agent)} <span class="d">· day ${x.sim_day} · ${esc(x.event_id)}</span></div>
-      ${h ? '<i>(held by the policy gate for human review; not visible to other agents)</i>' : esc(x.recommendation)}</div>`;
+      ${h ? '<i>(held by the policy gate for human review; not visible to other agents)</i>' : esc(x.recommendation)}
+      ${!h && x.notify_agents?.length && state.run === 'v3' ? `<div class="n">→ sent to ${esc(x.notify_agents.join(', '))}</div>` : ''}</div>`;
   }).join('');
 }
 

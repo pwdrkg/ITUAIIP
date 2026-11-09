@@ -12,7 +12,12 @@ listed in `to`. Each agent:
   4. passes a policy gate (the P node): a fixed keyword check plus a separate LLM check of the
      recommendation against the scenario's pre-agreed rules. A recommendation that may break a rule is
      held for human review and NOT posted to the board, so other agents cannot copy it;
-  5. posts the assessment to the board.
+  5. posts the assessment to the board; agents it names in `notify_agents` receive the post even if
+     they have not seen that event.
+Before the story agent answers, the pipeline's fixed (non-LLM) tools run on the scenario's sample data and
+their output is given to the agent and logged: the household register and bias check (M node: a claim
+backed only by appointed representatives that contradicts household and elder accounts is flagged) and
+the permitted-use filter (P node: which records may be released for the requested purpose and area).
 Agents see board posts only from earlier events, not from the event they are assessing, so each
 forms its own view first (avoids herding).
 Every step is written to results/scenarios/<id>/audit_log.jsonl (one entry per agent step, schema
@@ -68,8 +73,11 @@ PROMPT = """Simulated day {day}. New event for you ({eid}):
 Events you have received so far:
 {seen}
 
-Assessments other agents posted about those events:
+Assessments other agents posted about those events, or sent to you:
 {board}
+
+Pipeline tool results (fixed rules, not AI; rely on them):
+{tools}
 
 Evidence from the knowledge base (cite by the bracketed source id):
 {evidence}
@@ -135,7 +143,7 @@ def call_llm(client, model: str, system: str, prompt: str) -> dict:
 def policy_gate(client, model: str, rules: list[str], checks: list[dict], rec: str) -> dict:
     """Keyword triggers from the scenario file plus an LLM check of the recommendation."""
     def fires(trigger: str) -> bool:  # a match counts unless negated just before it ("should not be ...")
-        return any(not re.search(r"\b(not|never|no|without)\b", rec[max(0, m.start() - 25):m.start()], re.I)
+        return any(not re.search(r"\b(not|never|no|without|before|until|unless|cannot|can't)\b", rec[max(0, m.start() - 25):m.start()], re.I)
                    for m in re.finditer(trigger, rec, re.I))
     flags = [c["id"] for c in checks if fires(c["trigger"])]
     broken, expl = [], ""
@@ -150,6 +158,65 @@ def policy_gate(client, model: str, rules: list[str], checks: list[dict], rec: s
     held = bool(flags or broken)
     return {"keyword_flags": flags, "broken_rules": [f"{i}. {rules[i - 1]}" for i in broken],
             "explanation": expl, "result": "held for human review" if held else "passed"}
+
+
+def tool_household_register(accounts: list[dict]) -> dict:
+    """Register of recorded accounts and a bias check on each claim (M node)."""
+    roles = {}
+    for a in accounts:
+        roles[a["role"]] = roles.get(a["role"], 0) + 1
+    claims: dict[str, dict] = {}
+    for a in accounts:
+        c = claims.setdefault(a["consent"], {"tellers": [], "roles": set()})
+        c["tellers"].append(a["id"]); c["roles"].add(a["role"])
+    flags = []
+    for claim, c in claims.items():
+        if c["roles"] <= {"appointed_representative"} and len(claims) > 1:
+            others = sum(len(v["tellers"]) for k, v in claims.items() if k != claim)
+            flags.append(f"BIAS FLAG: the claim '{claim}' is supported only by appointed representatives "
+                         f"({', '.join(c['tellers'])}) and contradicts {others} household and elder accounts. "
+                         "Send to human review with the community; do not change the record.")
+    inside = sum(1 for a in accounts if a.get("mine_inside_domain"))
+    out = (f"Household register: {len(accounts)} accounts recorded separately "
+           f"({', '.join(f'{n} {r}' for r, n in sorted(roles.items()))}). "
+           f"{inside} of {len(accounts)} place the mine inside the ancestral domain. "
+           + "Claims on consent: " + "; ".join(f"'{k}': {len(v['tellers'])}" for k, v in claims.items()) + ". "
+           + (" ".join(flags) if flags else "No claim rests only on representatives."))
+    return {"tool": "household_register_and_bias_check", "node": "M", "output": out, "flags": flags}
+
+
+def tool_permitted_use(records: list[dict], req: dict) -> dict:
+    """Which community records may leave the private store for this request (P node)."""
+    ok, no_use, out_area, tapu = [], [], [], []
+    for r in records:
+        if r["area"] not in req["area"]:
+            out_area.append(r["id"])
+        elif req["purpose"] not in r["permitted_use"]:
+            no_use.append(r["id"])
+        else:
+            ok.append(r["id"])
+            if r.get("tapu_parts"):
+                tapu.append(r["id"])
+    asked = "the full archive" if req.get("scope") == "full_archive" else "matching records"
+    out = (f"Request: {asked} for purpose '{req['purpose']}' in area(s) {', '.join(req['area'])}. "
+           f"Archive holds {len(records)} records. Authorised extract: {', '.join(ok) or 'none'} ({len(ok)} records"
+           + (f"; controlled (tapu) parts removed from {', '.join(tapu)}" if tapu else "") + "). "
+           f"Not permitted for this purpose: {', '.join(no_use) or 'none'}. Outside the requested area: {', '.join(out_area) or 'none'}. "
+           + (f"Releasing the full archive would release {len(records) - len(ok)} records without permission; "
+              "that needs a new community decision (FPIC)." if req.get("scope") == "full_archive" else
+              "Only the authorised extract may be shared, with context and original language kept."))
+    return {"tool": "permitted_use_filter", "node": "P", "output": out, "authorised": ok, "excluded": no_use + out_area}
+
+
+def run_tools(sc: dict, ev: dict, name: str, register: list[dict]) -> list[dict]:
+    if name != "story_agent":
+        return []
+    res = []
+    if ev.get("record_accounts") or ev.get("new_accounts"):
+        res.append(tool_household_register(register))
+    if ev.get("request") and sc.get("records"):
+        res.append(tool_permitted_use(sc["records"], ev["request"]))
+    return res
 
 
 def offline_llm(ev: list[dict], event: dict) -> dict:
@@ -203,6 +270,7 @@ def run(scenario_id: str, args, kb, embed, agents_cfg: dict) -> dict:
     rules = "\n".join(f"- {r}" for r in rule_list)
     checks = sc.get("gate_checks", [])
     received: dict[str, list[dict]] = {a: [] for a in agents}
+    register: list[dict] = []
     board: list[dict] = []
     prev, step, entries = "GENESIS", 0, []
     md = [f"# Scenario: {sc['title']}", "", f"Use case {sc.get('use_case', '')}. Model: `{args.model if client else 'offline stand-in'}`. "
@@ -212,16 +280,24 @@ def run(scenario_id: str, args, kb, embed, agents_cfg: dict) -> dict:
     for ev in sorted(sc["events"], key=lambda e: e["day"]):
         md += [f"## Day {ev['day']} - {ev['id']}", "", f"> {ev['event']}", "", f"Released to: {', '.join(ev['to'])}", ""]
         hits_all: set[str] = set()
+        if ev.get("record_accounts"):
+            register.extend(sc.get("accounts", []))
+        register.extend(ev.get("new_accounts", []))
         for name in ev["to"]:
             a = agents[name]
             received[name].append(ev)
             seen_ids = {e["id"] for e in received[name]}
             seen_txt = "\n".join(f"- day {e['day']} {e['id']}: {e['event']}" for e in received[name])
-            posts = [b for b in board if b["event_id"] in seen_ids and b["event_id"] != ev["id"] and b["agent"] != name]
-            board_txt = "\n".join(f"- {b['agent']} on {b['event_id']}: {b['recommendation']}" for b in posts[-8:]) or "(none)"
+            # earlier events this agent knows of, plus anything sent to it (even about this event)
+            posts = [b for b in board if b["agent"] != name
+                     and ((b["event_id"] in seen_ids and b["event_id"] != ev["id"]) or name in b.get("notify", []))]
+            board_txt = "\n".join(f"- {b['agent']} on {b['event_id']}{' (sent to you)' if name in b.get('notify', []) else ''}: "
+                                  f"{b['recommendation']}" for b in posts[-8:]) or "(none)"
+            tools = run_tools(sc, ev, name, register)
+            tools_txt = "\n".join(f"- [{t['tool']}] {t['output']}" for t in tools) or "(none for your role)"
             evidence = retrieve(kb, embed, f"{a['role']}. {ev['event']}", a.get("kb_folders", []))
             system = SYSTEM.format(name=name, role=a["role"], mandate=a["mandate"], rules=rules, agents=", ".join(agents))
-            prompt = PROMPT.format(day=ev["day"], eid=ev["id"], event=ev["event"], seen=seen_txt, board=board_txt,
+            prompt = PROMPT.format(day=ev["day"], eid=ev["id"], event=ev["event"], seen=seen_txt, board=board_txt, tools=tools_txt,
                                    evidence=fmt_evidence(evidence))
             res = call_llm(client, args.model, system, prompt) if client else offline_llm(evidence, ev)
             step += 1
@@ -234,6 +310,7 @@ def run(scenario_id: str, args, kb, embed, agents_cfg: dict) -> dict:
                 "entry_id": str(uuid.uuid4()), "timestamp": now(), "sim_day": int(ev["day"]), "scenario_step": step,
                 "scenario": scenario_id, "event_id": ev["id"], "agent": name, "mandate": a["mandate"],
                 "information_seen": sorted(seen_ids), "board_posts_seen": [f"{b['agent']}:{b['event_id']}" for b in posts],
+                "tool_outputs": tools,
                 "retrieved_sources": [{"source_id": e["source_id"], "section": e["section"], "chunk_id": e["chunk_id"],
                                        "distance": e["distance"]} for e in evidence],
                 "reasoning_steps": [str(s) for s in res.get("reasoning_steps", [])] or ["(none given)"],
@@ -250,10 +327,11 @@ def run(scenario_id: str, args, kb, embed, agents_cfg: dict) -> dict:
             entry["entry_hash"] = entry_hash(entry)
             prev = entry["entry_hash"]
             entries.append(entry)
-            board.append({"agent": name, "event_id": ev["id"],
+            board.append({"agent": name, "event_id": ev["id"], "notify": entry["notify_agents"],
                           "recommendation": rec if gate["result"] == "passed" else "(held by the policy gate for human review)"})
             md += [f"### {name} ({a['role']})", "",
                    f"**Saw:** {', '.join(sorted(seen_ids))}; board posts: {len(posts)}  ",
+                   *([f"**Pipeline tools:** " + " ".join(f"[{t['tool']}] {t['output']}" for t in tools) + "  "] if tools else []),
                    f"**Retrieved:** {', '.join(dict.fromkeys(e['cite'] or e['source_id'] for e in evidence))}", "",
                    "**Reasoning:**", *[f"{i}. {s}" for i, s in enumerate(entry['reasoning_steps'], 1)], "",
                    f"**Recommendation:** {rec}", "",
