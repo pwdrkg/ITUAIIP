@@ -65,13 +65,29 @@ def existing_file(row: dict) -> Path | None:
     return hits[0] if hits else None
 
 
+MIN_BYTES = 1024  # anything smaller is an empty page or a redirect stub, not the document
+
+
+def _ssl_context():
+    """Use certifi's certificate bundle when available (fixes some government sites' certificate errors)."""
+    import ssl
+    try:
+        import certifi
+        return ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        return ssl.create_default_context()
+
+
 def download(url: str, retries: int = 3, timeout: int = 60) -> tuple[bytes, str]:
     last = None
     for attempt in range(1, retries + 1):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
-            with urllib.request.urlopen(req, timeout=timeout) as r:
-                return r.read(), r.headers.get("Content-Type", "")
+            with urllib.request.urlopen(req, timeout=timeout, context=_ssl_context()) as r:
+                data = r.read()
+                if len(data) < MIN_BYTES:
+                    raise urllib.error.URLError(f"only {len(data)} bytes received (page probably loads by script)")
+                return data, r.headers.get("Content-Type", "")
         except (urllib.error.URLError, TimeoutError) as e:  # noqa: PERF203
             last = e
             time.sleep(2 * attempt)
