@@ -31,3 +31,14 @@ def test_ingest_and_retrieve(tmp_path):
     passed = int(t.stdout.split("Knowledge base:")[1].split("/")[0])
     assert passed >= 20, t.stdout  # curated chunks alone answer most questions even with the crude embedder
     assert "top hit UC-" in t.stdout
+
+
+def test_scenario_runner_offline_and_audit_chain(tmp_path):
+    """Run both scenarios with the offline stand-ins and check the hash-chained audit logs."""
+    import subprocess, sys, os
+    itu = os.environ.get("ITU_DIR", "../ITUAIReadiness")
+    root = Path(__file__).resolve().parent.parent
+    subprocess.run([sys.executable, "scripts/ingest_ph.py", "--itu-dir", itu, "--embed", "offline", "--curated-only"], cwd=root, check=True)
+    subprocess.run([sys.executable, "scripts/run_scenario.py", "--itu-dir", itu, "--embed", "offline", "--llm", "offline"], cwd=root, check=True)
+    r = subprocess.run([sys.executable, "scripts/verify_audit.py"], cwd=root)
+    assert r.returncode == 0

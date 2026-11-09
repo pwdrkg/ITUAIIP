@@ -51,6 +51,17 @@ python scripts/run_retrieval_tests.py --itu-dir ../ITUAIReadiness
 
 To use the ITU code's own documented ingest instead, add `--export-inputdocs ../ITUAIReadiness/simulation/server/knowledge/InputDocs` to the ingest command, then run `python -m server.knowledge.ingest --reset` inside `ITUAIReadiness/simulation`.
 
+## Run the error scenarios (agents and audit log)
+
+After the knowledge base is built, with an Ollama chat model pulled (`ollama pull qwen2.5:7b`; the ITU default is `qwen2.5:14b`):
+
+```bash
+python scripts/run_scenario.py --itu-dir ../ITUAIReadiness --scenario all   # both scenarios
+python scripts/verify_audit.py                                               # schema + hash chain check
+```
+
+The orchestrator releases each event on its simulated day only to the agents listed in `to`. Each agent sees only its own events plus other agents' board posts about them, searches only its mandated folders (plus curated clauses), and returns reasoning steps, policy references, a recommendation, confidence and a human-review flag. Every step goes to `results/scenarios/<id>/audit_log.jsonl` (hash-chained; schema in `audit/`) and a readable `transcript.md`. Nothing is approved automatically.
+
 **Check the code without Ollama or downloads** (word-matching stand-in, separate database in `data/chromadb_offline`; the scores say nothing about the real knowledge base):
 
 ```bash
