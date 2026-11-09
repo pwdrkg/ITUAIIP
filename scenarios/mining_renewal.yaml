@@ -10,6 +10,11 @@ pre_agreed_rules:
   - Consent is the consensus of all members under customary law (IPRA s3(g)).
   - No issuance or renewal without NCIP certification, and none while FPIC is pending (IPRA s59).
   - Private (sacred) content is never shared outside the community.
+# Policy gate keyword triggers (scripts/run_scenario.py). A match holds the recommendation for human review;
+# a separate LLM check compares it with every pre-agreed rule.
+gate_checks:
+  - id: no-renewal-without-fpic-and-certification
+    trigger: '(?<!not )(?<!never )\b(treat(ed)?|deem(ed)?|consider(ed)?|regard(ed)?) as renewed|(?<!not )\b(approve|grant|allow)s? (the )?renewal|renewal (should|can|may|will) (proceed|be granted|be approved)'
 events:
   - id: evt-1
     day: 0

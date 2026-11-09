@@ -9,7 +9,12 @@ listed in `to`. Each agent:
      curated clauses, figures and gaps;
   3. asks the LLM (Ollama, the ITU code's own client) for a structured assessment: reasoning steps,
      policy references, recommendation, confidence, whether a human must review;
-  4. posts the assessment to the board.
+  4. passes a policy gate (the P node): a fixed keyword check plus a separate LLM check of the
+     recommendation against the scenario's pre-agreed rules. A recommendation that may break a rule is
+     held for human review and NOT posted to the board, so other agents cannot copy it;
+  5. posts the assessment to the board.
+Agents see board posts only from earlier events, not from the event they are assessing, so each
+forms its own view first (avoids herding).
 Every step is written to results/scenarios/<id>/audit_log.jsonl (one entry per agent step, schema
 audit/audit_entry.schema.json, each entry hash-chained to the previous one), and a readable transcript
 to transcript.md. Nothing is approved automatically: every entry starts with human review "pending".
@@ -48,7 +53,8 @@ Work only from the evidence passages given to you and the events you have receiv
 provision exactly as it appears in the evidence (for example "IPRA s59"). Binding Philippine law is a
 requirement; declarations, guidance and foreign examples are benchmarks only - label them so. If the
 evidence does not settle a point, say so and send it to human review. Never approve or reject anything
-on your own: you recommend, a human decides. Stay within your mandate; name the agency that should act
+on your own: you recommend, a human decides. If an event asks for something a pre-agreed rule
+forbids, say no, name the rule, and propose what can be done instead. Stay within your mandate; name the agency that should act
 when it is not you.
 Answer with JSON only, using exactly these keys:
 {{"reasoning_steps": [short strings, 3 to 6], "policy_references": [strings],
@@ -69,6 +75,13 @@ Evidence from the knowledge base (cite by the bracketed source id):
 {evidence}
 
 Give your assessment as JSON."""
+
+
+GATE_SYSTEM = """You are the policy gate of an AI pipeline. You check one agent recommendation against
+numbered pre-agreed rules. A rule is broken only if following the recommendation would do what the rule
+forbids (for example share more than the permitted use allows, or renew/approve without the required
+consent or certification). Mentioning a rule, or refusing, does not break it.
+Answer JSON only: {"broken_rules": [rule numbers], "explanation": string}"""
 
 
 def now() -> str:
@@ -119,6 +132,26 @@ def call_llm(client, model: str, system: str, prompt: str) -> dict:
         return json.loads(m.group(0)) if m else {"reasoning_steps": [text[:500]], "recommendation": "", "parse_error": True}
 
 
+def policy_gate(client, model: str, rules: list[str], checks: list[dict], rec: str) -> dict:
+    """Keyword triggers from the scenario file plus an LLM check of the recommendation."""
+    def fires(trigger: str) -> bool:  # a match counts unless negated just before it ("should not be ...")
+        return any(not re.search(r"\b(not|never|no|without)\b", rec[max(0, m.start() - 25):m.start()], re.I)
+                   for m in re.finditer(trigger, rec, re.I))
+    flags = [c["id"] for c in checks if fires(c["trigger"])]
+    broken, expl = [], ""
+    if client:
+        numbered = "\n".join(f"{i}. {r}" for i, r in enumerate(rules, 1))
+        try:
+            g = call_llm(client, model, GATE_SYSTEM, f"Rules:\n{numbered}\n\nRecommendation:\n{rec}\n\nJSON:")
+            broken = sorted({int(x) for x in g.get("broken_rules", []) if str(x).isdigit() and 1 <= int(x) <= len(rules)})
+            expl = str(g.get("explanation", ""))
+        except Exception as e:  # noqa: BLE001
+            expl = f"gate check failed: {e}"
+    held = bool(flags or broken)
+    return {"keyword_flags": flags, "broken_rules": [f"{i}. {rules[i - 1]}" for i in broken],
+            "explanation": expl, "result": "held for human review" if held else "passed"}
+
+
 def offline_llm(ev: list[dict], event: dict) -> dict:
     """Stand-in with no model: lists the retrieved sources. For checking the code paths only."""
     refs = [e["cite"] or e["source_id"] for e in ev]
@@ -166,7 +199,9 @@ def run(scenario_id: str, args, kb, embed, agents_cfg: dict) -> dict:
         import ollama
         client = ollama.Client(host=args.ollama_url)
 
-    rules = "\n".join(f"- {r}" for r in sc.get("pre_agreed_rules", []))
+    rule_list = sc.get("pre_agreed_rules", [])
+    rules = "\n".join(f"- {r}" for r in rule_list)
+    checks = sc.get("gate_checks", [])
     received: dict[str, list[dict]] = {a: [] for a in agents}
     board: list[dict] = []
     prev, step, entries = "GENESIS", 0, []
@@ -182,7 +217,7 @@ def run(scenario_id: str, args, kb, embed, agents_cfg: dict) -> dict:
             received[name].append(ev)
             seen_ids = {e["id"] for e in received[name]}
             seen_txt = "\n".join(f"- day {e['day']} {e['id']}: {e['event']}" for e in received[name])
-            posts = [b for b in board if b["event_id"] in seen_ids and b["agent"] != name]
+            posts = [b for b in board if b["event_id"] in seen_ids and b["event_id"] != ev["id"] and b["agent"] != name]
             board_txt = "\n".join(f"- {b['agent']} on {b['event_id']}: {b['recommendation']}" for b in posts[-8:]) or "(none)"
             evidence = retrieve(kb, embed, f"{a['role']}. {ev['event']}", a.get("kb_folders", []))
             system = SYSTEM.format(name=name, role=a["role"], mandate=a["mandate"], rules=rules, agents=", ".join(agents))
@@ -192,6 +227,7 @@ def run(scenario_id: str, args, kb, embed, agents_cfg: dict) -> dict:
             step += 1
             refs = [str(x) for x in res.get("policy_references", []) or []]
             rec = str(res.get("recommendation", ""))
+            gate = policy_gate(client, args.model, rule_list, checks, rec)
             hits = ref_hits(ev.get("expected_refs", []), " ".join(refs) + " " + rec + " " + " ".join(map(str, res.get("reasoning_steps", []))))
             hits_all.update(hits)
             entry = {
@@ -205,14 +241,17 @@ def run(scenario_id: str, args, kb, embed, agents_cfg: dict) -> dict:
                 "confidence": res.get("confidence") if res.get("confidence") in ("low", "medium", "high") else "low",
                 "gaps_or_conflicts": [str(g) for g in res.get("gaps_or_conflicts", []) or []],
                 "notify_agents": [str(n) for n in res.get("notify_agents", []) or [] if str(n) in agents],
-                "human_review": {"status": "pending", "note": "flagged by agent" if res.get("needs_human_review", True) else "routine"},
+                "policy_gate": gate,
+                "human_review": {"status": "pending", "note": ("held by policy gate" if gate["result"] != "passed" else
+                                 "flagged by agent" if res.get("needs_human_review", True) else "routine")},
                 "model": args.model if client else "offline", "expected_refs_hit": hits,
                 "previous_entry_hash": prev,
             }
             entry["entry_hash"] = entry_hash(entry)
             prev = entry["entry_hash"]
             entries.append(entry)
-            board.append({"agent": name, "event_id": ev["id"], "recommendation": rec})
+            board.append({"agent": name, "event_id": ev["id"],
+                          "recommendation": rec if gate["result"] == "passed" else "(held by the policy gate for human review)"})
             md += [f"### {name} ({a['role']})", "",
                    f"**Saw:** {', '.join(sorted(seen_ids))}; board posts: {len(posts)}  ",
                    f"**Retrieved:** {', '.join(dict.fromkeys(e['cite'] or e['source_id'] for e in evidence))}", "",
@@ -220,6 +259,7 @@ def run(scenario_id: str, args, kb, embed, agents_cfg: dict) -> dict:
                    f"**Recommendation:** {rec}", "",
                    f"**Policy references:** {'; '.join(refs) or '-'}  ",
                    f"**Gaps or conflicts:** {'; '.join(entry['gaps_or_conflicts']) or '-'}  ",
+                   f"**Policy gate:** {gate['result']}" + (f" - {'; '.join(gate['keyword_flags'] + gate['broken_rules'])}. {gate['explanation']}" if gate['result'] != 'passed' else "") + "  ",
                    f"**Notify:** {', '.join(entry['notify_agents']) or '-'} · **Confidence:** {entry['confidence']} · "
                    f"**Human review:** pending ({entry['human_review']['note']})  ",
                    f"`entry_hash {entry['entry_hash'][:16]}…`", ""]
@@ -232,14 +272,15 @@ def run(scenario_id: str, args, kb, embed, agents_cfg: dict) -> dict:
     md += ["## Controversy", "", str(sc.get("controversy", "")).strip(), ""]
     tot = sum(len(s["expected"]) for s in scores)
     got = sum(len(s["found"]) for s in scores)
-    md += ["## Summary", "", f"- Agent steps logged: {len(entries)}", f"- Expected policy references cited: {got}/{tot}",
+    held = sum(1 for e in entries if e["policy_gate"]["result"] != "passed")
+    md += ["## Summary", "", f"- Agent steps logged: {len(entries)}", f"- Held by the policy gate: {held}", f"- Expected policy references cited: {got}/{tot}",
            f"- Final hash: `{prev}`", ""]
     with log_path.open("w", encoding="utf-8") as f:
         for e in entries:
             f.write(json.dumps(e, ensure_ascii=False) + "\n")
     md_path.write_text("\n".join(md), encoding="utf-8")
     print(f"\n{scenario_id}: {len(entries)} steps, expected references cited {got}/{tot} -> {out}")
-    return {"scenario": scenario_id, "steps": len(entries), "refs_found": got, "refs_expected": tot}
+    return {"scenario": scenario_id, "steps": len(entries), "held_by_gate": held, "refs_found": got, "refs_expected": tot}
 
 
 def main() -> int:

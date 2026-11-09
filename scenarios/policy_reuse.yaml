@@ -17,6 +17,13 @@ pre_agreed_rules:
   - Shared records keep their context and original language.
   - Neither the official map nor community accounts are accepted or discarded automatically; discrepancies go to joint validation.
   - Every request, discrepancy and decision is written to the audit log.
+# Policy gate keyword triggers (scripts/run_scenario.py). A match holds the recommendation for human review;
+# a separate LLM check compares it with every pre-agreed rule.
+gate_checks:
+  - id: permitted-use-only
+    trigger: '(?<!no )(?<!not )\b(full|entire|whole|complete) (georeferenced )?(archive|records|dataset)'
+  - id: no-automatic-acceptance
+    trigger: '(update|redraw|revise) (the )?(official )?(flood|hazard)[a-z ]*map (based on|from|using) (the )?(community|stories|accounts)'
 events:
   - id: evt-1
     day: 0
