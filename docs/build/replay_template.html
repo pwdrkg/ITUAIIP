@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IKSP Record Pipeline: scenario replay</title>
+<style>
+  :root{
+    --bg:#f6f4ef; --panel:#ffffff; --ink:#1d2421; --muted:#5d6762; --line:#dcd8cf;
+    --accent:#1f5f4a; --accent-soft:#e3efe9; --warn:#a4471c; --warn-soft:#f8e6dc;
+    --gold:#8a6a12; --gold-soft:#f5edd5; --chip:#eeebe4;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --serif: Georgia, "Times New Roman", serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
+  header{padding:22px 28px 14px;border-bottom:1px solid var(--line);background:var(--panel)}
+  h1{font:600 22px/1.2 var(--serif);margin:0 0 4px}
+  .sub{color:var(--muted);font-size:13px}
+  .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg)}
+  .seg button{border:0;background:transparent;padding:7px 12px;font:inherit;cursor:pointer;color:var(--muted)}
+  .seg button.on{background:var(--accent);color:#fff}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line);background:var(--bg)}
+  .badge.ok{background:var(--accent-soft);border-color:#b9d6c9;color:var(--accent)}
+  .badge.bad{background:var(--warn-soft);border-color:#ebc4b0;color:var(--warn)}
+  .controls{display:flex;gap:8px;align-items:center;margin-left:auto}
+  .controls button{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:7px 12px;font:inherit;cursor:pointer}
+  .controls button:hover{border-color:var(--accent)}
+  .controls .play{background:var(--accent);color:#fff;border-color:var(--accent);min-width:84px}
+  .step{font-variant-numeric:tabular-nums;color:var(--muted);min-width:84px;text-align:center}
+  .timeline{position:relative;height:54px;margin:16px 28px 0}
+  .tl-line{position:absolute;left:0;right:0;top:22px;height:2px;background:var(--line)}
+  .tl-dot{position:absolute;top:13px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:var(--panel);border:2px solid var(--line);cursor:pointer;transition:.2s}
+  .tl-dot.past{border-color:var(--accent);background:var(--accent-soft)}
+  .tl-dot.now{border-color:var(--accent);background:var(--accent);transform:scale(1.15)}
+  .tl-lab{position:absolute;top:38px;font-size:11px;color:var(--muted);transform:translateX(-50%);white-space:nowrap}
+  .roster{display:flex;flex-wrap:wrap;gap:6px;margin:10px 28px 0}
+  .ag{padding:4px 9px;border-radius:6px;font-size:12px;background:var(--chip);color:var(--muted);border:1px solid transparent}
+  .ag.recv{background:var(--accent-soft);color:var(--accent)}
+  .ag.active{border-color:var(--accent);background:var(--accent);color:#fff}
+  main{display:grid;grid-template-columns:minmax(240px,1fr) minmax(360px,1.7fr) minmax(260px,1.1fr);gap:16px;padding:16px 28px 32px}
+  @media (max-width:1050px){main{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .panel h2{font:600 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+  .day{font:600 30px/1 var(--serif);color:var(--accent)}
+  .evt{font:16px/1.45 var(--serif);margin:10px 0 12px}
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+  .chip{font-size:11.5px;padding:3px 8px;border-radius:5px;background:var(--chip)}
+  .chip.hit{background:var(--accent-soft);color:var(--accent)}
+  .lbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+  .exp{background:var(--gold-soft);border-left:3px solid var(--gold);padding:9px 11px;border-radius:0 8px 8px 0;font-size:13px}
+  .who{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .who b{font-size:16px}
+  .role{color:var(--muted);font-size:12.5px}
+  .gate{padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+  .gate.pass{background:var(--accent-soft);color:var(--accent)}
+  .gate.held{background:var(--warn-soft);color:var(--warn)}
+  .gate.none{background:var(--chip);color:var(--muted)}
+  ol.reason{margin:0;padding-left:20px}
+  ol.reason li{margin:3px 0}
+  .rec{font:15px/1.5 var(--serif);padding:11px 13px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+  .rec.held{background:var(--warn-soft);border-color:#ebc4b0}
+  .gatebox{margin-top:8px;font-size:12.5px;color:var(--warn)}
+  .meta{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--muted);margin-top:12px}
+  .hash{font:11px var(--mono);color:var(--muted);word-break:break-all;margin-top:10px}
+  .post{border-top:1px solid var(--line);padding:9px 0;font-size:13px;animation:in .35s ease}
+  .post:first-child{border-top:0}
+  .post .a{font-weight:600;font-size:12px}
+  .post .d{color:var(--muted);font-size:11.5px}
+  .post.held{color:var(--warn)}
+  .post.new{background:linear-gradient(90deg,var(--accent-soft),transparent);margin:0 -8px;padding:9px 8px;border-radius:6px}
+  @keyframes in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .queue{display:flex;gap:10px;margin-bottom:12px}
+  .q{flex:1;background:var(--bg);border-radius:8px;padding:8px 10px}
+  .q b{display:block;font:600 22px/1.1 var(--serif)}
+  .q span{font-size:11.5px;color:var(--muted)}
+  .board{max-height:520px;overflow:auto}
+  details{margin-top:10px;font-size:13px}
+  summary{cursor:pointer;color:var(--accent)}
+  footer{padding:0 28px 28px;color:var(--muted);font-size:12px}
+  .rules li{margin:3px 0;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>IKSP Record Pipeline: error scenario replay</h1>
+  <div class="sub">Institutional AI agents (ITU AI for Good Sandbox Hackathon). Each step is one entry of the hash-chained audit log, replayed in order. Model: qwen2.5:7b via Ollama · knowledge base: ITU reference code, 8,311 chunks.</div>
+  <div class="bar">
+    <div class="seg" id="scSeg"></div>
+    <div class="seg" id="runSeg"></div>
+    <span class="badge" id="verify">Verifying audit log…</span>
+    <div class="controls">
+      <button id="prev" title="Previous step (←)">◀</button>
+      <button id="play" class="play">▶ Play</button>
+      <button id="next" title="Next step (→)">▶</button>
+      <span class="step" id="stepLab"></span>
+    </div>
+  </div>
+</header>
+
+<div class="timeline" id="timeline"><div class="tl-line"></div></div>
+<div class="roster" id="roster"></div>
+
+<main>
+  <section class="panel" id="eventPanel"></section>
+  <section class="panel" id="agentPanel"></section>
+  <section class="panel">
+    <h2>Shared board &amp; human review</h2>
+    <div class="queue">
+      <div class="q"><b id="qPending">0</b><span>pending human review</span></div>
+      <div class="q"><b id="qHeld">0</b><span>held by policy gate</span></div>
+    </div>
+    <div class="board" id="board"></div>
+  </section>
+</main>
+<footer id="foot"></footer>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const state = {sc: Object.keys(D.scenarios)[0], run: 'v2', i: 0, timer: null};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const RUNS = {v2: 'With policy gate', baseline: 'Baseline (no gate)'};
+
+// Same canonical form as Python json.dumps(sort_keys=True, ensure_ascii=False)
+function py(v){
+  if (v === null) return 'null';
+  if (Array.isArray(v)) return '[' + v.map(py).join(', ') + ']';
+  if (typeof v === 'object') return '{' + Object.keys(v).sort().map(k => JSON.stringify(k) + ': ' + py(v[k])).join(', ') + '}';
+  if (typeof v === 'number' && Number.isInteger(v) && String(v).indexOf('.') < 0) return String(v);
+  return JSON.stringify(v);
+}
+async function sha(s){
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2,'0')).join('');
+}
+async function verify(entries){
+  let prev = 'GENESIS';
+  for (const e of entries){
+    const body = {...e}; delete body.entry_hash;
+    if (e.previous_entry_hash !== prev || await sha(py(body)) !== e.entry_hash) return false;
+    prev = e.entry_hash;
+  }
+  return true;
+}
+
+function entries(){ return D.scenarios[state.sc].runs[state.run]; }
+function sc(){ return D.scenarios[state.sc]; }
+
+function seg(el, opts, cur, fn){
+  el.innerHTML = '';
+  for (const [k, lab] of opts){
+    const b = document.createElement('button'); b.textContent = lab; b.className = k === cur ? 'on' : '';
+    b.onclick = () => fn(k); el.appendChild(b);
+  }
+}
+
+function drawStatic(){
+  seg($('scSeg'), Object.entries(D.scenarios).map(([k, s], n) => [k, `Scenario ${n + 1}: ${s.title}`]), state.sc, k => {state.sc = k; state.i = 0; stop(); drawStatic(); draw();});
+  seg($('runSeg'), Object.entries(RUNS), state.run, k => {state.run = k; state.i = Math.min(state.i, entries().length - 1); stop(); drawStatic(); draw();});
+  const s = sc(), tl = $('timeline');
+  tl.querySelectorAll('.tl-dot,.tl-lab').forEach(n => n.remove());
+  const max = Math.max(s.sim_days || 1, ...s.events.map(e => e.day));
+  s.events.forEach(ev => {
+    const x = 2 + 96 * ev.day / max;
+    const d = document.createElement('div'); d.className = 'tl-dot'; d.style.left = x + '%'; d.dataset.ev = ev.id; d.title = ev.event;
+    d.onclick = () => {state.i = entries().findIndex(e => e.event_id === ev.id); stop(); draw();};
+    const l = document.createElement('div'); l.className = 'tl-lab'; l.style.left = x + '%'; l.textContent = 'Day ' + ev.day;
+    tl.append(d, l);
+  });
+  $('foot').innerHTML = `<b>Pre-agreed rules</b><ul class="rules">${s.rules.map(r => `<li>${esc(r)}</li>`).join('')}</ul>
+    <b>Where it gets controversial.</b> ${esc(s.controversy)}<br><br>
+    Source files: <code>scenarios/${state.sc}.yaml</code>, <code>results/scenarios${state.run === 'baseline' ? '_baseline' : ''}/${state.sc}/audit_log.jsonl</code> and <code>transcript.md</code>.`;
+  const v = $('verify'); v.className = 'badge'; v.textContent = 'Verifying audit log…';
+  verify(entries()).then(ok => { v.className = 'badge ' + (ok ? 'ok' : 'bad');
+    v.textContent = ok ? `✓ Hash chain verified in your browser (${entries().length} entries)` : '✗ Audit log hash check failed'; });
+}
+
+function draw(){
+  const E = entries(), e = E[state.i], s = sc();
+  const ev = s.events.find(x => x.id === e.event_id);
+  $('stepLab').textContent = `Step ${state.i + 1} / ${E.length}`;
+  // timeline
+  const order = s.events.map(x => x.id), cur = order.indexOf(ev.id);
+  document.querySelectorAll('.tl-dot').forEach(d => { const k = order.indexOf(d.dataset.ev); d.className = 'tl-dot' + (k < cur ? ' past' : k === cur ? ' now' : ''); });
+  // roster: who has received anything so far
+  const recv = new Set(E.slice(0, state.i + 1).map(x => x.agent));
+  $('roster').innerHTML = Object.entries(D.agents).map(([k, a]) =>
+    `<span class="ag ${k === e.agent ? 'active' : recv.has(k) ? 'recv' : ''}" title="${esc(a.mandate)}">${esc(a.role)}</span>`).join('');
+  // event
+  const hitsSoFar = new Set(E.filter((x, j) => j <= state.i && x.event_id === ev.id).flatMap(x => x.expected_refs_hit || []));
+  $('eventPanel').innerHTML = `<h2>Event released</h2>
+    <div class="day">Day ${ev.day}</div>
+    <div class="evt">${esc(ev.event)}</div>
+    <div class="lbl">Released only to</div>
+    <div class="chips">${ev.to.map(a => `<span class="chip">${esc(D.agents[a]?.role || a)}</span>`).join('')}</div>
+    <div class="lbl">Expected response</div>
+    <div class="exp">${esc(ev.expected)}</div>
+    <div class="lbl">Expected references (cited so far in this event)</div>
+    <div class="chips">${(ev.expected_refs || []).map(r => `<span class="chip ${hitsSoFar.has(r) ? 'hit' : ''}">${hitsSoFar.has(r) ? '✓ ' : ''}${esc(r)}</span>`).join('')}</div>
+    ${ev.test ? `<div class="lbl">Test</div><div>${esc(ev.test)}</div>` : ''}`;
+  // agent
+  const a = D.agents[e.agent] || {};
+  const g = e.policy_gate, held = g && g.result !== 'passed';
+  const gate = !g ? '<span class="gate none">No policy gate in this run</span>' : held ? '<span class="gate held">Held by policy gate</span>' : '<span class="gate pass">Passed policy gate</span>';
+  const why = held ? [...(g.keyword_flags || []).map(f => 'keyword trigger: ' + f), ...(g.broken_rules || []).map(r => 'rule ' + r)].join(' · ') : '';
+  $('agentPanel').innerHTML = `<h2>Agent assessment</h2>
+    <div class="who"><div><b>${esc(e.agent)}</b><div class="role">${esc(a.role)}: ${esc(e.mandate)}</div></div>${gate}</div>
+    <div class="lbl">Information it had</div>
+    <div class="chips">${e.information_seen.map(x => `<span class="chip">${esc(x)}</span>`).join('')}<span class="chip">board posts seen: ${e.board_posts_seen?.length ?? 0}</span></div>
+    <div class="lbl">Retrieved from the knowledge base</div>
+    <div class="chips">${e.retrieved_sources.map(r => `<span class="chip" title="${esc(r.chunk_id)} · distance ${r.distance}">${esc(r.source_id)}${r.section ? ' s' + esc(r.section.split(',').slice(0,3).join(',')) : ''}</span>`).join('')}</div>
+    <div class="lbl">Reasoning</div>
+    <ol class="reason">${e.reasoning_steps.map(r => `<li>${esc(r)}</li>`).join('')}</ol>
+    <div class="lbl">Recommendation</div>
+    <div class="rec ${held ? 'held' : ''}">${esc(e.recommendation)}</div>
+    ${held ? `<div class="gatebox"><b>Why held:</b> ${esc(why)}${g.explanation ? '. LLM rule check: ' + esc(g.explanation) : ''}</div>` : ''}
+    <div class="lbl">Policy references</div>
+    <div class="chips">${e.policy_references.map(r => `<span class="chip">${esc(r)}</span>`).join('') || '<span class="chip">none</span>'}</div>
+    ${e.gaps_or_conflicts?.length ? `<div class="lbl">Gaps or conflicts flagged</div><ul>${e.gaps_or_conflicts.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+    <div class="meta"><span>Confidence: <b>${esc(e.confidence)}</b></span><span>Notify: ${esc((e.notify_agents || []).join(', ') || 'none')}</span><span>Human review: <b>${esc(e.human_review.status)}</b> (${esc(e.human_review.note)})</span></div>
+    <div class="hash">entry ${e.scenario_step} · ${esc(e.timestamp)}<br>previous ${esc(e.previous_entry_hash)}<br>hash&nbsp;&nbsp;&nbsp;&nbsp; ${esc(e.entry_hash)}</div>`;
+  // board
+  const posted = E.slice(0, state.i + 1);
+  const heldN = posted.filter(x => x.policy_gate && x.policy_gate.result !== 'passed').length;
+  $('qPending').textContent = posted.length; $('qHeld').textContent = state.run === 'baseline' ? '–' : heldN;
+  $('board').innerHTML = posted.slice().reverse().map((x, j) => {
+    const h = x.policy_gate && x.policy_gate.result !== 'passed';
+    return `<div class="post ${h ? 'held' : ''} ${j === 0 ? 'new' : ''}"><div class="a">${esc(x.agent)} <span class="d">· day ${x.sim_day} · ${esc(x.event_id)}</span></div>
+      ${h ? '<i>(held by the policy gate for human review; not visible to other agents)</i>' : esc(x.recommendation)}</div>`;
+  }).join('');
+}
+
+function step(d){ const n = entries().length; state.i = Math.max(0, Math.min(n - 1, state.i + d)); draw(); if (state.i === n - 1) stop(); }
+function stop(){ clearInterval(state.timer); state.timer = null; $('play').textContent = '▶ Play'; }
+$('prev').onclick = () => {stop(); step(-1);};
+$('next').onclick = () => {stop(); step(1);};
+$('play').onclick = () => {
+  if (state.timer) return stop();
+  if (state.i === entries().length - 1) state.i = 0, draw();
+  $('play').textContent = '❚❚ Pause'; state.timer = setInterval(() => step(1), 4500);
+};
+document.addEventListener('keydown', k => { if (k.key === 'ArrowRight') {stop(); step(1);} if (k.key === 'ArrowLeft') {stop(); step(-1);} if (k.key === ' ') {k.preventDefault(); $('play').click();} });
+drawStatic(); draw();
+</script>
+</body>
+</html>
