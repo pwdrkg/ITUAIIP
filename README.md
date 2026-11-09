@@ -47,7 +47,19 @@ python scripts/ingest_ph.py --itu-dir ../ITUAIReadiness
 python scripts/run_retrieval_tests.py --itu-dir ../ITUAIReadiness
 ```
 
-One source (the IP Code, `PH-L04`) must be downloaded by hand; the fetch script prints instructions.
+86 sources download automatically; 42 are marked `manual` in `knowledge_base/sources.csv` and must be saved by hand into `knowledge_base/InputDocs/<folder>/<id>_<name>` (the fetch script lists them). Ingestion also loads `knowledge_base/use_case/` into the ITU use-case collection (`kb_usecase`), which the ITU use-case agent searches.
+
+To use the ITU code's own documented ingest instead, add `--export-inputdocs ../ITUAIReadiness/simulation/server/knowledge/InputDocs` to the ingest command, then run `python -m server.knowledge.ingest --reset` inside `ITUAIReadiness/simulation`.
+
+**Check the code without Ollama or downloads** (word-matching stand-in, separate database in `data/chromadb_offline`; the scores say nothing about the real knowledge base):
+
+```bash
+python scripts/ingest_ph.py --itu-dir ../ITUAIReadiness --embed offline
+python scripts/run_retrieval_tests.py --itu-dir ../ITUAIReadiness --embed offline
+ITU_DIR=../ITUAIReadiness python -m pytest tests -q
+```
+
+Offline check, 9 November 2026: curated chunks (65) and the use-case document (5) load through the ITU code; 25 of 39 test questions pass from curated chunks alone; the other 14 need the full documents.
 
 ## Knowledge base
 
@@ -57,7 +69,9 @@ One source (the IP Code, `PH-L04`) must be downloaded by hand; the fetch script 
 
 - [x] Concept, architecture, scenario and audit design
 - [x] Verified source list, fetch, ingest and retrieval-test scripts
-- [ ] Run ingestion and pass the retrieval test
+- [x] Ingestion and retrieval test run end to end against the ITU code (offline check)
+- [x] Use-case document loaded into the ITU use-case collection
+- [ ] Full build with Ollama (nomic-embed-text) and all 128 sources; pass the retrieval test
 - [ ] Agents and orchestrator
 - [ ] Speech-to-text and entity-extraction fine-tunes
 - [ ] Web interface

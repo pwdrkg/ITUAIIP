@@ -8,6 +8,7 @@
 | `curated/provisions.yaml` | Key clauses, one per entry, verbatim where the text is official |
 | `curated/facts.yaml` | Key figures with sources |
 | `curated/gaps.yaml` | 17 domain policy gaps and 5 gaps in current practice (`scope: practice`), linked to Philippine clauses and global examples |
+| `use_case/` | The IKSP use case in Y.3172 terms, loaded into the ITU use-case collection (`kb_usecase`) |
 | `retrieval_tests.yaml` | 39 questions with the sources each must retrieve |
 | `fetch_log.csv` | Created on download: file, size, SHA-256, time |
 | `private_store/` | Community data for local testing only; git-ignored |

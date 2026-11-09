@@ -10,6 +10,16 @@ country, and the section numbers that appear in the chunk (for example
 Run from the repository root, after scripts/fetch_sources.py:
     python scripts/ingest_ph.py --itu-dir ../ITUAIReadiness [--reset]
 
+Code check without Ollama (word-matching stand-in, separate database; not the real knowledge base):
+    python scripts/ingest_ph.py --itu-dir ../ITUAIReadiness --embed offline
+
+Also loads knowledge_base/use_case/*.md into the ITU use-case collection (kb_usecase), which the
+ITU use-case agent searches. Skip with --no-usecase.
+
+--export-inputdocs DIR copies the downloaded sources and the use-case document into the ITU code's own
+InputDocs layout (DIR/AI_Strategies, DIR/AI_Use_Cases), file names prefixed "Philippines_", so the ITU
+documented command `python -m server.knowledge.ingest --reset` can load them too.
+
 Requires the ITU code's dependencies (chromadb, ollama, docling or PyMuPDF)
 and a running Ollama server with the nomic-embed-text model.
 
@@ -21,8 +31,12 @@ from __future__ import annotations
 import argparse
 import csv
 import re
+import shutil
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import itu_env  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 KB = ROOT / "knowledge_base"
@@ -37,22 +51,21 @@ def sections_in(text: str) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--itu-dir", required=True, help="path to the cloned ITUAIReadiness repo")
+    itu_env.add_common_args(ap)
+    ap.add_argument("--no-usecase", action="store_true", help="skip knowledge_base/use_case/*.md")
+    ap.add_argument("--export-inputdocs", default="", help="also copy files into this ITU InputDocs folder")
     ap.add_argument("--reset", action="store_true", help="delete existing chunks from these sources first")
     ap.add_argument("--only", default="", help="comma-separated source ids")
     ap.add_argument("--no-curated", action="store_true", help="skip knowledge_base/curated/*.yaml")
     ap.add_argument("--curated-only", action="store_true", help="only (re)load knowledge_base/curated/*.yaml")
     args = ap.parse_args()
 
-    sim = Path(args.itu_dir).resolve() / "simulation"
-    if not (sim / "server").exists():
-        print(f"Cannot find ITU code at {sim}/server", file=sys.stderr)
-        return 2
-    sys.path.insert(0, str(sim))
-    from server.knowledge.ingest import build_metadata, chunk_text, embed_texts, parse_file  # noqa: E402
-    from server.knowledge.kb import KnowledgeBase  # noqa: E402
-
-    kb = KnowledgeBase()
+    itu = itu_env.load_itu(args.itu_dir)
+    build_metadata, chunk_text, parse_file = itu.ingest.build_metadata, itu.ingest.chunk_text, itu.ingest.parse_file
+    embed_texts = itu_env.get_embedder(args.embed, itu)
+    kb = itu.KnowledgeBase(args.persist_dir or itu_env.default_persist_dir(args.embed, itu))
+    if args.embed == "offline":
+        print("NOTE: offline word-matching embedder - a code check only, not the real knowledge base.\n")
     rows = list(csv.DictReader((KB / "sources.csv").open(encoding="utf-8")))
     only = {s.strip() for s in args.only.split(",") if s.strip()}
     total = 0
@@ -88,10 +101,47 @@ def main() -> int:
         kb.add_documents(texts=chunks, embeddings=embeddings, metadatas=metas, ids=ids)
         total += len(chunks)
         print(f"ok      {r['id']:8} {len(chunks):>4} chunks  {path.name}")
+        if args.export_inputdocs:
+            export(path, Path(args.export_inputdocs) / "AI_Strategies", r["id"])
     if args.curated_only or (not args.no_curated and not only):
         total += ingest_curated(kb, embed_texts)
+    if not args.no_usecase and not only:
+        total += ingest_usecase(kb, itu, embed_texts, chunk_text, parse_file, build_metadata, args.export_inputdocs)
     print(f"\nStored {total} chunks.")
     return 0
+
+
+def export(path: Path, dest: Path, sid: str) -> None:
+    """Copy a file into the ITU InputDocs layout with a Philippines_ prefix."""
+    dest.mkdir(parents=True, exist_ok=True)
+    name = path.name if path.name.startswith("Philippines_") else f"Philippines_{path.name}"
+    shutil.copy2(path, dest / name)
+
+
+def ingest_usecase(kb, itu, embed_texts, chunk_text, parse_file, build_metadata, export_dir: str) -> int:
+    """Load knowledge_base/use_case/*.md into the ITU use-case collection (kb_usecase)."""
+    col_name = itu.settings.kb_usecase_collection
+    col = kb._col(col_name)
+    total = 0
+    for path in sorted((KB / "use_case").glob("*.md")):
+        chunks = chunk_text(parse_file(path))
+        if not chunks:
+            continue
+        sid = "UC-" + path.stem
+        col.delete(where={"source_id": sid})
+        metas = []
+        for i, ch in enumerate(chunks):
+            m = build_metadata(path, i, len(chunks), {"source_id": sid, "title": path.stem.replace("_", " "),
+                                                      "document_category": "AI_Use_Cases", "country": "Philippines"})
+            m["sections"] = sections_in(ch)
+            metas.append(m)
+        kb.add_documents(texts=chunks, embeddings=embed_texts(chunks), metadatas=metas,
+                         ids=[f"{sid}::{i}" for i in range(len(chunks))], collection_name=col_name)
+        total += len(chunks)
+        print(f"ok      use case {len(chunks):>4} chunks  {path.name} -> {col_name}")
+        if export_dir:
+            export(path, Path(export_dir) / "AI_Use_Cases", sid)
+    return total
 
 
 def ingest_curated(kb, embed_texts) -> int:
