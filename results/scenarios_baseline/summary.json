@@ -1,0 +1,14 @@
+[
+  {
+    "scenario": "mining_renewal",
+    "steps": 14,
+    "refs_found": 6,
+    "refs_expected": 16
+  },
+  {
+    "scenario": "policy_reuse",
+    "steps": 11,
+    "refs_found": 4,
+    "refs_expected": 13
+  }
+]
